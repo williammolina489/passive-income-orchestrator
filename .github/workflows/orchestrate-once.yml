@@ -1,12 +1,8 @@
 name: Orchestrate Once
-# bootstrap retry after log-redirect fix
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/orchestrate-once.yml"
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
