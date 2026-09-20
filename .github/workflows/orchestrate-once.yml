@@ -41,6 +41,12 @@ jobs:
           set -o pipefail
           orchestrator-monitor | tee operational-monitor.json
 
+      - name: Generate portfolio status
+        run: |
+          set -o pipefail
+          orchestrator-portfolio | tee portfolio-status.json
+          cat PORTFOLIO_STATUS.md >> "$GITHUB_STEP_SUMMARY"
+
       - name: Decide and execute at most one bounded task
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -63,7 +69,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tasks results state observations
+          git add tasks results state observations PORTFOLIO_STATUS.md
           if git diff --cached --quiet; then
             echo "No orchestration state changes to commit."
             exit 0
