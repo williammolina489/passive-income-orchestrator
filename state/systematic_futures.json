@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 1,
+  "project_id": "systematic_futures",
+  "repository": "williammolina489/systematic-futures-bot",
+  "branch": "research/e003-multihorizon-riskcontrolled",
+  "head_sha": "31d5ae4d591863dc6ff8996ccbe9911e66df26d2",
+  "lifecycle_status": "CLOSED",
+  "experiment": {
+    "id": "E003",
+    "stage": "TRAIN",
+    "status": "STOPPED"
+  },
+  "governance": {
+    "methodology_frozen": true,
+    "performance_viewed": true,
+    "validation_state": "SEALED",
+    "oos_state": "SEALED",
+    "data_integrity_status": "PASS"
+  },
+  "current_blockers": [],
+  "next_permitted_actions": [],
+  "forbidden_actions": [
+    "Do not run E003 VALIDATION.",
+    "Do not unseal E003 OOS.",
+    "Do not retune E003 after TRAIN.",
+    "Do not propose or start E004 in this project.",
+    "Do not deploy live money."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-20T12:26:00Z",
+  "source_documents": [
+    "williammolina489/systematic-futures-bot@research/e003-multihorizon-riskcontrolled:PROJECT_STATE.md",
+    "williammolina489/systematic-futures-bot@research/e003-multihorizon-riskcontrolled:EXPERIMENTS.md",
+    "williammolina489/systematic-futures-bot@research/e003-multihorizon-riskcontrolled:ROADMAP.md",
+    "williammolina489/systematic-futures-bot#3"
+  ],
+  "last_result_task_id": null,
+  "notes": "E003 failed 7 of 14 frozen TRAIN gates. The repository explicitly closes the futures project with VALIDATION untouched and OOS sealed."
+}
