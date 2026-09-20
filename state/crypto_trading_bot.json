@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 1,
+  "state_revision": 2,
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
   "branch": "main",
@@ -32,7 +32,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-20T14:41:13Z",
+  "updated_at": "2026-09-20T15:11:00Z",
   "source_documents": [
     "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
@@ -40,8 +40,9 @@
     "williammolina489/crypto-trading-bot@main:FORWARD_PAPER.md",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516599163",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516572334",
-    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789"
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789",
+    "Railway project crypto-trading-dashboard / service crypto-dashboard / production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b"
   ],
   "last_result_task_id": null,
-  "notes": "Recent incumbent/challenger health and paper workflows on 2026-09-20 completed successfully on main. The orchestrator is monitor-only because this repository already owns its paper execution cadence."
+  "notes": "Recent incumbent/challenger health and paper workflows on 2026-09-20 completed successfully on main. The read-only Railway dashboard is also healthy: production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b succeeded from dashboard-runtime commit e74d82de34e9c408ce01483420752ec555e398cf, with low CPU/memory use and /health configured. The orchestrator remains monitor-only because this repository already owns its paper execution cadence."
 }
