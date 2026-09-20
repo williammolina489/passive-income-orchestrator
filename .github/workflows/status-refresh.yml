@@ -1,0 +1,60 @@
+name: Refresh Portfolio Status
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/status-refresh.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: passive-income-status-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+
+      - name: Verify canonical repository SHAs
+        env:
+          ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: orchestrator-status --verify-remote --json
+
+      - name: Refresh operational observations
+        env:
+          ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: orchestrator-monitor
+
+      - name: Generate portfolio status
+        run: |
+          orchestrator-portfolio
+          cat PORTFOLIO_STATUS.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit status-only refresh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add observations PORTFOLIO_STATUS.md
+          if git diff --cached --quiet; then
+            echo "No status changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh portfolio status"
+          git push
