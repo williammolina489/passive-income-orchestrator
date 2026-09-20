@@ -4,7 +4,7 @@ Central controller for William's automated passive-income research projects.
 
 ## Purpose
 
-This repository will coordinate multiple research/bot repositories without relying on ChatGPT conversation history as shared state.
+This repository coordinates multiple research/bot repositories without relying on ChatGPT conversation history as shared state.
 
 GitHub is the source of truth.
 
@@ -25,6 +25,7 @@ The orchestrator will eventually:
 - Sensitive or consequential actions remain human-gated.
 - Closed or rejected projects must not be silently revived.
 - No agent may weaken an experiment's acceptance criteria to make it pass.
+- Machine-readable contracts fail closed when state is ambiguous.
 
 ## Planned architecture
 
@@ -54,15 +55,21 @@ Master controller evaluates result
 
 ## Current bootstrap stage
 
-This repository is intentionally minimal.
+The shared communication contract is now defined.
 
-Current files:
+Current foundation:
 
 - `projects.yaml` — registry of projects the orchestrator may manage.
 - `policies/global-policy.md` — global constraints that apply to every project.
+- `schemas/project-state.schema.json` — current-state contract.
+- `schemas/task.schema.json` — bounded worker-task contract.
+- `schemas/result.schema.json` — worker-result contract.
+- `docs/STATE_PROTOCOL.md` — where managed repositories publish state/tasks/results.
 
-No API keys, live-trading credentials, automated workers, or scheduled workflows are configured yet.
+Version 1 of the task contract cannot authorize spending, purchasing data/services, live trades, transfers/withdrawals, methodology changes, or direct merges to the default branch.
+
+No API keys, live-trading credentials, autonomous workers, or scheduled workflows are configured yet.
 
 ## Next milestone
 
-Define a common machine-readable project-state and task/result schema before enabling any autonomous execution.
+Seed each enabled managed repository with a truthful `.orchestrator/PROJECT_STATE.json` based on its current GitHub state, then build a read-only controller that validates those states before any autonomous dispatching is enabled.
