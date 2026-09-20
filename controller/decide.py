@@ -39,6 +39,8 @@ def build_candidates(report: dict[str, Any]) -> list[dict[str, Any]]:
                     "lifecycle_status": project.get("lifecycle_status"),
                     "experiment": project.get("experiment"),
                     "action": action,
+                    "forbidden_actions": project.get("forbidden_actions", []),
+                    "worker": project.get("worker"),
                 }
             )
     return candidates
@@ -87,6 +89,7 @@ def build_prompt(
         {
             "project_id": project["project_id"],
             "enabled": project["enabled"],
+            "worker_ready": project.get("worker_ready"),
             "lifecycle_status": project.get("lifecycle_status"),
             "decision_hint": project.get("decision_hint"),
         }
@@ -109,13 +112,13 @@ Rules:
 - Treat the supplied verified candidates as the complete action menu.
 - If you choose RUN_TASK, select exactly one candidate_id from that menu.
 - Never invent, rewrite, combine, or expand an action.
-- Closed or disabled projects are not candidates.
+- Closed, disabled, stale, human-gated, or worker-not-ready projects are not candidates.
 - Prefer a concrete action that can remove a current blocker over idle waiting when it is
   clearly permitted.
 - If the candidate set is empty, do not choose RUN_TASK.
 - If the information is materially ambiguous or would require a human-gated action,
   choose NEEDS_HUMAN.
-- The result is advisory scheduling only; it does not itself execute anything.
+- The result is scheduling only; execution is handled by a separately constrained worker.
 - Base the decision only on the supplied repository-derived state and policy.
 
 Global policy:
