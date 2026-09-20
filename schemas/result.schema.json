@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/williammolina489/passive-income-orchestrator/blob/main/schemas/result.schema.json",
+  "title": "Passive Income Orchestrator Worker Result",
+  "description": "Structured result returned by a worker after attempting a dispatched task.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "project_id",
+    "repository",
+    "experiment_id",
+    "starting_sha",
+    "ending_sha",
+    "outcome",
+    "summary",
+    "evidence",
+    "checks",
+    "methodology_changed",
+    "protected_data_access",
+    "financial_action_taken",
+    "human_action_required",
+    "human_action_reason",
+    "recommended_next_action",
+    "pull_request",
+    "completed_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "experiment_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "starting_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "ending_sha": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "STOP",
+        "NEEDS_HUMAN",
+        "ERROR"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "reference",
+          "summary"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "COMMIT",
+              "PULL_REQUEST",
+              "FILE",
+              "ARTIFACT",
+              "LOG",
+              "URL",
+              "OTHER"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "status",
+          "details"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "SKIP"
+            ]
+          },
+          "details": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "methodology_changed": {
+      "type": "boolean"
+    },
+    "protected_data_access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "validation",
+        "oos"
+      ],
+      "properties": {
+        "validation": {
+          "type": "boolean"
+        },
+        "oos": {
+          "type": "boolean"
+        }
+      }
+    },
+    "financial_action_taken": {
+      "type": "boolean"
+    },
+    "human_action_required": {
+      "type": "boolean"
+    },
+    "human_action_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "recommended_next_action": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "pull_request": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "number",
+            "url",
+            "head_sha"
+          ],
+          "properties": {
+            "number": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "head_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            }
+          }
+        }
+      ]
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
