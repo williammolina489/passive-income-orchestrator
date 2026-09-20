@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "state_revision": 1,
+  "state_revision": 2,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
   "head_sha": "dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52",
-  "lifecycle_status": "WAITING",
+  "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
     "stage": "Paper execution validation and historical-fidelity audit",
@@ -19,7 +19,7 @@
     "data_integrity_status": "UNKNOWN"
   },
   "current_blockers": [
-    "The orchestrator does not yet have a current Railway runtime-health integration, so the 2026-09-04 deployment-health snapshot cannot be treated as current operational evidence.",
+    "The GitHub-hosted orchestrator does not yet have an unattended Railway runtime-health credential or public health probe, so Railway health is currently refreshed through the connected Railway integration rather than by the hourly GitHub workflow.",
     "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
   ],
   "next_permitted_actions": [
@@ -36,13 +36,15 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-20T14:41:13Z",
+  "updated_at": "2026-09-20T15:05:34.310234Z",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
     "williammolina489/alpaca-paper-trading-bot@main:ROADMAP.md",
-    "williammolina489/alpaca-paper-trading-bot#22"
+    "williammolina489/alpaca-paper-trading-bot#22",
+    "Railway project cooperative-heart / service alpaca-paper-trading-bot / production deployment 7b1c896f-da16-4731-b4b3-69deb176e2a9",
+    "Railway diagnostics snapshot 2026-09-20T15:05:34.310234Z"
   ],
   "last_result_task_id": null,
-  "notes": "The latest GitHub-side research CI evidence is from 2026-09-05. The deployed paper runtime is on Railway and is not yet directly monitored by this orchestrator."
+  "notes": "Current Railway runtime verification: deployed commit dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52; paper=true; process=ok; database=ok; reconciliation_status=ok; last_error=null; runtime_halted=false; ledger_safety_breach_active=false; flatten_status=flat; service_status=idle_non_trading_day; heartbeat_age_seconds about 0.009. Latest observed paper performance snapshot reports 60 completed trades and remains research-only, not evidence of a proven edge."
 }
