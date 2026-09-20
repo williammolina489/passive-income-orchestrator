@@ -67,6 +67,8 @@ projects:
         process: ok
         database: ok
         paper: true
+        entries_disabled: false
+        reconciliation_status: ok
       max_heartbeat_age_seconds: 300
       include_fields:
         - status
