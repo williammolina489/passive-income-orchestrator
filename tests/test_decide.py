@@ -20,6 +20,14 @@ def _report() -> dict:
                 "experiment": {"id": "E001", "stage": "Stage 1", "status": "BLOCKED"},
                 "dispatch_eligible": True,
                 "next_permitted_actions": ["Repeat read-only validation."],
+                "forbidden_actions": ["Do not trade."],
+                "worker": {
+                    "enabled": True,
+                    "kind": "github_workflow",
+                    "workflow": "worker.yml",
+                    "ref": "research/e001",
+                    "evaluator": "crypto_stage1_live_validation",
+                },
             },
             {
                 "project_id": "closed",
@@ -45,6 +53,7 @@ def test_candidates_include_only_dispatchable_actions() -> None:
     assert len(candidates) == 1
     assert candidates[0]["candidate_id"] == "active::0"
     assert candidates[0]["action"] == "Repeat read-only validation."
+    assert candidates[0]["worker"]["workflow"] == "worker.yml"
 
 
 def test_dynamic_schema_limits_candidate_ids() -> None:
