@@ -83,8 +83,10 @@ Actions write is needed only to trigger and inspect existing GitHub Actions work
 
 ## Current portfolio posture
 
-- Crypto Funding Basis: active, E001 Stage 1 blocked on executable BTCUSD validation.
-- Kalshi Market Maker: active, exact prior E001 collector recovery is incomplete.
+- Crypto Funding Basis: active; E001 Stage 1 is blocked on executable BTCUSD validation. A deterministic read-only worker retries this gate.
+- Kalshi Market Maker: active but recovery-blocked; exact prior E001 collector recovery is incomplete and no replacement-source reconstruction is permitted.
+- Crypto Trading Bot: active prospective paper research; existing repo-owned incumbent/challenger schedulers remain authoritative, so the orchestrator is monitor-only.
+- Alpaca Paper Trading Bot: active paper research; registered monitor-only until current Railway runtime monitoring and a bounded development worker are integrated.
 - Systematic Futures: closed after E003 STOP / REJECT.
 - Prediction Market Arbitrage: closed after strict-arbitrage payoff-proof failures.
 
@@ -108,6 +110,18 @@ A PASS does not start the collector. It transitions the orchestrator to `NEEDS_H
 
 Kalshi remains non-dispatchable until an exact-recovery-specific worker is implemented.
 
+## Automated scheduling
+
+`Orchestrate Once` runs hourly at minute 17 and may execute at most one bounded worker task per run.
+
+Cost control:
+
+- zero eligible tasks: deterministic WAIT, zero OpenAI tokens;
+- exactly one eligible task: deterministic RUN_TASK, zero OpenAI tokens;
+- multiple eligible tasks: GPT-5.6 Luna arbitrates among only the verified worker-ready candidates.
+
+The first end-to-end worker cycle passed on 2026-09-20. It dispatched the existing Crypto Funding Basis read-only validation workflow, parsed the production evidence, recorded a structured BLOCKED result, and refreshed central state without changing the worker repository or methodology.
+
 ## Next milestone
 
-Grant the cross-repository token Actions read/write permission and run `Orchestrate Once` manually for the first end-to-end worker cycle. Only after repeated correct cycles will recurring scheduling be enabled.
+Add PR-only Codex development workers for projects whose next authorized action requires repository code/research work. Those workers will require explicit cross-repository Contents write permission, will work on branches only, and will not merge to default branches, modify frozen methodology, enable real-money trading, or unseal protected evidence.
