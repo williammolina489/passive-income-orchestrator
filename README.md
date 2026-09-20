@@ -1,6 +1,6 @@
 # Passive Income Orchestrator
 
-Central controller for William's automated passive-income research projects.
+Central controller for William's automated passive-income research projects.\n\nCurrent machine-generated portfolio view: `PORTFOLIO_STATUS.md`.
 
 ## Purpose
 
@@ -125,3 +125,14 @@ The first end-to-end worker cycle passed on 2026-09-20. It dispatched the existi
 ## Next milestone
 
 Add PR-only Codex development workers for projects whose next authorized action requires repository code/research work. Those workers will require explicit cross-repository Contents write permission, will work on branches only, and will not merge to default branches, modify frozen methodology, enable real-money trading, or unseal protected evidence.
+
+
+## Kalshi exact-recovery local intake
+
+Remote GitHub/email recovery is exhausted for the missing prior E001 collector implementation. The remaining exact source was previously described as local work that had not yet been committed/pushed.
+
+When the original machine is available, do not manually copy/rewrite files first. From a clone of this orchestrator, run:
+
+    kalshi-recovery-intake /path/to/suspected/kalshi-worktree --output kalshi-e001-local-inventory.json
+
+The command is read-only with respect to the suspected worktree. It calculates SHA-256 and Git blob identities, compares every known recovered file, and highlights source/tests that are absent from the current remote recovery set. Presence alone is not treated as proof of provenance.
