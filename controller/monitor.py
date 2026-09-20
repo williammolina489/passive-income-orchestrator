@@ -35,9 +35,38 @@ def _get_json(url: str, token: str) -> dict[str, Any]:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"GitHub GET {url} returned HTTP {exc.code}: {body[:500]}") from exc
+        raise RuntimeError(
+            f"GitHub GET {url} returned HTTP {exc.code}: {body[:500]}"
+        ) from exc
     except urllib.error.URLError as exc:
         raise RuntimeError(f"GitHub GET {url} failed: {exc}") from exc
+
+
+def _get_public_json(url: str) -> dict[str, Any]:
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("public health monitor URL must use https")
+    request = urllib.request.Request(
+        url,
+        headers={
+            "Accept": "application/json",
+            "User-Agent": "passive-income-orchestrator-health/1.0",
+        },
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"health GET returned HTTP {exc.code}: {body[:300]}"
+        ) from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"health GET failed: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise RuntimeError("health endpoint returned non-object JSON")
+    return payload
 
 
 def _parse_dt(value: str) -> datetime:
@@ -53,7 +82,9 @@ def evaluate_workflow_runs(
 ) -> dict[str, Any]:
     matching = [run for run in runs if run.get("name") == workflow_name]
     active = [
-        run for run in matching if run.get("status") in {"queued", "in_progress", "waiting", "requested"}
+        run
+        for run in matching
+        if run.get("status") in {"queued", "in_progress", "waiting", "requested"}
     ]
     completed = [run for run in matching if run.get("status") == "completed"]
     completed.sort(key=lambda run: run.get("created_at") or "", reverse=True)
@@ -103,7 +134,7 @@ def evaluate_workflow_runs(
     }
 
 
-def monitor_project(
+def monitor_github_workflows(
     *,
     project_id: str,
     config: dict[str, Any],
@@ -148,6 +179,122 @@ def monitor_project(
     }
 
 
+def evaluate_http_health(
+    payload: dict[str, Any],
+    *,
+    required_equals: dict[str, Any],
+    max_heartbeat_age_seconds: float | None,
+    include_fields: list[str],
+) -> tuple[str, list[str], dict[str, Any]]:
+    problems: list[str] = []
+    warnings: list[str] = []
+
+    for key, expected in required_equals.items():
+        actual = payload.get(key)
+        if actual != expected:
+            problems.append(f"{key} expected {expected!r}, got {actual!r}")
+
+    if max_heartbeat_age_seconds is not None:
+        raw_age = payload.get("heartbeat_age_seconds")
+        try:
+            age = float(raw_age)
+        except (TypeError, ValueError):
+            warnings.append("heartbeat_age_seconds is missing or non-numeric")
+        else:
+            if age > max_heartbeat_age_seconds:
+                warnings.append(
+                    f"heartbeat age {age:.1f}s exceeds {max_heartbeat_age_seconds:.1f}s"
+                )
+
+    observed = {key: payload.get(key) for key in include_fields}
+    if problems:
+        overall = "ERROR"
+    elif warnings:
+        overall = "WARNING"
+    else:
+        overall = "HEALTHY"
+    return overall, problems + warnings, observed
+
+
+def monitor_http_json(
+    *,
+    project_id: str,
+    config: dict[str, Any],
+    now: datetime,
+) -> dict[str, Any]:
+    monitor = config["monitor"]
+    repository = config["repo"]
+    url = str(monitor["url"])
+    payload = _get_public_json(url)
+    required = monitor.get("required_equals") or {}
+    include_fields = [str(field) for field in monitor.get("include_fields", [])]
+    max_heartbeat = monitor.get("max_heartbeat_age_seconds")
+    max_heartbeat_value = (
+        float(max_heartbeat) if max_heartbeat is not None else None
+    )
+    overall, findings, observed = evaluate_http_health(
+        payload,
+        required_equals=required,
+        max_heartbeat_age_seconds=max_heartbeat_value,
+        include_fields=include_fields,
+    )
+    return {
+        "schema_version": "1.0",
+        "project_id": project_id,
+        "repository": repository,
+        "checked_at": now.isoformat(),
+        "monitor_kind": "http_json",
+        "url": url,
+        "overall_status": overall,
+        "findings": findings,
+        "observed": observed,
+    }
+
+
+def _error_observation(
+    *,
+    project_id: str,
+    config: dict[str, Any],
+    now: datetime,
+    error: Exception,
+) -> dict[str, Any]:
+    monitor = config.get("monitor") or {}
+    return {
+        "schema_version": "1.0",
+        "project_id": project_id,
+        "repository": config.get("repo"),
+        "checked_at": now.isoformat(),
+        "monitor_kind": monitor.get("kind"),
+        "overall_status": "ERROR",
+        "findings": [f"{type(error).__name__}: {error}"],
+    }
+
+
+def monitor_project(
+    *,
+    project_id: str,
+    config: dict[str, Any],
+    token: str,
+    now: datetime,
+) -> dict[str, Any]:
+    monitor = config["monitor"]
+    kind = monitor.get("kind")
+    if kind == "github_actions_workflows":
+        return monitor_github_workflows(
+            project_id=project_id,
+            config=config,
+            token=token,
+            now=now,
+        )
+    if kind == "http_json":
+        return monitor_http_json(
+            project_id=project_id,
+            config=config,
+            now=now,
+        )
+    raise ValueError(f"unsupported monitor kind: {kind!r}")
+
+
 def run_monitors(root: Path = ROOT, *, token: str | None = None) -> dict[str, Any]:
     token = token or os.environ.get("ORCHESTRATOR_GITHUB_TOKEN")
     if not token:
@@ -165,14 +312,20 @@ def run_monitors(root: Path = ROOT, *, token: str | None = None) -> dict[str, An
         monitor = config.get("monitor")
         if not isinstance(monitor, dict) or not monitor.get("enabled"):
             continue
-        if monitor.get("kind") != "github_actions_workflows":
-            continue
-        observation = monitor_project(
-            project_id=project_id,
-            config=config,
-            token=token,
-            now=now,
-        )
+        try:
+            observation = monitor_project(
+                project_id=project_id,
+                config=config,
+                token=token,
+                now=now,
+            )
+        except Exception as exc:
+            observation = _error_observation(
+                project_id=project_id,
+                config=config,
+                now=now,
+                error=exc,
+            )
         path = observations_dir / f"{project_id}.json"
         path.write_text(json.dumps(observation, indent=2) + "\n", encoding="utf-8")
         observations.append(observation)
