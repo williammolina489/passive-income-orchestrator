@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-09-20T15:54:06.371656+00:00
+Generated: 2026-09-20T16:07:27.719962+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human: **1**
 
@@ -9,7 +9,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 | crypto_funding_basis | BLOCKED | E001 / Stage 1 live production validation / BLOCKED | ready | — | no |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / Exact prior collector recovery / BLOCKED | not configured | — | YES |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
-| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | — | no |
+| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
 
@@ -20,7 +20,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 - Lifecycle: BLOCKED
 - Decision hint: RUN_TASK_CANDIDATE
 - Dispatch eligible: true
-- Last result: crypto_funding_basis:E001:20260920T143628Z
+- Last result: crypto_funding_basis:E001:20260920T155408Z
 - Current blockers:
   - A valid executable non-empty BTCUSD public production order book has not yet been observed; repeated production snapshots returned ack_id=0 with zero bids and asks despite published 24/7 spot hours.
 - Next permitted actions:
@@ -45,7 +45,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-20T15:54:04.618156+00:00)
+- Operational monitor: WARNING (checked 2026-09-20T16:07:25.342960+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -56,12 +56,11 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
+- Operational monitor: HEALTHY (checked 2026-09-20T16:07:25.342960+00:00)
 - Current blockers:
-  - The GitHub-hosted orchestrator does not yet have an unattended Railway runtime-health credential or public health probe, so Railway health is currently refreshed through the connected Railway integration rather than by the hourly GitHub workflow.
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
   - Continue paper trading without retuning the strategy from the small sample.
-  - Integrate current Railway runtime health into the orchestrator before autonomous operational decisions.
   - Continue the remaining backtest/live fidelity audit under the repository's documented validation rules.
 
 ## systematic_futures
