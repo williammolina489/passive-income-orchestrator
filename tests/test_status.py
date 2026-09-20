@@ -8,7 +8,12 @@ import yaml
 from controller import status
 
 
-def _write_fixture(tmp_path: Path, *, enabled: bool = True) -> Path:
+def _write_fixture(
+    tmp_path: Path,
+    *,
+    enabled: bool = True,
+    worker_enabled: bool = True,
+) -> Path:
     (tmp_path / "schemas").mkdir()
     (tmp_path / "state").mkdir()
 
@@ -20,18 +25,28 @@ def _write_fixture(tmp_path: Path, *, enabled: bool = True) -> Path:
         json.dumps(schema), encoding="utf-8"
     )
 
-    registry = {
-        "version": 1,
-        "projects": {
-            "example": {
-                "repo": "owner/repo",
-                "enabled": enabled,
-                "role": "research",
-                "state_file": "state/example.json",
-                **({"reason": "PROJECT_CLOSED"} if not enabled else {}),
-            }
-        },
+    project = {
+        "repo": "owner/repo",
+        "enabled": enabled,
+        "role": "research",
+        "state_file": "state/example.json",
     }
+    if enabled:
+        project["worker"] = (
+            {
+                "enabled": True,
+                "kind": "github_workflow",
+                "workflow": "worker.yml",
+                "ref": "research/e001",
+                "evaluator": "crypto_stage1_live_validation",
+            }
+            if worker_enabled
+            else {"enabled": False, "reason": "NOT_READY"}
+        )
+    else:
+        project["reason"] = "PROJECT_CLOSED"
+
+    registry = {"version": 1, "projects": {"example": project}}
     (tmp_path / "projects.yaml").write_text(
         yaml.safe_dump(registry), encoding="utf-8"
     )
@@ -79,8 +94,20 @@ def test_valid_local_state_is_candidate(tmp_path: Path) -> None:
 
     assert report["ok"] is True
     assert project["valid"] is True
+    assert project["worker_ready"] is True
     assert project["decision_hint"] == "RUN_TASK_CANDIDATE"
     assert project["dispatch_eligible"] is True
+
+
+def test_enabled_project_without_worker_waits(tmp_path: Path) -> None:
+    root = _write_fixture(tmp_path, worker_enabled=False)
+    report = status.build_report(root)
+    project = report["projects"][0]
+
+    assert report["ok"] is True
+    assert project["worker_ready"] is False
+    assert project["decision_hint"] == "WAIT"
+    assert project["dispatch_eligible"] is False
 
 
 def test_disabled_project_cannot_dispatch(tmp_path: Path) -> None:
