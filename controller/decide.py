@@ -148,6 +148,49 @@ def call_controller(
         raise RuntimeError("portfolio verification failed; refusing model scheduling call")
 
     candidates = build_candidates(report)
+
+    if not candidates:
+        return {
+            "mode": "DETERMINISTIC_NO_CANDIDATE",
+            "model": None,
+            "decision": {
+                "schema_version": "1.0",
+                "decision": "WAIT",
+                "candidate_id": "NONE",
+                "rationale": "No verified worker-ready autonomous task is currently eligible.",
+            },
+            "selected_candidate": None,
+            "candidate_count": 0,
+            "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_tokens": 0,
+            },
+        }
+
+    if len(candidates) == 1:
+        selected = candidates[0]
+        return {
+            "mode": "DETERMINISTIC_SINGLE_CANDIDATE",
+            "model": None,
+            "decision": {
+                "schema_version": "1.0",
+                "decision": "RUN_TASK",
+                "candidate_id": selected["candidate_id"],
+                "rationale": (
+                    "Exactly one verified, enabled, worker-ready bounded task is eligible; "
+                    "no model arbitration is needed."
+                ),
+            },
+            "selected_candidate": selected,
+            "candidate_count": 1,
+            "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_tokens": 0,
+            },
+        }
+
     base_schema = load_json(root / "schemas" / "controller-decision.schema.json")
     schema = build_dynamic_schema(base_schema, candidates)
     prompt = build_prompt(root, report, candidates)
