@@ -71,7 +71,15 @@ Current foundation:
 
 Version 1 of the task contract cannot authorize spending, purchasing data/services, live trades, transfers/withdrawals, methodology changes, or direct merges to the default branch.
 
-No API keys, live-trading credentials, autonomous workers, or scheduled workflows are configured yet.
+The OpenAI controller and a deterministic Crypto E001 worker path are now implemented. Autonomous scheduling is not enabled yet.
+
+Required GitHub secret permissions for `ORCHESTRATOR_GITHUB_TOKEN` during this pilot:
+
+- repository access: the orchestrator and managed bot repositories;
+- Contents: Read-only;
+- Actions: Read and write.
+
+Actions write is needed only to trigger and inspect existing GitHub Actions workflows. The cross-repository token does not need Contents write for this pilot.
 
 ## Current portfolio posture
 
@@ -80,6 +88,26 @@ No API keys, live-trading credentials, autonomous workers, or scheduled workflow
 - Systematic Futures: closed after E003 STOP / REJECT.
 - Prediction Market Arbitrage: closed after strict-arbitrage payoff-proof failures.
 
+## Current execution milestone
+
+The read-only controller has passed. The first configured execution path is:
+
+```text
+Luna scheduler
+   -> crypto_funding_basis candidate
+   -> existing live-validation.yml on research/e001-prospective-collector
+   -> wait for completion
+   -> parse LIVE_VALIDATION_RESULT
+   -> deterministic PASS/BLOCKED evaluation
+   -> write tasks/<task_id>.json
+   -> write results/<task_id>.json
+   -> refresh state/crypto_funding_basis.json
+```
+
+A PASS does not start the collector. It transitions the orchestrator to `NEEDS_HUMAN` so the worker repository's durable research state can be reconciled before any later-stage work.
+
+Kalshi remains non-dispatchable until an exact-recovery-specific worker is implemented.
+
 ## Next milestone
 
-Build a read-only controller that validates the registry and state files, checks the referenced GitHub branch SHAs for staleness, and emits a deterministic portfolio status report. No task dispatching will be enabled until that read-only layer passes.
+Grant the cross-repository token Actions read/write permission and run `Orchestrate Once` manually for the first end-to-end worker cycle. Only after repeated correct cycles will recurring scheduling be enabled.
