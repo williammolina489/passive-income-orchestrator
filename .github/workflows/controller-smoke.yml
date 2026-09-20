@@ -1,11 +1,6 @@
 name: Controller API Smoke
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/controller-smoke.yml"
   workflow_dispatch:
 
 permissions:
