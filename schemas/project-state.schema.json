@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/williammolina489/passive-income-orchestrator/blob/main/schemas/project-state.schema.json",
+  "title": "Passive Income Orchestrator Project State",
+  "description": "Machine-readable current state reported by a managed research repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "state_revision",
+    "project_id",
+    "repository",
+    "branch",
+    "head_sha",
+    "lifecycle_status",
+    "experiment",
+    "governance",
+    "current_blockers",
+    "next_permitted_actions",
+    "forbidden_actions",
+    "human_action_required",
+    "human_action_reason",
+    "updated_at",
+    "source_documents"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "state_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "head_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "lifecycle_status": {
+      "enum": [
+        "ACTIVE",
+        "WAITING",
+        "BLOCKED",
+        "NEEDS_HUMAN",
+        "STOPPED",
+        "CLOSED",
+        "COMPLETE"
+      ]
+    },
+    "experiment": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "stage",
+            "status"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "status": {
+              "enum": [
+                "PLANNED",
+                "PREREGISTERED",
+                "READY",
+                "RUNNING",
+                "WAITING",
+                "BLOCKED",
+                "PASS",
+                "FAIL",
+                "STOPPED",
+                "COMPLETE"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "methodology_frozen",
+        "performance_viewed",
+        "validation_state",
+        "oos_state",
+        "data_integrity_status"
+      ],
+      "properties": {
+        "methodology_frozen": {
+          "type": "boolean"
+        },
+        "performance_viewed": {
+          "type": "boolean"
+        },
+        "validation_state": {
+          "enum": [
+            "SEALED",
+            "AUTHORIZED",
+            "OPENED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "oos_state": {
+          "enum": [
+            "SEALED",
+            "AUTHORIZED",
+            "OPENED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "data_integrity_status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        }
+      }
+    },
+    "current_blockers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "next_permitted_actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "human_action_required": {
+      "type": "boolean"
+    },
+    "human_action_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_documents": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "last_result_task_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
