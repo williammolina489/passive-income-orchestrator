@@ -56,10 +56,27 @@ def _request_json(
         raise GitHubActionsError(f"GitHub API request failed for {url}: {exc}") from exc
 
 
+class _StripCrossHostAuthRedirect(urllib.request.HTTPRedirectHandler):
+    """Do not forward GitHub credentials to signed blob-storage redirect hosts."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        redirected = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if redirected is None:
+            return None
+        old_host = urllib.parse.urlparse(req.full_url).netloc.lower()
+        new_host = urllib.parse.urlparse(newurl).netloc.lower()
+        if old_host != new_host:
+            redirected.remove_header("Authorization")
+            redirected.remove_header("X-GitHub-Api-Version")
+            redirected.remove_header("Accept")
+        return redirected
+
+
 def _request_text(url: str, token: str, *, timeout: int = 60) -> str:
     request = urllib.request.Request(url, headers=_headers(token), method="GET")
+    opener = urllib.request.build_opener(_StripCrossHostAuthRedirect())
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with opener.open(request, timeout=timeout) as response:
             return response.read().decode("utf-8", errors="replace")
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
