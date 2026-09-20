@@ -61,6 +61,16 @@ def _validation_errors(
     if config.get("enabled") is False and not config.get("reason"):
         errors.append("disabled project must declare a reason in projects.yaml")
 
+    worker = config.get("worker")
+    if worker is not None and not isinstance(worker, dict):
+        errors.append("worker configuration must be a mapping when present")
+    if isinstance(worker, dict) and worker.get("enabled"):
+        if worker.get("kind") != "github_workflow":
+            errors.append("enabled worker kind must currently be github_workflow")
+        for key in ("workflow", "ref", "evaluator"):
+            if not worker.get(key):
+                errors.append(f"enabled worker is missing {key}")
+
     return errors
 
 
@@ -101,7 +111,24 @@ def github_branch_sha(repository: str, branch: str, token: str | None) -> str:
         ) from exc
 
 
-def _decision_hint(config: dict[str, Any], state: dict[str, Any], fresh: bool) -> str:
+def _worker_ready(config: dict[str, Any]) -> bool:
+    worker = config.get("worker")
+    return bool(
+        isinstance(worker, dict)
+        and worker.get("enabled") is True
+        and worker.get("kind") == "github_workflow"
+        and worker.get("workflow")
+        and worker.get("ref")
+        and worker.get("evaluator")
+    )
+
+
+def _decision_hint(
+    config: dict[str, Any],
+    state: dict[str, Any],
+    fresh: bool,
+    worker_ready: bool,
+) -> str:
     if not config.get("enabled", False):
         return "STOP"
     if not fresh:
@@ -114,7 +141,7 @@ def _decision_hint(config: dict[str, Any], state: dict[str, Any], fresh: bool) -
         state.get("lifecycle_status") in {"ACTIVE", "BLOCKED"}
         and state.get("next_permitted_actions")
     ):
-        return "RUN_TASK_CANDIDATE"
+        return "RUN_TASK_CANDIDATE" if worker_ready else "WAIT"
     return "WAIT"
 
 
@@ -131,11 +158,15 @@ def build_report(
     overall_ok = True
 
     for project_id, config in registry["projects"].items():
+        worker = config.get("worker")
+        worker_ready = _worker_ready(config)
         entry: dict[str, Any] = {
             "project_id": project_id,
             "repository": config.get("repo"),
             "enabled": bool(config.get("enabled", False)),
             "state_file": config.get("state_file"),
+            "worker": worker,
+            "worker_ready": worker_ready,
             "valid": False,
             "fresh": None,
             "dispatch_eligible": False,
@@ -174,6 +205,8 @@ def build_report(
         entry["experiment"] = state.get("experiment")
         entry["human_action_required"] = state.get("human_action_required")
         entry["next_permitted_actions"] = state.get("next_permitted_actions", [])
+        entry["forbidden_actions"] = state.get("forbidden_actions", [])
+        entry["source_documents"] = state.get("source_documents", [])
 
         if validation_errors:
             projects.append(entry)
@@ -200,10 +233,11 @@ def build_report(
                 overall_ok = False
 
         entry["fresh"] = fresh if verify_remote else None
-        entry["decision_hint"] = _decision_hint(config, state, fresh)
+        entry["decision_hint"] = _decision_hint(config, state, fresh, worker_ready)
 
         entry["dispatch_eligible"] = bool(
             config.get("enabled", False)
+            and worker_ready
             and (fresh or not verify_remote)
             and not state.get("human_action_required")
             and state.get("lifecycle_status") in {"ACTIVE", "BLOCKED"}
@@ -229,9 +263,10 @@ def _print_human(report: dict[str, Any]) -> None:
         status = project.get("lifecycle_status", "INVALID")
         hint = project.get("decision_hint", "BLOCKED")
         eligibility = "yes" if project.get("dispatch_eligible") else "no"
+        worker = "ready" if project.get("worker_ready") else "not-ready"
         print(
             f"- {project['project_id']}: {status}; "
-            f"decision={hint}; dispatch_eligible={eligibility}"
+            f"decision={hint}; worker={worker}; dispatch_eligible={eligibility}"
         )
         for error in project.get("errors", []):
             print(f"    ERROR: {error}")
