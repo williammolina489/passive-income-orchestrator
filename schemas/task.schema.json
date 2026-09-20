@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/williammolina489/passive-income-orchestrator/blob/main/schemas/task.schema.json",
+  "title": "Passive Income Orchestrator Worker Task",
+  "description": "A bounded task dispatched by the controller to exactly one managed repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "project_id",
+    "repository",
+    "experiment_id",
+    "issued_at",
+    "expected_head_sha",
+    "objective",
+    "rationale",
+    "constraints",
+    "allowed_actions",
+    "forbidden_actions",
+    "completion_criteria",
+    "safe_outputs",
+    "approval",
+    "protected_data_permissions",
+    "financial_permissions",
+    "methodology_change_permitted",
+    "merge_to_default_branch_permitted"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "experiment_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expected_head_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "allowed_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "completion_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "safe_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "RESULT_ONLY",
+          "UPDATE_STATUS_FILE",
+          "COMMIT_WORK_BRANCH",
+          "OPEN_PULL_REQUEST",
+          "UPLOAD_ARTIFACT"
+        ]
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "granted",
+        "approval_reference"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "granted": {
+          "type": "boolean"
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "protected_data_permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "validation",
+        "oos"
+      ],
+      "properties": {
+        "validation": {
+          "type": "boolean"
+        },
+        "oos": {
+          "type": "boolean"
+        }
+      }
+    },
+    "financial_permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spend_money",
+        "purchase_data_or_services",
+        "place_live_trade",
+        "transfer_or_withdraw_funds"
+      ],
+      "properties": {
+        "spend_money": {
+          "const": false
+        },
+        "purchase_data_or_services": {
+          "const": false
+        },
+        "place_live_trade": {
+          "const": false
+        },
+        "transfer_or_withdraw_funds": {
+          "const": false
+        }
+      }
+    },
+    "methodology_change_permitted": {
+      "const": false
+    },
+    "merge_to_default_branch_permitted": {
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "required": {
+                "const": true
+              }
+            },
+            "required": [
+              "required"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "approval_reference": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
