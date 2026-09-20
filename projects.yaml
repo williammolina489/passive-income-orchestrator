@@ -1,0 +1,36 @@
+version: 1
+
+projects:
+  crypto_funding_basis:
+    repo: williammolina489/crypto-funding-basis-bot
+    enabled: true
+    role: research
+    notes: >
+      Manage only according to the repository's current experiment state,
+      preregistration, gates, and documented constraints.
+
+  kalshi_market_maker:
+    repo: williammolina489/kalshi-market-maker-research
+    enabled: true
+    role: research
+    notes: >
+      Manage only according to the repository's current experiment state,
+      recovery requirements, preregistration, gates, and documented constraints.
+
+  systematic_futures:
+    repo: williammolina489/systematic-futures-bot
+    enabled: true
+    role: research
+    notes: >
+      Manage only according to the repository's current experiment state,
+      preregistration, validation/OOS seals, gates, and documented constraints.
+
+  prediction_market_arbitrage:
+    repo: williammolina489/prediction-market-arbitrage-scanner
+    enabled: false
+    role: archived_research
+    reason: PROJECT_CLOSED
+    notes: >
+      Closed as a strict prediction-market arbitrage research program.
+      Do not restart, create a new experiment, or convert it into a materially
+      different strategy family without explicit human authorization.
