@@ -23,7 +23,8 @@ orchestrator-status = "controller.status:main"
 orchestrator-decide = "controller.decide:main"
 orchestrator-run-once = "controller.run_once:main"
 orchestrator-monitor = "controller.monitor:main"
-kalshi-recovery-intake = "controller.kalshi_recovery_intake:main"\norchestrator-portfolio = "controller.portfolio:main"
+kalshi-recovery-intake = "controller.kalshi_recovery_intake:main"
+orchestrator-portfolio = "controller.portfolio:main"
 
 [tool.setuptools.packages.find]
 include = ["controller*"]
