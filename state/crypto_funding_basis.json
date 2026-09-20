@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 4,
+  "state_revision": 5,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e001-prospective-collector",
@@ -33,7 +33,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-20T18:12:46.264253+00:00",
+  "updated_at": "2026-09-20T20:49:12.471918+00:00",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -41,8 +41,9 @@
     "williammolina489/crypto-funding-basis-bot#2",
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35517004197",
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35521017801",
-    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35528302590"
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35528302590",
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35536729794"
   ],
-  "last_result_task_id": "crypto_funding_basis:E001:20260920T181221Z",
+  "last_result_task_id": "crypto_funding_basis:E001:20260920T204846Z",
   "notes": "Stage 1 remains blocked because the frozen BTCUSD production book still did not satisfy the executable non-empty bid/ask requirement."
 }

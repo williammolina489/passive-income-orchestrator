@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-20T18:12:46.542448+00:00",
+  "generated_at": "2026-09-20T20:49:12.650247+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 1,
@@ -28,8 +28,8 @@
       "next_permitted_actions": [
         "Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology."
       ],
-      "last_result_task_id": "crypto_funding_basis:E001:20260920T181221Z",
-      "state_updated_at": "2026-09-20T18:12:46.264253+00:00",
+      "last_result_task_id": "crypto_funding_basis:E001:20260920T204846Z",
+      "state_updated_at": "2026-09-20T20:49:12.471918+00:00",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -82,7 +82,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-20T18:12:17.368859+00:00"
+      "operational_checked_at": "2026-09-20T20:48:42.060325+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -110,7 +110,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:58:43.341165+00:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-20T18:12:17.368859+00:00"
+      "operational_checked_at": "2026-09-20T20:48:42.060325+00:00"
     },
     {
       "project_id": "systematic_futures",

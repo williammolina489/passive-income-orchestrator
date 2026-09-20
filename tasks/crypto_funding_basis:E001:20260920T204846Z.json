@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "task_id": "crypto_funding_basis:E001:20260920T204846Z",
+  "project_id": "crypto_funding_basis",
+  "repository": "williammolina489/crypto-funding-basis-bot",
+  "experiment_id": "E001",
+  "issued_at": "2026-09-20T20:48:46.195817+00:00",
+  "expected_head_sha": "8974d0f3944eaf7571257d7c4356ad52745077ac",
+  "objective": "Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology.",
+  "rationale": "Exactly one verified, enabled, worker-ready bounded task is eligible; no model arbitration is needed.",
+  "constraints": [
+    "Perform only the configured read-only worker workflow.",
+    "Preserve the frozen methodology and instrument selection.",
+    "Do not start any later experimental stage automatically."
+  ],
+  "allowed_actions": [
+    "Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology."
+  ],
+  "forbidden_actions": [
+    "Do not start prospective E001 collection until Stage 1 passes.",
+    "Do not build a later experiment stage early.",
+    "Do not substitute XBTUSD, another venue, or another instrument.",
+    "Do not inspect or calculate E001 performance before the official prospective evidence clock starts.",
+    "Do not place live orders or use real money."
+  ],
+  "completion_criteria": [
+    "The configured worker workflow completes and its exact production evidence is captured.",
+    "Stage 1 passes only if the frozen BTCUSD production book has ack_id != 0 and non-empty executable bid and ask.",
+    "Any pass transitions to NEEDS_HUMAN rather than automatically starting a later stage."
+  ],
+  "safe_outputs": [
+    "RESULT_ONLY",
+    "UPLOAD_ARTIFACT"
+  ],
+  "approval": {
+    "required": false,
+    "granted": false,
+    "approval_reference": null
+  },
+  "protected_data_permissions": {
+    "validation": false,
+    "oos": false
+  },
+  "financial_permissions": {
+    "spend_money": false,
+    "purchase_data_or_services": false,
+    "place_live_trade": false,
+    "transfer_or_withdraw_funds": false
+  },
+  "methodology_change_permitted": false,
+  "merge_to_default_branch_permitted": false
+}
