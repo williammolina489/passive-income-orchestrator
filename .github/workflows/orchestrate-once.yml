@@ -1,6 +1,11 @@
 name: Orchestrate Once
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/orchestrate-once.yml"
   workflow_dispatch:
 
 permissions:
