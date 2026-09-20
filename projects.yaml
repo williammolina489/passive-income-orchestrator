@@ -29,6 +29,30 @@ projects:
       Current work is exact-recovery only. Preserve the preregistered E001
       methodology and do not reconstruct missing prior source from memory.
 
+  crypto_trading_bot:
+    repo: williammolina489/crypto-trading-bot
+    enabled: true
+    role: paper_research
+    state_file: state/crypto_trading_bot.json
+    worker:
+      enabled: false
+      reason: EXISTING_REPO_SCHEDULERS_ALREADY_OWN_PAPER_EXECUTION
+    notes: >
+      Observe the existing incumbent v3 and EXP-009 prospective paper evidence
+      chains. Do not duplicate scheduled paper execution or alter frozen gates.
+
+  alpaca_paper_trading_bot:
+    repo: williammolina489/alpaca-paper-trading-bot
+    enabled: true
+    role: paper_research
+    state_file: state/alpaca_paper_trading_bot.json
+    worker:
+      enabled: false
+      reason: RAILWAY_RUNTIME_MONITOR_NOT_YET_INTEGRATED
+    notes: >
+      Paper-only stock bot. Keep current strategy/risk settings frozen while
+      monitoring and validation integration are built. Real-money trading remains prohibited.
+
   systematic_futures:
     repo: williammolina489/systematic-futures-bot
     enabled: false
