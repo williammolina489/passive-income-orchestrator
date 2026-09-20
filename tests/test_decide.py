@@ -10,6 +10,7 @@ from controller.decide import build_candidates, build_dynamic_schema, validate_d
 
 def _report() -> dict:
     return {
+        "ok": True,
         "projects": [
             {
                 "project_id": "active",
