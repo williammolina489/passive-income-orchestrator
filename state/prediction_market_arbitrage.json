@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 1,
+  "project_id": "prediction_market_arbitrage",
+  "repository": "williammolina489/prediction-market-arbitrage-scanner",
+  "branch": "research/e003-nested-thresholds",
+  "head_sha": "05da36542969a771ef174fa86845c71d8e77b8f1",
+  "lifecycle_status": "CLOSED",
+  "experiment": {
+    "id": "E003",
+    "stage": "Payoff-invariant proof gate",
+    "status": "STOPPED"
+  },
+  "governance": {
+    "methodology_frozen": false,
+    "performance_viewed": false,
+    "validation_state": "NOT_APPLICABLE",
+    "oos_state": "NOT_APPLICABLE",
+    "data_integrity_status": "NOT_APPLICABLE"
+  },
+  "current_blockers": [],
+  "next_permitted_actions": [],
+  "forbidden_actions": [
+    "Do not create E004 under the closed strict-arbitrage program.",
+    "Do not convert this repository into relative-value, statistical-arbitrage, forecasting, or market-making research.",
+    "Do not build paper or live execution from the historical scaffolding.",
+    "Do not place live orders or use real money."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-20T12:26:00Z",
+  "source_documents": [
+    "williammolina489/prediction-market-arbitrage-scanner@research/e003-nested-thresholds:PROJECT_STATE.md",
+    "williammolina489/prediction-market-arbitrage-scanner@research/e003-nested-thresholds:EXPERIMENTS.md",
+    "williammolina489/prediction-market-arbitrage-scanner@research/e003-nested-thresholds:ROADMAP.md"
+  ],
+  "last_result_task_id": null,
+  "notes": "No E003 profitability evidence was viewed and no E003 preregistration, collector, or execution system was created."
+}
