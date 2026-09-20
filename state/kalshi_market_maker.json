@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "state_revision": 1,
+  "state_revision": 2,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "recovery/e001-partial-stream-inspect",
   "head_sha": "c71b92cc1b46eaf8cc8adf25ab585876923c1dd8",
-  "lifecycle_status": "BLOCKED",
+  "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
     "stage": "Exact prior collector recovery",
@@ -19,13 +19,10 @@
     "data_integrity_status": "BLOCKED"
   },
   "current_blockers": [
-    "The exact prior E001 collector source tree and focused test suite have not been fully recovered.",
-    "The preserved bundle stream is truncated and the recovery manifest classifies the recovery as partial with material files missing.",
-    "Stage-7 source validation was not run because the exact implementation is incomplete."
+    "All currently known GitHub recovery sources have been exhausted: the preserved 10,000-byte bundle is truncated, the known dangling objects do not contain the complete later collector source/test tree, and recovery workflow/email history exposes no additional exact object identifiers.",
+    "The prior project handoff states that the substantial collector/smoke implementation existed locally and had not yet been committed/pushed to GitHub. Exact recovery therefore now requires the original local worktree, an exact local archive/chunk, or new exact Git object IDs from another preserved source."
   ],
-  "next_permitted_actions": [
-    "Continue recovery-only investigation for exact original worktree/archive chunks or exact Git object IDs from preserved GitHub sources; do not reconstruct missing implementation source."
-  ],
+  "next_permitted_actions": [],
   "forbidden_actions": [
     "Do not reconstruct the collector from memory or create replacement source code.",
     "Do not publish or activate the collector until exact source and tests are recovered and validated.",
@@ -33,16 +30,18 @@
     "Do not calculate E001 performance.",
     "Do not place live orders or use real money."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-09-20T12:26:00Z",
+  "human_action_required": true,
+  "human_action_reason": "Access to the original machine/local worktree or another exact preserved source is required. Remote GitHub/email evidence is insufficient to recover the exact collector implementation without reconstruction.",
+  "updated_at": "2026-09-20T15:13:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
     "williammolina489/kalshi-market-maker-research@main:EXPERIMENTS.md",
     "williammolina489/kalshi-market-maker-research@main:ROADMAP.md",
-    "williammolina489/kalshi-market-maker-research@7398fc455682d21980ea37ff8f542a5c0ce78f96"
+    "williammolina489/kalshi-market-maker-research@7398fc455682d21980ea37ff8f542a5c0ce78f96",
+    "Gmail search 2026-09-20: only GitHub failure notification for run 35479196728; no collector backup/archive attachment found",
+    "Prior handoff: collector implementation was local and not yet committed/pushed"
   ],
   "last_result_task_id": null,
-  "notes": "Current research/e001-collector-smoke remains at the foundation head; recovery is intentionally isolated and exact-recovery only."
+  "notes": "Remote exact-recovery investigation is exhausted. Do not reconstruct missing collector modules or tests. When the original computer is available, use the prepared recovery-intake tooling to inventory/hash the local worktree and compare exact identities before publishing anything."
 }
