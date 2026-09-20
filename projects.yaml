@@ -6,6 +6,13 @@ projects:
     enabled: true
     role: research
     state_file: state/crypto_funding_basis.json
+    worker:
+      enabled: true
+      kind: github_workflow
+      workflow: live-validation.yml
+      ref: research/e001-prospective-collector
+      evaluator: crypto_stage1_live_validation
+      timeout_seconds: 420
     notes: >
       Manage only according to the repository's current experiment state,
       preregistration, gates, and documented constraints.
@@ -15,6 +22,9 @@ projects:
     enabled: true
     role: research
     state_file: state/kalshi_market_maker.json
+    worker:
+      enabled: false
+      reason: EXACT_RECOVERY_WORKER_NOT_IMPLEMENTED
     notes: >
       Current work is exact-recovery only. Preserve the preregistered E001
       methodology and do not reconstruct missing prior source from memory.
