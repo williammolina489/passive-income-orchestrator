@@ -57,7 +57,28 @@ projects:
     state_file: state/alpaca_paper_trading_bot.json
     worker:
       enabled: false
-      reason: RAILWAY_RUNTIME_MONITOR_NOT_YET_INTEGRATED
+      reason: DEVELOPMENT_WORKER_NOT_YET_CONFIGURED
+    monitor:
+      enabled: true
+      kind: http_json
+      url: https://alpaca-paper-trading-bot-production.up.railway.app/health
+      required_equals:
+        status: ok
+        process: ok
+        database: ok
+        paper: true
+      max_heartbeat_age_seconds: 300
+      include_fields:
+        - status
+        - process
+        - database
+        - paper
+        - service_status
+        - entries_disabled
+        - last_cycle_at
+        - heartbeat_age_seconds
+        - reconciliation_status
+        - flatten_status
     notes: >
       Paper-only stock bot. Keep current strategy/risk settings frozen while
       monitoring and validation integration are built. Real-money trading remains prohibited.
