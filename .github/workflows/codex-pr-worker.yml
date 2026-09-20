@@ -1,0 +1,201 @@
+name: Codex PR Worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_file:
+        description: "Trusted Codex job JSON path in the orchestrator repository"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-pr-worker
+  cancel-in-progress: false
+
+jobs:
+  codex-pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out trusted orchestrator control plane
+        uses: actions/checkout@v5
+        with:
+          path: control
+          persist-credentials: false
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install control-plane tooling
+        run: python -m pip install -e "control[dev]"
+
+      - name: Verify separate code-write secret exists
+        env:
+          CODE_WRITE_TOKEN: ${{ secrets.ORCHESTRATOR_CODE_WRITE_TOKEN }}
+        run: |
+          if [ -z "$CODE_WRITE_TOKEN" ]; then
+            echo "ORCHESTRATOR_CODE_WRITE_TOKEN is not configured."
+            exit 1
+          fi
+
+      - name: Validate and prepare trusted job
+        id: prepare
+        env:
+          JOB_FILE: ${{ inputs.job_file }}
+        run: |
+          case "$JOB_FILE" in
+            /*|*".."*) echo "Unsafe job_file path"; exit 1 ;;
+          esac
+          test -f "control/$JOB_FILE"
+          python -m controller.codex_job             "control/$JOB_FILE"             --root control             --output-dir control/codex-runtime             --github-output "$GITHUB_OUTPUT"
+
+      - name: Check out target at exact authorized commit
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ steps.prepare.outputs.repository }}
+          ref: ${{ steps.prepare.outputs.expected_head_sha }}
+          path: target
+          fetch-depth: 0
+          token: ${{ secrets.ORCHESTRATOR_CODE_WRITE_TOKEN }}
+          persist-credentials: false
+
+      - name: Verify exact target commit
+        env:
+          EXPECTED_SHA: ${{ steps.prepare.outputs.expected_head_sha }}
+        run: |
+          ACTUAL_SHA="$(git -C target rev-parse HEAD)"
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+
+      - name: Install target dependencies using trusted config
+        run: |
+          cd target
+          bash ../control/codex-runtime/setup.sh
+          git reset --hard HEAD
+          git clean -fdx
+
+      - name: Create isolated work branch
+        env:
+          BRANCH_NAME: ${{ steps.prepare.outputs.branch_name }}
+        run: git -C target checkout -b "$BRANCH_NAME"
+
+      - name: Run Codex in workspace sandbox
+        id: codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          permission-profile: ":workspace"
+          safety-strategy: drop-sudo
+          working-directory: target
+          prompt-file: control/codex-runtime/prompt.txt
+
+      - name: Prove trusted control plane was not modified
+        run: |
+          git -C control diff --exit-code
+          EXTRA="$(git -C control status --porcelain | grep -v '^?? codex-runtime/' || true)"
+          if [ -n "$EXTRA" ]; then
+            echo "Codex modified control-plane files:"
+            echo "$EXTRA"
+            exit 1
+          fi
+
+      - name: Guard changed paths before validation
+        env:
+          JOB_FILE: ${{ inputs.job_file }}
+        run: |
+          python -m controller.codex_change_guard             "control/$JOB_FILE" target --root control
+
+      - name: Run authoritative project validation
+        run: |
+          cd target
+          bash ../control/codex-runtime/validate.sh
+
+      - name: Guard changed paths after validation
+        env:
+          JOB_FILE: ${{ inputs.job_file }}
+        run: |
+          python -m controller.codex_change_guard             "control/$JOB_FILE" target --root control
+          git -C target diff --check
+
+      - name: Detect whether Codex produced changes
+        id: changes
+        run: |
+          if [ -z "$(git -C target status --porcelain)" ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify base branch has not moved
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.ORCHESTRATOR_CODE_WRITE_TOKEN }}
+          TARGET_REPO: ${{ steps.prepare.outputs.repository }}
+          BASE_REF: ${{ steps.prepare.outputs.base_ref }}
+          EXPECTED_SHA: ${{ steps.prepare.outputs.expected_head_sha }}
+        run: |
+          REMOTE_SHA="$(gh api "repos/$TARGET_REPO/branches/$BASE_REF" --jq '.commit.sha')"
+          if [ "$REMOTE_SHA" != "$EXPECTED_SHA" ]; then
+            echo "Target base branch moved from $EXPECTED_SHA to $REMOTE_SHA; refusing stale push."
+            exit 1
+          fi
+
+      - name: Commit guarded changes
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          JOB_ID: ${{ steps.prepare.outputs.job_id }}
+        run: |
+          git -C target config user.name "passive-income-orchestrator[bot]"
+          git -C target config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C target add -A
+          git -C target commit -m "Orchestrator Codex job: $JOB_ID"
+
+      - name: Push isolated branch
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          CODE_WRITE_TOKEN: ${{ secrets.ORCHESTRATOR_CODE_WRITE_TOKEN }}
+          TARGET_REPO: ${{ steps.prepare.outputs.repository }}
+          BRANCH_NAME: ${{ steps.prepare.outputs.branch_name }}
+        run: |
+          git -C target remote set-url origin "https://x-access-token:$CODE_WRITE_TOKEN@github.com/$TARGET_REPO.git"
+          git -C target push --set-upstream origin "$BRANCH_NAME"
+          git -C target remote set-url origin "https://github.com/$TARGET_REPO.git"
+
+      - name: Open PR without merging
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.ORCHESTRATOR_CODE_WRITE_TOKEN }}
+          TARGET_REPO: ${{ steps.prepare.outputs.repository }}
+          BASE_REF: ${{ steps.prepare.outputs.base_ref }}
+          BRANCH_NAME: ${{ steps.prepare.outputs.branch_name }}
+          JOB_ID: ${{ steps.prepare.outputs.job_id }}
+        run: |
+          cat > control/codex-runtime/pr-body.md <<EOF
+          Automated PR-only Codex worker result.
+
+          Job: $JOB_ID
+
+          This PR was created only after the orchestrator's allowed-path guard and configured validation commands passed.
+
+          Safety boundaries:
+          - no automatic merge
+          - no methodology change
+          - no protected validation/OOS access
+          - no live-money authorization
+          - no spending or financial transfer authority
+          EOF
+          gh pr create             --repo "$TARGET_REPO"             --base "$BASE_REF"             --head "$BRANCH_NAME"             --title "[Orchestrator] $JOB_ID"             --body-file control/codex-runtime/pr-body.md
+
+      - name: Upload Codex control artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-pr-worker
+          path: |
+            control/codex-runtime/metadata.json
+            control/codex-runtime/prompt.txt
+          if-no-files-found: ignore
