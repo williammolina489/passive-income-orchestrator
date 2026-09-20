@@ -21,6 +21,7 @@ dev = [
 [project.scripts]
 orchestrator-status = "controller.status:main"
 orchestrator-decide = "controller.decide:main"
+orchestrator-run-once = "controller.run_once:main"
 
 [tool.setuptools.packages.find]
 include = ["controller*"]
