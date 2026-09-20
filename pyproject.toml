@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "passive-income-orchestrator"
+version = "0.1.0"
+description = "Fail-closed controller for automated passive-income research projects"
+requires-python = ">=3.11"
+dependencies = [
+  "PyYAML>=6.0,<7",
+  "jsonschema[format]>=4.23,<5"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9"
+]
+
+[project.scripts]
+orchestrator-status = "controller.status:main"
+
+[tool.setuptools.packages.find]
+include = ["controller*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
