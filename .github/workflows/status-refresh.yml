@@ -1,11 +1,6 @@
 name: Refresh Portfolio Status
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/status-refresh.yml"
   workflow_dispatch:
 
 permissions:
