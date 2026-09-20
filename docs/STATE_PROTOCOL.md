@@ -2,30 +2,44 @@
 
 This document defines how the master orchestrator and managed project repositories communicate.
 
-## Managed repository paths
+## Canonical orchestrator paths
 
-Each enabled project repository should expose:
-
-```text
-.orchestrator/
-  PROJECT_STATE.json
-  inbox/
-  results/
-```
-
-### PROJECT_STATE.json
-
-`.orchestrator/PROJECT_STATE.json` is the worker repository's machine-readable current state.
-
-It must validate against:
+Canonical machine-readable coordination state lives in this repository:
 
 ```text
-passive-income-orchestrator/schemas/project-state.schema.json
+state/
+  <project_id>.json
+
+tasks/
+  <task_id>.json
+
+results/
+  <task_id>.json
 ```
 
-The repository's normal research documents remain authoritative evidence. The state file is a compact index of that evidence, not a replacement for it.
+Keeping canonical state outside the worker repository avoids a self-reference problem where a state file would need to contain the SHA of the same commit that contains the state file.
 
-If the state file conflicts with current repository evidence, the controller must fail closed and return BLOCKED or NEEDS_HUMAN.
+## Project state
+
+Each entry in `projects.yaml` points to a canonical state file, for example:
+
+```text
+state/crypto_funding_basis.json
+```
+
+Each state file must validate against:
+
+```text
+schemas/project-state.schema.json
+```
+
+The state file records the exact worker repository branch and commit SHA that it describes.
+
+The worker repository's normal research documents remain the authoritative evidence. The orchestrator state is a compact, machine-readable index of that evidence, not a replacement for it.
+
+If repository evidence conflicts with the orchestrator state, the controller must fail closed and return `BLOCKED` or `NEEDS_HUMAN`.
+
+Before dispatching work, the controller must verify that the recorded worker branch still points to the recorded `head_sha`. If it has moved, the state must be refreshed before execution.
 
 ## Task delivery
 
@@ -35,17 +49,15 @@ The master controller creates one bounded task conforming to:
 schemas/task.schema.json
 ```
 
-The canonical task identifier must be unique.
-
-During the first implementation, tasks may be delivered through GitHub `repository_dispatch`. A worker may also persist the received task under:
+The canonical copy is stored at:
 
 ```text
-.orchestrator/inbox/<task_id>.json
+tasks/<task_id>.json
 ```
 
-for auditability.
+The task may then be delivered to the worker repository through GitHub `repository_dispatch`.
 
-Workers must verify that `expected_head_sha` still matches the intended starting state before doing consequential work. A stale task must stop rather than silently executing against a changed repository.
+Workers must verify that `expected_head_sha` still matches the intended starting branch before doing work. A stale task must stop rather than silently executing against changed code or research state.
 
 ## Worker results
 
@@ -55,11 +67,13 @@ Every attempted task must produce a result conforming to:
 schemas/result.schema.json
 ```
 
-When persisted in the worker repository, use:
+The canonical result is stored at:
 
 ```text
-.orchestrator/results/<task_id>.json
+results/<task_id>.json
 ```
+
+Worker branches, commits, pull requests, workflow artifacts, and logs remain in the worker repository and are referenced by the result.
 
 The result must truthfully report:
 
@@ -87,12 +101,12 @@ The controller's high-level decisions are:
 
 The controller must not dispatch autonomous work when:
 
-- `PROJECT_STATE.json` is missing or invalid;
-- the recorded head SHA is stale and the state has not been refreshed;
+- the project's canonical state file is missing or invalid;
+- the project is disabled in `projects.yaml`;
+- the recorded worker branch no longer matches the recorded head SHA;
 - repository evidence contradicts the state file;
 - required protected-data permissions are absent;
 - the requested action violates global or project-specific policy;
-- the project is disabled in `projects.yaml`;
 - the next action is materially ambiguous.
 
 ## Versioning
