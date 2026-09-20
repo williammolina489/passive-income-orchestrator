@@ -58,6 +58,25 @@ projects:
     worker:
       enabled: false
       reason: DEVELOPMENT_WORKER_NOT_YET_CONFIGURED
+    code_worker:
+      enabled: false
+      reason: ORCHESTRATOR_CODE_WRITE_TOKEN_NOT_CONFIGURED
+      base_ref: main
+      branch_prefix: orchestrator/
+      setup_commands:
+        - python -m pip install -r requirements.txt
+        - python -m pip install -e .
+      validation_commands:
+        - pytest -q
+      protected_paths:
+        - .github/
+        - PROJECT_STATE.md
+        - EXPERIMENTS.md
+        - ROADMAP.md
+        - AUDIT_HANDOFF.md
+        - CHATGPT_REVIEW_NOTES.md
+        - .env
+        - .env.example
     monitor:
       enabled: true
       kind: http_json
