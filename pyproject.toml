@@ -9,7 +9,8 @@ description = "Fail-closed controller for automated passive-income research proj
 requires-python = ">=3.11"
 dependencies = [
   "PyYAML>=6.0,<7",
-  "jsonschema[format]>=4.23,<5"
+  "jsonschema[format]>=4.23,<5",
+  "openai>=2.0,<3"
 ]
 
 [project.optional-dependencies]
@@ -19,6 +20,7 @@ dev = [
 
 [project.scripts]
 orchestrator-status = "controller.status:main"
+orchestrator-decide = "controller.decide:main"
 
 [tool.setuptools.packages.find]
 include = ["controller*"]
