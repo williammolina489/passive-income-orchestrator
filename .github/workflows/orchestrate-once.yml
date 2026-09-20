@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: passive-income-orchestrator
@@ -80,3 +81,10 @@ jobs:
           fi
           git commit -m "Record orchestrated worker result"
           git push
+
+      - name: Sync human-gate issues
+        if: success()
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: orchestrator-human-gates
