@@ -30,6 +30,7 @@ jobs:
           ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
           ORCHESTRATOR_MODEL: gpt-5.6-luna
         run: |
+          set -o pipefail
           orchestrator-decide | tee controller-decision.json
 
       - name: Upload dry-run decision
