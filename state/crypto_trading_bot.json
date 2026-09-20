@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 1,
+  "project_id": "crypto_trading_bot",
+  "repository": "williammolina489/crypto-trading-bot",
+  "branch": "main",
+  "head_sha": "7f32d9e2a12a8eb3c5620193c43b6d0bb61e1146",
+  "lifecycle_status": "ACTIVE",
+  "experiment": {
+    "id": "EXP-009",
+    "stage": "Prospective BTC paper evidence collection",
+    "status": "RUNNING"
+  },
+  "governance": {
+    "methodology_frozen": true,
+    "performance_viewed": true,
+    "validation_state": "NOT_APPLICABLE",
+    "oos_state": "NOT_APPLICABLE",
+    "data_integrity_status": "PASS"
+  },
+  "current_blockers": [],
+  "next_permitted_actions": [
+    "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
+  ],
+  "forbidden_actions": [
+    "Do not enable real-money trading.",
+    "Do not duplicate the repository's existing paper-cycle schedulers.",
+    "Do not rank EXP-009 challengers before the frozen 90-common-cycle gate.",
+    "Do not perform preliminary persistence review before 180 common cycles.",
+    "Do not perform the first independent candidate screen before 360 common cycles.",
+    "Do not retune the incumbent or challengers from early prospective results."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-20T14:41:13Z",
+  "source_documents": [
+    "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
+    "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
+    "williammolina489/crypto-trading-bot@main:ROADMAP.md",
+    "williammolina489/crypto-trading-bot@main:FORWARD_PAPER.md",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516599163",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516572334",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789"
+  ],
+  "last_result_task_id": null,
+  "notes": "Recent incumbent/challenger health and paper workflows on 2026-09-20 completed successfully on main. The orchestrator is monitor-only because this repository already owns its paper execution cadence."
+}
