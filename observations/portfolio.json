@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-20T15:54:06.371656+00:00",
+  "project_count": 6,
+  "enabled_count": 4,
+  "dispatch_eligible_count": 1,
+  "human_action_required_count": 1,
+  "projects": [
+    {
+      "project_id": "crypto_funding_basis",
+      "repository": "williammolina489/crypto-funding-basis-bot",
+      "role": "research",
+      "enabled": true,
+      "lifecycle_status": "BLOCKED",
+      "experiment": {
+        "id": "E001",
+        "stage": "Stage 1 live production validation",
+        "status": "BLOCKED"
+      },
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": true,
+      "dispatch_eligible": true,
+      "decision_hint": "RUN_TASK_CANDIDATE",
+      "current_blockers": [
+        "A valid executable non-empty BTCUSD public production order book has not yet been observed; repeated production snapshots returned ack_id=0 with zero bids and asks despite published 24/7 spot hours."
+      ],
+      "next_permitted_actions": [
+        "Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology."
+      ],
+      "last_result_task_id": "crypto_funding_basis:E001:20260920T143628Z",
+      "state_updated_at": "2026-09-20T14:36:49.448248+00:00",
+      "operational_monitor_status": null,
+      "operational_checked_at": null
+    },
+    {
+      "project_id": "kalshi_market_maker",
+      "repository": "williammolina489/kalshi-market-maker-research",
+      "role": "research",
+      "enabled": true,
+      "lifecycle_status": "NEEDS_HUMAN",
+      "experiment": {
+        "id": "E001",
+        "stage": "Exact prior collector recovery",
+        "status": "BLOCKED"
+      },
+      "human_action_required": true,
+      "human_action_reason": "Access to the original machine/local worktree or another exact preserved source is required. Remote GitHub/email evidence is insufficient to recover the exact collector implementation without reconstruction.",
+      "worker_ready": false,
+      "dispatch_eligible": false,
+      "decision_hint": "NEEDS_HUMAN",
+      "current_blockers": [
+        "All currently known GitHub recovery sources have been exhausted: the preserved 10,000-byte bundle is truncated, the known dangling objects do not contain the complete later collector source/test tree, and recovery workflow/email history exposes no additional exact object identifiers.",
+        "The prior project handoff states that the substantial collector/smoke implementation existed locally and had not yet been committed/pushed to GitHub. Exact recovery therefore now requires the original local worktree, an exact local archive/chunk, or new exact Git object IDs from another preserved source."
+      ],
+      "next_permitted_actions": [],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-20T15:13:00Z",
+      "operational_monitor_status": null,
+      "operational_checked_at": null
+    },
+    {
+      "project_id": "crypto_trading_bot",
+      "repository": "williammolina489/crypto-trading-bot",
+      "role": "paper_research",
+      "enabled": true,
+      "lifecycle_status": "ACTIVE",
+      "experiment": {
+        "id": "EXP-009",
+        "stage": "Prospective BTC paper evidence collection",
+        "status": "RUNNING"
+      },
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": false,
+      "dispatch_eligible": false,
+      "decision_hint": "WAIT",
+      "current_blockers": [],
+      "next_permitted_actions": [
+        "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
+      ],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-20T15:11:00Z",
+      "operational_monitor_status": "WARNING",
+      "operational_checked_at": "2026-09-20T15:54:04.618156+00:00"
+    },
+    {
+      "project_id": "alpaca_paper_trading_bot",
+      "repository": "williammolina489/alpaca-paper-trading-bot",
+      "role": "paper_research",
+      "enabled": true,
+      "lifecycle_status": "ACTIVE",
+      "experiment": {
+        "id": "E001",
+        "stage": "Paper execution validation and historical-fidelity audit",
+        "status": "RUNNING"
+      },
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": false,
+      "dispatch_eligible": false,
+      "decision_hint": "WAIT",
+      "current_blockers": [
+        "The GitHub-hosted orchestrator does not yet have an unattended Railway runtime-health credential or public health probe, so Railway health is currently refreshed through the connected Railway integration rather than by the hourly GitHub workflow.",
+        "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
+      ],
+      "next_permitted_actions": [
+        "Continue paper trading without retuning the strategy from the small sample.",
+        "Integrate current Railway runtime health into the orchestrator before autonomous operational decisions.",
+        "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
+      ],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-20T15:05:34.310234Z",
+      "operational_monitor_status": null,
+      "operational_checked_at": null
+    },
+    {
+      "project_id": "systematic_futures",
+      "repository": "williammolina489/systematic-futures-bot",
+      "role": "archived_research",
+      "enabled": false,
+      "lifecycle_status": "CLOSED",
+      "experiment": {
+        "id": "E003",
+        "stage": "TRAIN",
+        "status": "STOPPED"
+      },
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": false,
+      "dispatch_eligible": false,
+      "decision_hint": "STOP",
+      "current_blockers": [],
+      "next_permitted_actions": [],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-20T12:26:00Z",
+      "operational_monitor_status": null,
+      "operational_checked_at": null
+    },
+    {
+      "project_id": "prediction_market_arbitrage",
+      "repository": "williammolina489/prediction-market-arbitrage-scanner",
+      "role": "archived_research",
+      "enabled": false,
+      "lifecycle_status": "CLOSED",
+      "experiment": {
+        "id": "E003",
+        "stage": "Payoff-invariant proof gate",
+        "status": "STOPPED"
+      },
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": false,
+      "dispatch_eligible": false,
+      "decision_hint": "STOP",
+      "current_blockers": [],
+      "next_permitted_actions": [],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-20T12:26:00Z",
+      "operational_monitor_status": null,
+      "operational_checked_at": null
+    }
+  ]
+}

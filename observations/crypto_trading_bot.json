@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "project_id": "crypto_trading_bot",
+  "repository": "williammolina489/crypto-trading-bot",
+  "checked_at": "2026-09-20T15:54:04.618156+00:00",
+  "monitor_kind": "github_actions_workflows",
+  "max_age_minutes": 180.0,
+  "overall_status": "WARNING",
+  "workflows": [
+    {
+      "name": "Forward paper BTC cycle",
+      "status": "STALE",
+      "reason": "Latest successful completed run is 211.2 minutes old, above the 180.0-minute monitor threshold.",
+      "latest_completed_run_id": 35510447154,
+      "latest_completed_conclusion": "success",
+      "latest_completed_created_at": "2026-09-20T12:22:55Z",
+      "latest_completed_updated_at": "2026-09-20T12:23:31Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35510447154",
+      "age_minutes": 211.16,
+      "active_run_ids": []
+    },
+    {
+      "name": "Forward challenger BTC basket",
+      "status": "HEALTHY",
+      "reason": "Latest completed run succeeded and is within the freshness threshold.",
+      "latest_completed_run_id": 35516599163,
+      "latest_completed_conclusion": "success",
+      "latest_completed_created_at": "2026-09-20T14:28:40Z",
+      "latest_completed_updated_at": "2026-09-20T14:29:16Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516599163",
+      "age_minutes": 85.41,
+      "active_run_ids": []
+    },
+    {
+      "name": "Forward paper health watch",
+      "status": "STALE",
+      "reason": "Latest successful completed run is 196.4 minutes old, above the 180.0-minute monitor threshold.",
+      "latest_completed_run_id": 35511158789,
+      "latest_completed_conclusion": "success",
+      "latest_completed_created_at": "2026-09-20T12:37:41Z",
+      "latest_completed_updated_at": "2026-09-20T12:38:10Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789",
+      "age_minutes": 196.394,
+      "active_run_ids": []
+    },
+    {
+      "name": "Forward challenger health watch",
+      "status": "HEALTHY",
+      "reason": "Latest completed run succeeded and is within the freshness threshold.",
+      "latest_completed_run_id": 35516572334,
+      "latest_completed_conclusion": "success",
+      "latest_completed_created_at": "2026-09-20T14:28:06Z",
+      "latest_completed_updated_at": "2026-09-20T14:28:44Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516572334",
+      "age_minutes": 85.977,
+      "active_run_ids": []
+    }
+  ]
+}

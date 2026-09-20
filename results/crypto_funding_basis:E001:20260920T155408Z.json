@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "task_id": "crypto_funding_basis:E001:20260920T155408Z",
+  "project_id": "crypto_funding_basis",
+  "repository": "williammolina489/crypto-funding-basis-bot",
+  "experiment_id": "E001",
+  "starting_sha": "8974d0f3944eaf7571257d7c4356ad52745077ac",
+  "ending_sha": "8974d0f3944eaf7571257d7c4356ad52745077ac",
+  "outcome": "BLOCKED",
+  "summary": "Stage 1 remains blocked because the frozen BTCUSD production book still did not satisfy the executable non-empty bid/ask requirement.",
+  "evidence": [
+    {
+      "type": "URL",
+      "reference": "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35521017801",
+      "summary": "GitHub Actions read-only live-validation run."
+    },
+    {
+      "type": "LOG",
+      "reference": "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35521017801#logs",
+      "summary": "BTCUSD live book ack_id=0, best_bid=None, best_ask=None."
+    }
+  ],
+  "checks": [
+    {
+      "name": "read_only_safety",
+      "status": "PASS",
+      "details": "authentication_used=False; orders_or_writes_performed=False"
+    },
+    {
+      "name": "btcusd_executable_book",
+      "status": "FAIL",
+      "details": "live_symbol=BTCUSD; ack_id=0; bid_levels=0; ask_levels=0; best_bid_price=None; best_ask_price=None"
+    }
+  ],
+  "methodology_changed": false,
+  "protected_data_access": {
+    "validation": false,
+    "oos": false
+  },
+  "financial_action_taken": false,
+  "human_action_required": false,
+  "human_action_reason": null,
+  "recommended_next_action": "Repeat the same read-only BTCUSD/PBTCUC production validation without changing the frozen instrument or methodology.",
+  "pull_request": null,
+  "completed_at": "2026-09-20T15:54:34.252065+00:00"
+}
