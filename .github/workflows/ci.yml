@@ -32,3 +32,9 @@ jobs:
         env:
           ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
         run: orchestrator-status --verify-remote --json
+
+      - name: Smoke read-only operational monitors
+        if: github.event_name != 'pull_request'
+        env:
+          ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: orchestrator-monitor
