@@ -25,6 +25,7 @@ orchestrator-run-once = "controller.run_once:main"
 orchestrator-monitor = "controller.monitor:main"
 kalshi-recovery-intake = "controller.kalshi_recovery_intake:main"
 orchestrator-portfolio = "controller.portfolio:main"
+orchestrator-human-gates = "controller.human_gate:main"
 
 [tool.setuptools.packages.find]
 include = ["controller*"]
