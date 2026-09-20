@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 2,
+  "state_revision": 3,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
@@ -19,12 +19,10 @@
     "data_integrity_status": "UNKNOWN"
   },
   "current_blockers": [
-    "The GitHub-hosted orchestrator does not yet have an unattended Railway runtime-health credential or public health probe, so Railway health is currently refreshed through the connected Railway integration rather than by the hourly GitHub workflow.",
     "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
   ],
   "next_permitted_actions": [
     "Continue paper trading without retuning the strategy from the small sample.",
-    "Integrate current Railway runtime health into the orchestrator before autonomous operational decisions.",
     "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
   ],
   "forbidden_actions": [
@@ -36,15 +34,16 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-20T15:05:34.310234Z",
+  "updated_at": "2026-09-20T15:58:43.341165+00:00",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
     "williammolina489/alpaca-paper-trading-bot@main:ROADMAP.md",
     "williammolina489/alpaca-paper-trading-bot#22",
     "Railway project cooperative-heart / service alpaca-paper-trading-bot / production deployment 7b1c896f-da16-4731-b4b3-69deb176e2a9",
-    "Railway diagnostics snapshot 2026-09-20T15:05:34.310234Z"
+    "Railway diagnostics snapshot 2026-09-20T15:05:34.310234Z",
+    "Unattended public /health monitor verified from GitHub Actions CI run 35521229054 at 2026-09-20T15:58:41.739869+00:00"
   ],
   "last_result_task_id": null,
-  "notes": "Current Railway runtime verification: deployed commit dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52; paper=true; process=ok; database=ok; reconciliation_status=ok; last_error=null; runtime_halted=false; ledger_safety_breach_active=false; flatten_status=flat; service_status=idle_non_trading_day; heartbeat_age_seconds about 0.009. Latest observed paper performance snapshot reports 60 completed trades and remains research-only, not evidence of a proven edge."
+  "notes": "Unattended GitHub-runner health monitoring is now integrated through the service's sanitized public /health endpoint. Verified paper=true, process=ok, database=ok, entries_disabled=false, reconciliation_status=ok, flatten_status=flat, service_status=idle_non_trading_day, and heartbeat_age_seconds about 3.1. Historical validation remains incomplete; no edge claim or live-money authorization follows from runtime health."
 }
