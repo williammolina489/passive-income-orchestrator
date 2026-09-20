@@ -5,6 +5,7 @@ projects:
     repo: williammolina489/crypto-funding-basis-bot
     enabled: true
     role: research
+    state_file: state/crypto_funding_basis.json
     notes: >
       Manage only according to the repository's current experiment state,
       preregistration, gates, and documented constraints.
@@ -13,24 +14,28 @@ projects:
     repo: williammolina489/kalshi-market-maker-research
     enabled: true
     role: research
+    state_file: state/kalshi_market_maker.json
     notes: >
-      Manage only according to the repository's current experiment state,
-      recovery requirements, preregistration, gates, and documented constraints.
+      Current work is exact-recovery only. Preserve the preregistered E001
+      methodology and do not reconstruct missing prior source from memory.
 
   systematic_futures:
     repo: williammolina489/systematic-futures-bot
-    enabled: true
-    role: research
+    enabled: false
+    role: archived_research
+    state_file: state/systematic_futures.json
+    reason: PROJECT_CLOSED
     notes: >
-      Manage only according to the repository's current experiment state,
-      preregistration, validation/OOS seals, gates, and documented constraints.
+      E003 ended STOP / REJECT and explicitly closed the futures project.
+      Do not run VALIDATION, unseal OOS, retune E003, or propose E004.
 
   prediction_market_arbitrage:
     repo: williammolina489/prediction-market-arbitrage-scanner
     enabled: false
     role: archived_research
+    state_file: state/prediction_market_arbitrage.json
     reason: PROJECT_CLOSED
     notes: >
       Closed as a strict prediction-market arbitrage research program.
-      Do not restart, create a new experiment, or convert it into a materially
-      different strategy family without explicit human authorization.
+      Do not restart, create E004, or convert it into relative-value,
+      statistical-arbitrage, forecasting, or market-making research.
