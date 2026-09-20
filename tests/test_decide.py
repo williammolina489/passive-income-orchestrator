@@ -87,3 +87,45 @@ def test_non_run_decision_must_select_none() -> None:
     }
     with pytest.raises(ValueError):
         validate_decision(decision, schema, candidates)
+
+
+def test_call_controller_avoids_model_for_single_candidate(monkeypatch, tmp_path: Path) -> None:
+    from controller import decide
+
+    report = _report()
+    monkeypatch.setattr(decide, "build_report", lambda *_args, **_kwargs: report)
+    monkeypatch.setenv("ORCHESTRATOR_GITHUB_TOKEN", "test")
+
+    result = decide.call_controller(root=tmp_path, client=object())
+
+    assert result["mode"] == "DETERMINISTIC_SINGLE_CANDIDATE"
+    assert result["decision"]["decision"] == "RUN_TASK"
+    assert result["selected_candidate"]["candidate_id"] == "active::0"
+    assert result["usage"]["total_tokens"] == 0
+
+
+def test_call_controller_avoids_model_when_no_candidates(monkeypatch, tmp_path: Path) -> None:
+    from controller import decide
+
+    report = {
+        "ok": True,
+        "projects": [
+            {
+                "project_id": "closed",
+                "repository": "owner/closed",
+                "enabled": False,
+                "dispatch_eligible": False,
+                "lifecycle_status": "CLOSED",
+                "next_permitted_actions": [],
+            }
+        ],
+    }
+    monkeypatch.setattr(decide, "build_report", lambda *_args, **_kwargs: report)
+    monkeypatch.setenv("ORCHESTRATOR_GITHUB_TOKEN", "test")
+
+    result = decide.call_controller(root=tmp_path, client=object())
+
+    assert result["mode"] == "DETERMINISTIC_NO_CANDIDATE"
+    assert result["decision"]["decision"] == "WAIT"
+    assert result["selected_candidate"] is None
+    assert result["usage"]["total_tokens"] == 0
