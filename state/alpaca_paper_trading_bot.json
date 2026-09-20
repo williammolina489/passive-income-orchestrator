@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 1,
+  "project_id": "alpaca_paper_trading_bot",
+  "repository": "williammolina489/alpaca-paper-trading-bot",
+  "branch": "main",
+  "head_sha": "dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52",
+  "lifecycle_status": "WAITING",
+  "experiment": {
+    "id": "E001",
+    "stage": "Paper execution validation and historical-fidelity audit",
+    "status": "RUNNING"
+  },
+  "governance": {
+    "methodology_frozen": true,
+    "performance_viewed": true,
+    "validation_state": "UNKNOWN",
+    "oos_state": "UNKNOWN",
+    "data_integrity_status": "UNKNOWN"
+  },
+  "current_blockers": [
+    "The orchestrator does not yet have a current Railway runtime-health integration, so the 2026-09-04 deployment-health snapshot cannot be treated as current operational evidence.",
+    "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
+  ],
+  "next_permitted_actions": [
+    "Continue paper trading without retuning the strategy from the small sample.",
+    "Integrate current Railway runtime health into the orchestrator before autonomous operational decisions.",
+    "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
+  ],
+  "forbidden_actions": [
+    "Do not enable real-money trading.",
+    "Do not weaken the independent live-mode safety gates.",
+    "Do not retune momentum_v1 from the small current paper sample.",
+    "Do not treat the 2024-2025 or any future untouched OOS period as reusable optimization data after it is opened.",
+    "Do not claim a repeatable edge from the current small and concentrated paper sample."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-20T14:41:13Z",
+  "source_documents": [
+    "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
+    "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
+    "williammolina489/alpaca-paper-trading-bot@main:ROADMAP.md",
+    "williammolina489/alpaca-paper-trading-bot#22"
+  ],
+  "last_result_task_id": null,
+  "notes": "The latest GitHub-side research CI evidence is from 2026-09-05. The deployed paper runtime is on Railway and is not yet directly monitored by this orchestrator."
+}
