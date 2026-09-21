@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 9,
+  "state_revision": 10,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e001-prospective-collector",
-  "head_sha": "87a40b91052e3c6f0800f55fe3987f27b27a795b",
+  "head_sha": "2397b2568148ac0b6df8017a9ed041fe30728fce",
   "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
-    "stage": "Stage 1 live production validation \u2014 finite Checkpoint B pending",
+    "stage": "Stage 1 final classification",
     "status": "BLOCKED"
   },
   "governance": {
@@ -19,8 +19,8 @@
     "data_integrity_status": "BLOCKED"
   },
   "current_blockers": [
-    "Checkpoint A after the Sunday reopening returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels; the frozen executable two-sided BTCUSD requirement still has not passed.",
-    "The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00\u201315:00 America/New_York, solely to rule out a Sunday-session-transition anomaly."
+    "Final Checkpoint B during ordinary Monday daytime again returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels while PBTCUCZ50 was executable.",
+    "The frozen E001 Stage 1 executable BTCUSD requirement did not pass. The finite protocol is complete and no further retries are authorized."
   ],
   "next_permitted_actions": [],
   "forbidden_actions": [
@@ -33,8 +33,8 @@
     "Do not place live orders or use real money."
   ],
   "human_action_required": true,
-  "human_action_reason": "The finite Stage-1 revalidation protocol is exhausted. This was the final authorized Checkpoint B; no further automatic retries are permitted without a new explicit decision.",
-  "updated_at": "2026-09-21T14:09:06.190585+00:00",
+  "human_action_reason": "E001 Stage 1 is durably classified BLOCKED in the worker repository. A human decision is required to either close E001 at this blocker or explicitly authorize a materially new experiment/preregistration. The existing E001 methodology must not be altered or retried.",
+  "updated_at": "2026-09-21T21:31:00-04:00",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -47,8 +47,12 @@
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35544098730",
     "williammolina489/crypto-funding-basis-bot@87a40b91052e3c6f0800f55fe3987f27b27a795b",
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35546762534",
-    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35610149714"
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35610149714",
+    "williammolina489/crypto-funding-basis-bot@2397b2568148ac0b6df8017a9ed041fe30728fce:PROJECT_STATE.md",
+    "williammolina489/crypto-funding-basis-bot@2397b2568148ac0b6df8017a9ed041fe30728fce:EXPERIMENTS.md",
+    "williammolina489/crypto-funding-basis-bot@2397b2568148ac0b6df8017a9ed041fe30728fce:ROADMAP.md",
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35622987498"
   ],
   "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
-  "notes": "Stage 1 remains blocked because the frozen BTCUSD production book still did not satisfy the executable non-empty bid/ask requirement."
+  "notes": "Final Stage 1 classification is durably recorded in the worker repository: BLOCKED because BTCUSD remained non-executable in both finite expected-open checkpoints. No methodology changed, no performance was viewed, no Stage 2 was built, and no live orders were placed."
 }
