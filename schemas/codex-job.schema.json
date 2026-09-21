@@ -10,6 +10,7 @@
     "job_id",
     "project_id",
     "expected_head_sha",
+    "authorization_basis",
     "objective",
     "constraints",
     "allowed_paths",
@@ -122,6 +123,10 @@
     },
     "merge_to_default_branch_permitted": {
       "const": false
+    },
+    "authorization_basis": {
+      "type": "string",
+      "minLength": 1
     }
   }
 }
