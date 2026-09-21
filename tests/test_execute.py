@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from controller.execute import _crypto_stage1_result, _parse_live_validation
+from controller.execute import _crypto_stage1_result, _parse_live_validation, _update_state_from_result
 
 
 def _task() -> dict:
@@ -65,3 +65,46 @@ def test_crypto_evaluator_remains_blocked_on_closed_empty_book() -> None:
     )
     assert result["outcome"] == "BLOCKED"
     assert result["human_action_required"] is False
+
+
+def test_crypto_final_attempt_blocks_and_requires_human() -> None:
+    result, _ = _crypto_stage1_result(
+        task=_task(),
+        run={"conclusion": "success", "html_url": "https://github.com/run/3"},
+        logs=_log_payload(ack_id="42", bid=False, ask=False),
+        final_attempt=True,
+    )
+    assert result["outcome"] == "BLOCKED"
+    assert result["human_action_required"] is True
+    assert "final authorized Checkpoint B" in result["human_action_reason"]
+
+
+def test_final_blocked_result_stops_automatic_retries() -> None:
+    state = {
+        "state_revision": 1,
+        "lifecycle_status": "BLOCKED",
+        "experiment": {"id": "E001", "stage": "Stage 1", "status": "BLOCKED"},
+        "source_documents": [],
+        "next_permitted_actions": ["Run final Checkpoint B."],
+        "human_action_required": False,
+        "human_action_reason": None,
+        "notes": None,
+    }
+    result = {
+        "task_id": "task-1",
+        "outcome": "BLOCKED",
+        "summary": "Still no executable BTCUSD quote.",
+        "human_action_required": True,
+        "human_action_reason": "Finite protocol exhausted.",
+    }
+
+    updated = _update_state_from_result(
+        state,
+        result,
+        "https://github.com/run/3",
+    )
+
+    assert updated["lifecycle_status"] == "NEEDS_HUMAN"
+    assert updated["next_permitted_actions"] == []
+    assert updated["human_action_required"] is True
+    assert updated["human_action_reason"] == "Finite protocol exhausted."
