@@ -94,6 +94,7 @@ def _write_control_fixture(
         "job_id": "example:E001:fix-one",
         "project_id": "example",
         "expected_head_sha": sha,
+        "authorization_basis": "Implement one bounded engineering fix.",
         "objective": "Implement the bounded engineering fix without changing research methodology.",
         "constraints": ["Preserve existing behavior outside the bug fix."],
         "allowed_paths": allowed_paths or ["src/", "tests/"],
@@ -202,3 +203,13 @@ def test_change_guard_rejects_protected_edit(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="overlaps protected path"):
         validate_changes(control, job_path, target)
+
+
+def test_job_authorization_basis_must_match_canonical_next_action(tmp_path: Path) -> None:
+    job_path = _write_control_fixture(tmp_path, sha="a" * 40)
+    job = json.loads(job_path.read_text(encoding="utf-8"))
+    job["authorization_basis"] = "Invent a different task."
+    job_path.write_text(json.dumps(job), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="authorization_basis"):
+        validate_job(tmp_path, job_path)
