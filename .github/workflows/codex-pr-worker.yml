@@ -1,6 +1,11 @@
 name: Codex PR Worker
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "jobs/alpaca-partial-fill-regression.retry"
   workflow_dispatch:
     inputs:
       job_file:
@@ -46,7 +51,7 @@ jobs:
       - name: Validate and prepare trusted job
         id: prepare
         env:
-          JOB_FILE: ${{ inputs.job_file }}
+          JOB_FILE: ${{ inputs.job_file || 'jobs/alpaca-partial-fill-regression.json' }}
         run: |
           case "$JOB_FILE" in
             /*|*".."*) echo "Unsafe job_file path"; exit 1 ;;
@@ -105,7 +110,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ORCHESTRATOR_CODE_MODEL: gpt-5.6-luna
-          JOB_FILE: ${{ inputs.job_file }}
+          JOB_FILE: ${{ inputs.job_file || 'jobs/alpaca-partial-fill-regression.json' }}
         run: |
           python -m controller.structured_edit \
             "control/$JOB_FILE" target --root control \
@@ -123,7 +128,7 @@ jobs:
 
       - name: Guard changed paths before validation
         env:
-          JOB_FILE: ${{ inputs.job_file }}
+          JOB_FILE: ${{ inputs.job_file || 'jobs/alpaca-partial-fill-regression.json' }}
         run: |
           python -m controller.codex_change_guard             "control/$JOB_FILE" target --root control
 
@@ -134,7 +139,7 @@ jobs:
 
       - name: Guard changed paths after validation
         env:
-          JOB_FILE: ${{ inputs.job_file }}
+          JOB_FILE: ${{ inputs.job_file || 'jobs/alpaca-partial-fill-regression.json' }}
         run: |
           python -m controller.codex_change_guard             "control/$JOB_FILE" target --root control
           git -C target diff --check
