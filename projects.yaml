@@ -62,8 +62,8 @@ projects:
       enabled: false
       reason: DEVELOPMENT_WORKER_NOT_YET_CONFIGURED
     code_worker:
-      enabled: false
-      reason: ORCHESTRATOR_CODE_WRITE_TOKEN_NOT_CONFIGURED
+      enabled: true
+      reason: FIRST_SUPERVISED_TEST_ONLY_PILOT
       base_ref: main
       branch_prefix: orchestrator/
       setup_commands:
