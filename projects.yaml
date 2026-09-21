@@ -62,8 +62,8 @@ projects:
       enabled: false
       reason: DEVELOPMENT_WORKER_NOT_YET_CONFIGURED
     code_worker:
-      enabled: true
-      reason: FIRST_SUPERVISED_TEST_ONLY_PILOT
+      enabled: false
+      reason: PILOT_PR_23_AWAITING_HUMAN_REVIEW
       base_ref: main
       branch_prefix: orchestrator/
       setup_commands:
