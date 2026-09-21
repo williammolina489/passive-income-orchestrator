@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -13,6 +14,7 @@ def _write_fixture(
     *,
     enabled: bool = True,
     worker_enabled: bool = True,
+    worker_window: bool = False,
 ) -> Path:
     (tmp_path / "schemas").mkdir()
     (tmp_path / "state").mkdir()
@@ -39,6 +41,15 @@ def _write_fixture(
                 "workflow": "worker.yml",
                 "ref": "research/e001",
                 "evaluator": "crypto_stage1_live_validation",
+                **(
+                    {
+                        "dispatch_not_before": "2026-09-21T10:00:00-04:00",
+                        "dispatch_not_after": "2026-09-21T15:00:00-04:00",
+                        "final_attempt": True,
+                    }
+                    if worker_window
+                    else {}
+                ),
             }
             if worker_enabled
             else {"enabled": False, "reason": "NOT_READY"}
@@ -145,4 +156,43 @@ def test_project_id_mismatch_is_invalid(tmp_path: Path) -> None:
 
     assert report["ok"] is False
     assert project["valid"] is False
+    assert project["dispatch_eligible"] is False
+
+
+def test_worker_waits_before_dispatch_window(tmp_path: Path) -> None:
+    root = _write_fixture(tmp_path, worker_window=True)
+    report = status.build_report(
+        root,
+        now=datetime(2026, 9, 21, 13, 59, tzinfo=UTC),
+    )
+    project = report["projects"][0]
+
+    assert project["worker_window_status"] == "BEFORE"
+    assert project["decision_hint"] == "WAIT"
+    assert project["dispatch_eligible"] is False
+
+
+def test_worker_dispatches_inside_window(tmp_path: Path) -> None:
+    root = _write_fixture(tmp_path, worker_window=True)
+    report = status.build_report(
+        root,
+        now=datetime(2026, 9, 21, 14, 30, tzinfo=UTC),
+    )
+    project = report["projects"][0]
+
+    assert project["worker_window_status"] == "OPEN"
+    assert project["decision_hint"] == "RUN_TASK_CANDIDATE"
+    assert project["dispatch_eligible"] is True
+
+
+def test_worker_waits_after_dispatch_window(tmp_path: Path) -> None:
+    root = _write_fixture(tmp_path, worker_window=True)
+    report = status.build_report(
+        root,
+        now=datetime(2026, 9, 21, 19, 1, tzinfo=UTC),
+    )
+    project = report["projects"][0]
+
+    assert project["worker_window_status"] == "AFTER"
+    assert project["decision_hint"] == "WAIT"
     assert project["dispatch_eligible"] is False
