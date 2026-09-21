@@ -97,6 +97,11 @@ def validate_job(
         raise ValueError("project registry/state repository mismatch")
     if state["head_sha"] != job["expected_head_sha"]:
         raise ValueError("Codex job expected_head_sha does not match canonical state")
+    if job["authorization_basis"] not in state.get("next_permitted_actions", []):
+        raise ValueError(
+            "Codex job authorization_basis must exactly match a canonical "
+            "next_permitted_action"
+        )
     if state.get("human_action_required") is True:
         raise ValueError("project is human-gated; Codex editing is not permitted")
     if state.get("lifecycle_status") in {"CLOSED", "STOPPED", "COMPLETE", "NEEDS_HUMAN"}:
@@ -134,6 +139,9 @@ GitHub repository: {project['repo']}
 Starting commit: {job['expected_head_sha']}
 Project state branch: {state['branch']}
 Job ID: {job['job_id']}
+
+AUTHORIZATION BASIS
+{job['authorization_basis']}
 
 OBJECTIVE
 {job['objective']}
@@ -220,6 +228,7 @@ def prepare_job(
         "validation_script": str(validation_path),
         "allowed_paths": job["allowed_paths"],
         "protected_paths": code_worker.get("protected_paths", []),
+        "authorization_basis": job["authorization_basis"],
         "objective": job["objective"],
     }
     (output_dir / "metadata.json").write_text(
