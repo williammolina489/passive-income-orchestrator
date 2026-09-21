@@ -7,6 +7,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -70,6 +71,12 @@ def _validation_errors(
         for key in ("workflow", "ref", "evaluator"):
             if not worker.get(key):
                 errors.append(f"enabled worker is missing {key}")
+        try:
+            worker_window_status(worker)
+        except ValueError as exc:
+            errors.append(f"invalid worker dispatch window: {exc}")
+        if "final_attempt" in worker and not isinstance(worker.get("final_attempt"), bool):
+            errors.append("worker final_attempt must be boolean when present")
 
     return errors
 
@@ -123,11 +130,55 @@ def _worker_ready(config: dict[str, Any]) -> bool:
     )
 
 
+def _parse_config_datetime(value: Any) -> datetime:
+    parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError("dispatch window timestamps must include a UTC offset")
+    return parsed
+
+
+def worker_window_status(
+    worker: dict[str, Any] | None,
+    now: datetime | None = None,
+) -> str:
+    if not isinstance(worker, dict):
+        return "UNBOUNDED"
+
+    now = now or datetime.now(UTC)
+    if now.tzinfo is None or now.utcoffset() is None:
+        raise ValueError("worker window evaluation requires a timezone-aware datetime")
+
+    not_before_raw = worker.get("dispatch_not_before")
+    not_after_raw = worker.get("dispatch_not_after")
+    if not_before_raw is None and not_after_raw is None:
+        return "UNBOUNDED"
+
+    not_before = (
+        _parse_config_datetime(not_before_raw)
+        if not_before_raw is not None
+        else None
+    )
+    not_after = (
+        _parse_config_datetime(not_after_raw)
+        if not_after_raw is not None
+        else None
+    )
+    if not_before is not None and not_after is not None and not_before > not_after:
+        raise ValueError("dispatch_not_before must be <= dispatch_not_after")
+
+    if not_before is not None and now < not_before:
+        return "BEFORE"
+    if not_after is not None and now > not_after:
+        return "AFTER"
+    return "OPEN"
+
+
 def _decision_hint(
     config: dict[str, Any],
     state: dict[str, Any],
     fresh: bool,
     worker_ready: bool,
+    window_status: str,
 ) -> str:
     if not config.get("enabled", False):
         return "STOP"
@@ -141,7 +192,11 @@ def _decision_hint(
         state.get("lifecycle_status") in {"ACTIVE", "BLOCKED"}
         and state.get("next_permitted_actions")
     ):
-        return "RUN_TASK_CANDIDATE" if worker_ready else "WAIT"
+        if not worker_ready:
+            return "WAIT"
+        if window_status not in {"OPEN", "UNBOUNDED"}:
+            return "WAIT"
+        return "RUN_TASK_CANDIDATE"
     return "WAIT"
 
 
@@ -150,8 +205,10 @@ def build_report(
     *,
     verify_remote: bool = False,
     token: str | None = None,
+    now: datetime | None = None,
 ) -> dict[str, Any]:
     registry = _load_registry(root)
+    now = now or datetime.now(UTC)
     schema = _load_json(root / "schemas" / "project-state.schema.json")
 
     projects: list[dict[str, Any]] = []
@@ -160,6 +217,10 @@ def build_report(
     for project_id, config in registry["projects"].items():
         worker = config.get("worker")
         worker_ready = _worker_ready(config)
+        try:
+            window_status = worker_window_status(worker, now)
+        except ValueError:
+            window_status = "INVALID"
         entry: dict[str, Any] = {
             "project_id": project_id,
             "repository": config.get("repo"),
@@ -167,6 +228,7 @@ def build_report(
             "state_file": config.get("state_file"),
             "worker": worker,
             "worker_ready": worker_ready,
+            "worker_window_status": window_status,
             "valid": False,
             "fresh": None,
             "dispatch_eligible": False,
@@ -233,11 +295,18 @@ def build_report(
                 overall_ok = False
 
         entry["fresh"] = fresh if verify_remote else None
-        entry["decision_hint"] = _decision_hint(config, state, fresh, worker_ready)
+        entry["decision_hint"] = _decision_hint(
+            config,
+            state,
+            fresh,
+            worker_ready,
+            window_status,
+        )
 
         entry["dispatch_eligible"] = bool(
             config.get("enabled", False)
             and worker_ready
+            and window_status in {"OPEN", "UNBOUNDED"}
             and (fresh or not verify_remote)
             and not state.get("human_action_required")
             and state.get("lifecycle_status") in {"ACTIVE", "BLOCKED"}
@@ -264,9 +333,11 @@ def _print_human(report: dict[str, Any]) -> None:
         hint = project.get("decision_hint", "BLOCKED")
         eligibility = "yes" if project.get("dispatch_eligible") else "no"
         worker = "ready" if project.get("worker_ready") else "not-ready"
+        window = project.get("worker_window_status", "UNBOUNDED")
         print(
             f"- {project['project_id']}: {status}; "
-            f"decision={hint}; worker={worker}; dispatch_eligible={eligibility}"
+            f"decision={hint}; worker={worker}; window={window}; "
+            f"dispatch_eligible={eligibility}"
         )
         for error in project.get("errors", []):
             print(f"    ERROR: {error}")
