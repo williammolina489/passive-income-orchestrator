@@ -175,7 +175,9 @@ EXECUTION BOUNDARIES
 - Do not add credentials, tokens, secrets, or external service configuration.
 - Network access is intentionally unavailable during your step.
 - Prefer the smallest implementation that satisfies the exact objective.
-- Run any already-available focused tests that help you reason, but the outer workflow will run the authoritative validation commands afterward.
+- Do not run the repository test suite yourself. The outer workflow runs the authoritative validation commands after you return.
+- Inspect only the files needed for this exact objective, make the smallest allowed edit, and return promptly.
+- If the requested invariant is already equivalently covered, make no changes and return promptly.
 """
 
 
