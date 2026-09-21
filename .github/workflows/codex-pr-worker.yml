@@ -1,11 +1,6 @@
 name: Codex PR Worker
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "jobs/alpaca-partial-fill-regression.retry"
   workflow_dispatch:
     inputs:
       job_file:
