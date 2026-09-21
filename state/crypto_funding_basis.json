@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 10,
+  "state_revision": 11,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e001-prospective-collector",
@@ -34,7 +34,7 @@
   ],
   "human_action_required": true,
   "human_action_reason": "E001 Stage 1 is durably classified BLOCKED in the worker repository. A human decision is required to either close E001 at this blocker or explicitly authorize a materially new experiment/preregistration. The existing E001 methodology must not be altered or retried.",
-  "updated_at": "2026-09-21T21:31:00-04:00",
+  "updated_at": "2026-09-21T17:31:00-04:00",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
