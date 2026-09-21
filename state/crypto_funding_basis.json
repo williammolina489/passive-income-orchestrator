@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 8,
+  "state_revision": 9,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e001-prospective-collector",
   "head_sha": "87a40b91052e3c6f0800f55fe3987f27b27a795b",
-  "lifecycle_status": "BLOCKED",
+  "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
-    "stage": "Stage 1 live production validation — finite Checkpoint B pending",
+    "stage": "Stage 1 live production validation \u2014 finite Checkpoint B pending",
     "status": "BLOCKED"
   },
   "governance": {
@@ -20,11 +20,9 @@
   },
   "current_blockers": [
     "Checkpoint A after the Sunday reopening returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels; the frozen executable two-sided BTCUSD requirement still has not passed.",
-    "The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00–15:00 America/New_York, solely to rule out a Sunday-session-transition anomaly."
+    "The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00\u201315:00 America/New_York, solely to rule out a Sunday-session-transition anomaly."
   ],
-  "next_permitted_actions": [
-    "Run exactly one final unchanged public read-only BTCUSD/PBTCUC validation during 2026-09-21 10:00–15:00 America/New_York. If BTCUSD still lacks an executable two-sided quote, classify Stage 1 blocked and stop further retries without a new explicit decision."
-  ],
+  "next_permitted_actions": [],
   "forbidden_actions": [
     "Do not run Checkpoint B before 2026-09-21 10:00 America/New_York or after 2026-09-21 15:00 America/New_York.",
     "Do not run more than one successful final Checkpoint B validation.",
@@ -34,9 +32,9 @@
     "Do not inspect or calculate E001 performance before the official prospective evidence clock starts.",
     "Do not place live orders or use real money."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-09-21T09:24:00Z",
+  "human_action_required": true,
+  "human_action_reason": "The finite Stage-1 revalidation protocol is exhausted. This was the final authorized Checkpoint B; no further automatic retries are permitted without a new explicit decision.",
+  "updated_at": "2026-09-21T14:09:06.190585+00:00",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -48,8 +46,9 @@
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35536729794",
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35544098730",
     "williammolina489/crypto-funding-basis-bot@87a40b91052e3c6f0800f55fe3987f27b27a795b",
-    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35546762534"
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35546762534",
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35610149714"
   ],
-  "last_result_task_id": "crypto_funding_basis:E001:20260920T231519Z",
-  "notes": "Checkpoint A remains non-executable. The orchestrator now enforces the worker repository's finite protocol: exactly one final Checkpoint B may run only during 2026-09-21 10:00–15:00 America/New_York. Before that window the project is not dispatch-eligible; after a valid final attempt, automatic retries stop."
+  "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
+  "notes": "Stage 1 remains blocked because the frozen BTCUSD production book still did not satisfy the executable non-empty bid/ask requirement."
 }

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "task_id": "crypto_funding_basis:E001:20260921T140833Z",
+  "project_id": "crypto_funding_basis",
+  "repository": "williammolina489/crypto-funding-basis-bot",
+  "experiment_id": "E001",
+  "issued_at": "2026-09-21T14:08:33.276525+00:00",
+  "expected_head_sha": "87a40b91052e3c6f0800f55fe3987f27b27a795b",
+  "objective": "Run exactly one final unchanged public read-only BTCUSD/PBTCUC validation during 2026-09-21 10:00\u201315:00 America/New_York. If BTCUSD still lacks an executable two-sided quote, classify Stage 1 blocked and stop further retries without a new explicit decision.",
+  "rationale": "Exactly one verified, enabled, worker-ready bounded task is eligible; no model arbitration is needed.",
+  "constraints": [
+    "Perform only the configured read-only worker workflow.",
+    "Preserve the frozen methodology and instrument selection.",
+    "Do not start any later experimental stage automatically.",
+    "This is the final authorized finite Checkpoint B. If the executable BTCUSD requirement still fails, stop automatic revalidation and require a new explicit decision."
+  ],
+  "allowed_actions": [
+    "Run exactly one final unchanged public read-only BTCUSD/PBTCUC validation during 2026-09-21 10:00\u201315:00 America/New_York. If BTCUSD still lacks an executable two-sided quote, classify Stage 1 blocked and stop further retries without a new explicit decision."
+  ],
+  "forbidden_actions": [
+    "Do not run Checkpoint B before 2026-09-21 10:00 America/New_York or after 2026-09-21 15:00 America/New_York.",
+    "Do not run more than one successful final Checkpoint B validation.",
+    "Do not start prospective E001 collection until Stage 1 passes and the pass is reconciled into durable worker-repository state.",
+    "Do not build a later experiment stage early.",
+    "Do not substitute XBTUSD, another spot product, an index, midpoint/reference price, another venue, or another instrument.",
+    "Do not inspect or calculate E001 performance before the official prospective evidence clock starts.",
+    "Do not place live orders or use real money."
+  ],
+  "completion_criteria": [
+    "The configured worker workflow completes and its exact production evidence is captured.",
+    "Stage 1 passes only if the frozen BTCUSD production book has ack_id != 0 and non-empty executable bid and ask.",
+    "Any pass transitions to NEEDS_HUMAN rather than automatically starting a later stage.",
+    "If the final Checkpoint B remains non-executable, transition to NEEDS_HUMAN and prohibit further automatic retries."
+  ],
+  "safe_outputs": [
+    "RESULT_ONLY",
+    "UPLOAD_ARTIFACT"
+  ],
+  "approval": {
+    "required": false,
+    "granted": false,
+    "approval_reference": null
+  },
+  "protected_data_permissions": {
+    "validation": false,
+    "oos": false
+  },
+  "financial_permissions": {
+    "spend_money": false,
+    "purchase_data_or_services": false,
+    "place_live_trade": false,
+    "transfer_or_withdraw_funds": false
+  },
+  "methodology_change_permitted": false,
+  "merge_to_default_branch_permitted": false
+}

@@ -1,14 +1,14 @@
 # Portfolio Status
 
-Generated: 2026-09-20T23:15:41.830933+00:00
+Generated: 2026-09-21T14:09:06.473984+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human: **1**
+Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | BLOCKED | E001 / Stage 1 live production validation / BLOCKED | ready | — | no |
+| crypto_funding_basis | NEEDS_HUMAN | E001 / Stage 1 live production validation — finite Checkpoint B pending / BLOCKED | ready | — | YES |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / Exact prior collector recovery / BLOCKED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | HEALTHY | no |
+| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
@@ -17,14 +17,14 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 
 - Repository: williammolina489/crypto-funding-basis-bot
 - Enabled: true
-- Lifecycle: BLOCKED
-- Decision hint: RUN_TASK_CANDIDATE
-- Dispatch eligible: true
-- Last result: crypto_funding_basis:E001:20260920T231519Z
+- Lifecycle: NEEDS_HUMAN
+- Decision hint: NEEDS_HUMAN
+- Dispatch eligible: false
+- Last result: crypto_funding_basis:E001:20260921T140833Z
+- Human action required: **YES** — The finite Stage-1 revalidation protocol is exhausted. This was the final authorized Checkpoint B; no further automatic retries are permitted without a new explicit decision.
 - Current blockers:
-  - A valid executable non-empty BTCUSD public production order book has not yet been observed; repeated production snapshots returned ack_id=0 with zero bids and asks despite published 24/7 spot hours.
-- Next permitted actions:
-  - Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology.
+  - Checkpoint A after the Sunday reopening returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels; the frozen executable two-sided BTCUSD requirement still has not passed.
+  - The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00–15:00 America/New_York, solely to rule out a Sunday-session-transition anomaly.
 
 ## kalshi_market_maker
 
@@ -45,7 +45,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-20T23:15:14.200086+00:00)
+- Operational monitor: WARNING (checked 2026-09-21T14:08:28.848486+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -56,7 +56,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **1** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-20T23:15:14.200086+00:00)
+- Operational monitor: HEALTHY (checked 2026-09-21T14:08:28.848486+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:

@@ -1,35 +1,34 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-20T23:15:41.830933+00:00",
+  "generated_at": "2026-09-21T14:09:06.473984+00:00",
   "project_count": 6,
   "enabled_count": 4,
-  "dispatch_eligible_count": 1,
-  "human_action_required_count": 1,
+  "dispatch_eligible_count": 0,
+  "human_action_required_count": 2,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "BLOCKED",
+      "lifecycle_status": "NEEDS_HUMAN",
       "experiment": {
         "id": "E001",
-        "stage": "Stage 1 live production validation",
+        "stage": "Stage 1 live production validation \u2014 finite Checkpoint B pending",
         "status": "BLOCKED"
       },
-      "human_action_required": false,
-      "human_action_reason": null,
+      "human_action_required": true,
+      "human_action_reason": "The finite Stage-1 revalidation protocol is exhausted. This was the final authorized Checkpoint B; no further automatic retries are permitted without a new explicit decision.",
       "worker_ready": true,
-      "dispatch_eligible": true,
-      "decision_hint": "RUN_TASK_CANDIDATE",
+      "dispatch_eligible": false,
+      "decision_hint": "NEEDS_HUMAN",
       "current_blockers": [
-        "A valid executable non-empty BTCUSD public production order book has not yet been observed; repeated production snapshots returned ack_id=0 with zero bids and asks despite published 24/7 spot hours."
+        "Checkpoint A after the Sunday reopening returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels; the frozen executable two-sided BTCUSD requirement still has not passed.",
+        "The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00\u201315:00 America/New_York, solely to rule out a Sunday-session-transition anomaly."
       ],
-      "next_permitted_actions": [
-        "Repeat read-only public production validation of the frozen BTCUSD/PBTCUC pair and reconcile the BTCUSD closed-book discrepancy without changing the frozen instrument or methodology."
-      ],
-      "last_result_task_id": "crypto_funding_basis:E001:20260920T231519Z",
-      "state_updated_at": "2026-09-20T23:15:41.558635+00:00",
+      "next_permitted_actions": [],
+      "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
+      "state_updated_at": "2026-09-21T14:09:06.190585+00:00",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -81,8 +80,8 @@
       ],
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
-      "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-20T23:15:14.200086+00:00"
+      "operational_monitor_status": "WARNING",
+      "operational_checked_at": "2026-09-21T14:08:28.848486+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -110,7 +109,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:58:43.341165+00:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-20T23:15:14.200086+00:00"
+      "operational_checked_at": "2026-09-21T14:08:28.848486+00:00"
     },
     {
       "project_id": "systematic_futures",
