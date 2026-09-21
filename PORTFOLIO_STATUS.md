@@ -1,12 +1,12 @@
 # Portfolio Status
 
-Generated: 2026-09-21T14:09:06.473984+00:00
+Generated: 2026-09-21T23:16:51.645477+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | NEEDS_HUMAN | E001 / Stage 1 live production validation — finite Checkpoint B pending / BLOCKED | ready | — | YES |
+| crypto_funding_basis | NEEDS_HUMAN | E001 / Stage 1 final classification / BLOCKED | ready | — | YES |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / Exact prior collector recovery / BLOCKED | not configured | — | YES |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
@@ -21,10 +21,10 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
 - Last result: crypto_funding_basis:E001:20260921T140833Z
-- Human action required: **YES** — The finite Stage-1 revalidation protocol is exhausted. This was the final authorized Checkpoint B; no further automatic retries are permitted without a new explicit decision.
+- Human action required: **YES** — E001 Stage 1 is durably classified BLOCKED in the worker repository. A human decision is required to either close E001 at this blocker or explicitly authorize a materially new experiment/preregistration. The existing E001 methodology must not be altered or retried.
 - Current blockers:
-  - Checkpoint A after the Sunday reopening returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels; the frozen executable two-sided BTCUSD requirement still has not passed.
-  - The worker repository permits exactly one final Checkpoint B during ordinary Monday daytime, 2026-09-21 10:00–15:00 America/New_York, solely to rule out a Sunday-session-transition anomaly.
+  - Final Checkpoint B during ordinary Monday daytime again returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels while PBTCUCZ50 was executable.
+  - The frozen E001 Stage 1 executable BTCUSD requirement did not pass. The finite protocol is complete and no further retries are authorized.
 
 ## kalshi_market_maker
 
@@ -45,7 +45,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-21T14:08:28.848486+00:00)
+- Operational monitor: WARNING (checked 2026-09-21T23:16:46.464378+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -56,7 +56,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-21T14:08:28.848486+00:00)
+- Operational monitor: HEALTHY (checked 2026-09-21T23:16:46.464378+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
