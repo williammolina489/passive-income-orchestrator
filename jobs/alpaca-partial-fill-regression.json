@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "job_id": "alpaca:E001:partial-fill-regression-001",
+  "project_id": "alpaca_paper_trading_bot",
+  "expected_head_sha": "dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52",
+  "authorization_basis": "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules.",
+  "objective": "Add one focused regression test in tests/test_execution.py that strengthens the existing partial-fill fidelity coverage by verifying cumulative partial fills are accounted incrementally and idempotently across repeated reconciliation updates. Do not modify production code. If the invariant is already fully covered by an equivalent test, make no change rather than duplicating coverage.",
+  "constraints": [
+    "Edit only tests/test_execution.py.",
+    "Do not modify application, strategy, execution, database, configuration, workflow, documentation, or research-state files.",
+    "Do not change existing expected business behavior to make a test pass.",
+    "Use existing test fixtures/helpers where practical.",
+    "Keep the new test deterministic and network-free.",
+    "The test must exercise existing production behavior rather than mocking away the accounting/reconciliation invariant."
+  ],
+  "allowed_paths": [
+    "tests/test_execution.py"
+  ],
+  "forbidden_actions": [
+    "Do not change strategy parameters or methodology.",
+    "Do not change live/paper safety gates.",
+    "Do not enable real-money trading.",
+    "Do not open or use protected OOS/validation evidence.",
+    "Do not modify research conclusions or experiment status.",
+    "Do not modify any file other than tests/test_execution.py."
+  ],
+  "completion_criteria": [
+    "A focused regression test covers cumulative partial-fill accounting/reconciliation without changing production code, or Codex makes no change if equivalent coverage already exists.",
+    "The full repository pytest suite passes.",
+    "The orchestrator changed-path guard passes before and after validation."
+  ],
+  "methodology_change_permitted": false,
+  "protected_data_permissions": {
+    "validation": false,
+    "oos": false
+  },
+  "financial_permissions": {
+    "spend_money": false,
+    "purchase_data_or_services": false,
+    "place_live_trade": false,
+    "transfer_or_withdraw_funds": false
+  },
+  "merge_to_default_branch_permitted": false
+}
