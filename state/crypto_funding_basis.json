@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0",
-  "state_revision": 7,
+  "state_revision": 8,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e001-prospective-collector",
   "head_sha": "87a40b91052e3c6f0800f55fe3987f27b27a795b",
-  "lifecycle_status": "WAITING",
+  "lifecycle_status": "BLOCKED",
   "experiment": {
     "id": "E001",
     "stage": "Stage 1 live production validation — finite Checkpoint B pending",
-    "status": "WAITING"
+    "status": "BLOCKED"
   },
   "governance": {
     "methodology_frozen": true,
@@ -36,7 +36,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-21T09:15:00Z",
+  "updated_at": "2026-09-21T09:24:00Z",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -51,5 +51,5 @@
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35546762534"
   ],
   "last_result_task_id": "crypto_funding_basis:E001:20260920T231519Z",
-  "notes": "Checkpoint A was a valid read-only engineering check after Sunday reopening: BTCUSD acknowledgement became nonzero but the book remained 0x0. The central state is temporarily WAITING while the orchestrator adds an explicit time gate for the one final Monday daytime Checkpoint B."
+  "notes": "Checkpoint A remains non-executable. The orchestrator now enforces the worker repository's finite protocol: exactly one final Checkpoint B may run only during 2026-09-21 10:00–15:00 America/New_York. Before that window the project is not dispatch-eligible; after a valid final attempt, automatic retries stop."
 }
