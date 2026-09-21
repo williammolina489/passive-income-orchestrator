@@ -15,7 +15,7 @@ from controller.github_actions import (
     fetch_run_job_logs,
     wait_for_run,
 )
-from controller.status import ROOT, github_branch_sha
+from controller.status import ROOT, github_branch_sha, worker_window_status
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -60,6 +60,7 @@ def _crypto_stage1_result(
     task: dict[str, Any],
     run: dict[str, Any],
     logs: list[dict[str, Any]],
+    final_attempt: bool = False,
 ) -> tuple[dict[str, Any], dict[str, Any] | None]:
     completed = _now()
     run_url = str(run.get("html_url") or run.get("url") or "")
@@ -158,12 +159,25 @@ def _crypto_stage1_result(
             "Stage 1 remains blocked because the frozen BTCUSD production book still did "
             "not satisfy the executable non-empty bid/ask requirement."
         )
-        human_required = False
-        human_reason = None
-        next_action = (
-            "Repeat the same read-only BTCUSD/PBTCUC production validation without changing "
-            "the frozen instrument or methodology."
-        )
+        if final_attempt:
+            human_required = True
+            human_reason = (
+                "The finite Stage-1 revalidation protocol is exhausted. This was the final "
+                "authorized Checkpoint B; no further automatic retries are permitted without "
+                "a new explicit decision."
+            )
+            next_action = (
+                "Record the final Stage-1 BLOCKED classification in the worker repository "
+                "and stop automatic revalidation. Do not substitute instruments or continue "
+                "retrying without a new explicit decision."
+            )
+        else:
+            human_required = False
+            human_reason = None
+            next_action = (
+                "Repeat the same read-only BTCUSD/PBTCUC production validation without changing "
+                "the frozen instrument or methodology."
+            )
 
     result = {
         "schema_version": "1.0",
@@ -231,9 +245,17 @@ def _update_state_from_result(
         updated["human_action_reason"] = result["human_action_reason"]
         updated["notes"] = result["summary"]
     elif result["outcome"] == "BLOCKED":
-        updated["lifecycle_status"] = "BLOCKED"
-        updated["human_action_required"] = False
-        updated["human_action_reason"] = None
+        if result.get("human_action_required"):
+            updated["lifecycle_status"] = "NEEDS_HUMAN"
+            if isinstance(updated.get("experiment"), dict):
+                updated["experiment"]["status"] = "BLOCKED"
+            updated["next_permitted_actions"] = []
+            updated["human_action_required"] = True
+            updated["human_action_reason"] = result.get("human_action_reason")
+        else:
+            updated["lifecycle_status"] = "BLOCKED"
+            updated["human_action_required"] = False
+            updated["human_action_reason"] = None
         updated["notes"] = result["summary"]
     elif result["outcome"] == "ERROR":
         updated["notes"] = result["summary"]
@@ -264,6 +286,13 @@ def execute_candidate(
 
     state_path = root / config["state_file"]
     state = _load_json(state_path)
+
+    window_status = worker_window_status(worker, _now())
+    if window_status not in {"OPEN", "UNBOUNDED"}:
+        raise RuntimeError(
+            f"worker dispatch window is {window_status}; refusing out-of-window execution"
+        )
+
     actual_sha = github_branch_sha(state["repository"], state["branch"], token)
     if actual_sha != selected["head_sha"] or actual_sha != state["head_sha"]:
         raise RuntimeError("worker branch moved after controller selection; refusing stale dispatch")
@@ -285,6 +314,13 @@ def execute_candidate(
             "Perform only the configured read-only worker workflow.",
             "Preserve the frozen methodology and instrument selection.",
             "Do not start any later experimental stage automatically.",
+            *(
+                [
+                    "This is the final authorized finite Checkpoint B. If the executable BTCUSD requirement still fails, stop automatic revalidation and require a new explicit decision."
+                ]
+                if worker.get("final_attempt")
+                else []
+            ),
         ],
         "allowed_actions": [selected["action"]],
         "forbidden_actions": state.get("forbidden_actions", []),
@@ -292,6 +328,13 @@ def execute_candidate(
             "The configured worker workflow completes and its exact production evidence is captured.",
             "Stage 1 passes only if the frozen BTCUSD production book has ack_id != 0 and non-empty executable bid and ask.",
             "Any pass transitions to NEEDS_HUMAN rather than automatically starting a later stage.",
+            *(
+                [
+                    "If the final Checkpoint B remains non-executable, transition to NEEDS_HUMAN and prohibit further automatic retries."
+                ]
+                if worker.get("final_attempt")
+                else []
+            ),
         ],
         "safe_outputs": ["RESULT_ONLY", "UPLOAD_ARTIFACT"],
         "approval": {
@@ -336,7 +379,12 @@ def execute_candidate(
     if evaluator != "crypto_stage1_live_validation":
         raise RuntimeError(f"unsupported evaluator: {evaluator}")
 
-    result, raw_payload = _crypto_stage1_result(task=task, run=run, logs=logs)
+    result, raw_payload = _crypto_stage1_result(
+        task=task,
+        run=run,
+        logs=logs,
+        final_attempt=bool(worker.get("final_attempt", False)),
+    )
     _validate(root / "schemas" / "result.schema.json", result)
 
     result_path = results_dir / f"{task['task_id']}.json"
