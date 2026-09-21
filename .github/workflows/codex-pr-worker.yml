@@ -119,9 +119,11 @@ jobs:
       - name: Prove trusted control plane was not modified
         run: |
           git -C control diff --exit-code
-          EXTRA="$(git -C control status --porcelain | grep -v '^?? codex-runtime/' || true)"
+          EXTRA="$(git -C control status --porcelain --untracked-files=all \
+            | grep -vE '^\?\? (codex-runtime/|.*__pycache__/|passive_income_orchestrator\.egg-info/)' \
+            || true)"
           if [ -n "$EXTRA" ]; then
-            echo "Codex modified control-plane files:"
+            echo "Unexpected control-plane files were modified or created:"
             echo "$EXTRA"
             exit 1
           fi
