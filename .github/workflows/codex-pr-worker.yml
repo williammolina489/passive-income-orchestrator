@@ -85,6 +85,8 @@ jobs:
 
       - name: Run Codex in workspace sandbox
         id: codex
+        timeout-minutes: 8
+        continue-on-error: true
         uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
@@ -96,6 +98,18 @@ jobs:
           codex-args: '["--ephemeral"]'
           working-directory: target
           prompt-file: control/codex-runtime/prompt.txt
+          output-file: control/codex-runtime/codex-final-message.txt
+
+      - name: Fall back to bounded structured edit
+        if: steps.codex.outcome != 'success'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ORCHESTRATOR_CODE_MODEL: gpt-5.6-luna
+          JOB_FILE: ${{ inputs.job_file }}
+        run: |
+          python -m controller.structured_edit \
+            "control/$JOB_FILE" target --root control \
+            | tee control/codex-runtime/structured-edit.json
 
       - name: Prove trusted control plane was not modified
         run: |
@@ -202,4 +216,6 @@ jobs:
           path: |
             control/codex-runtime/metadata.json
             control/codex-runtime/prompt.txt
+            control/codex-runtime/codex-final-message.txt
+            control/codex-runtime/structured-edit.json
           if-no-files-found: ignore
