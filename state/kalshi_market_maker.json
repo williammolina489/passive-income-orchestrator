@@ -1,38 +1,40 @@
 {
   "schema_version": "1.0",
-  "state_revision": 2,
+  "state_revision": 3,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
-  "branch": "recovery/e001-partial-stream-inspect",
-  "head_sha": "c71b92cc1b46eaf8cc8adf25ab585876923c1dd8",
-  "lifecycle_status": "NEEDS_HUMAN",
+  "branch": "main",
+  "head_sha": "7a189c27ca8cd5c9debeb079f4661ebd7b30c29c",
+  "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
-    "stage": "Exact prior collector recovery",
-    "status": "BLOCKED"
+    "stage": "Clean collector rebuild",
+    "status": "PREREGISTERED"
   },
   "governance": {
     "methodology_frozen": true,
     "performance_viewed": false,
     "validation_state": "NOT_APPLICABLE",
     "oos_state": "NOT_APPLICABLE",
-    "data_integrity_status": "BLOCKED"
+    "data_integrity_status": "UNKNOWN"
   },
-  "current_blockers": [
-    "All currently known GitHub recovery sources have been exhausted: the preserved 10,000-byte bundle is truncated, the known dangling objects do not contain the complete later collector source/test tree, and recovery workflow/email history exposes no additional exact object identifiers.",
-    "The prior project handoff states that the substantial collector/smoke implementation existed locally and had not yet been committed/pushed to GitHub. Exact recovery therefore now requires the original local worktree, an exact local archive/chunk, or new exact Git object IDs from another preserved source."
+  "current_blockers": [],
+  "next_permitted_actions": [
+    "Revalidate the current first-party Kalshi API contract and live public read-only behavior for the frozen KXHIGHNY E001 inputs. If an essential stream requires authentication, stop BLOCKED. Otherwise build a clean replacement collector from the canonical frozen E001 specification."
   ],
-  "next_permitted_actions": [],
   "forbidden_actions": [
-    "Do not reconstruct the collector from memory or create replacement source code.",
-    "Do not publish or activate the collector until exact source and tests are recovered and validated.",
-    "Do not start the 24-hour smoke test or E001 evidence window.",
-    "Do not calculate E001 performance.",
-    "Do not place live orders or use real money."
+    "Do not claim the rebuilt collector is the recovered prior implementation.",
+    "Do not delete or rewrite the recovery branch, recovery manifests, dangling-object documentation, or failed recovery history.",
+    "Do not modify the frozen E001 methodology or create E002.",
+    "Do not start the 24-hour smoke test or the official 30-day E001 evidence window.",
+    "Do not calculate or expose E001 P/L or economic performance.",
+    "Do not add order-placement, funded execution, or trading credentials.",
+    "Do not merge the rebuild PR to main automatically.",
+    "Do not spend money or use paid infrastructure."
   ],
-  "human_action_required": true,
-  "human_action_reason": "Access to the original machine/local worktree or another exact preserved source is required. Remote GitHub/email evidence is insufficient to recover the exact collector implementation without reconstruction.",
-  "updated_at": "2026-09-20T15:13:00Z",
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-22T22:10:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -40,8 +42,10 @@
     "williammolina489/kalshi-market-maker-research@main:ROADMAP.md",
     "williammolina489/kalshi-market-maker-research@7398fc455682d21980ea37ff8f542a5c0ce78f96",
     "Gmail search 2026-09-20: only GitHub failure notification for run 35479196728; no collector backup/archive attachment found",
-    "Prior handoff: collector implementation was local and not yet committed/pushed"
+    "Prior handoff: collector implementation was local and not yet committed/pushed",
+    "User authorization 2026-09-22: clean rebuild from canonical E001 specification authorized after exact recovery exhausted",
+    "williammolina489/kalshi-market-maker-research@main:research/E001_PREREGISTRATION.md"
   ],
   "last_result_task_id": null,
-  "notes": "Remote exact-recovery investigation is exhausted. Do not reconstruct missing collector modules or tests. When the original computer is available, use the prepared recovery-intake tooling to inventory/hash the local worktree and compare exact identities before publishing anything."
+  "notes": "Explicit human authorization supersedes only the prior prohibition on creating replacement source. The exact prior uncommitted implementation was not recovered. A new collector may be built only from the canonical frozen GitHub E001 specification and must be labeled REBUILT FROM CANONICAL E001 SPECIFICATION. E001 remains PREREGISTERED, performance unviewed, and NOT RUNNING."
 }
