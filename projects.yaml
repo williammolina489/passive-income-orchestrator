@@ -8,7 +8,7 @@ projects:
     state_file: state/crypto_funding_basis.json
     worker:
       enabled: false
-      reason: E002_DRAFT_NOT_AUTHORIZED_TO_RUN
+      reason: E002_PREREGISTERED_AWAITING_RUN_AUTHORIZATION
     notes: >
       Manage only according to the repository's current experiment state,
       preregistration, gates, and documented constraints.
