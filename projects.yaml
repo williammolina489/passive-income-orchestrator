@@ -31,6 +31,8 @@ projects:
       validation_commands:
         - ruff check .
         - pytest
+        - >-
+          python -c "import re,subprocess; p=subprocess.run(['pytest','--collect-only','-q'],capture_output=True,text=True,check=True); m=re.search(r'(\\d+) tests? collected',p.stdout); assert m and int(m.group(1)) >= 40, p.stdout; print('Kalshi rebuild collected',m.group(1),'tests')"
       protected_paths:
         - research/E001_PREREGISTRATION.md
         - recovery/
