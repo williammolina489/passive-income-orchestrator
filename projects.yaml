@@ -63,7 +63,7 @@ projects:
       reason: DEVELOPMENT_WORKER_NOT_YET_CONFIGURED
     code_worker:
       enabled: false
-      reason: PILOT_PR_23_AWAITING_HUMAN_REVIEW
+      reason: PILOT_MERGED_HEALTHY_AWAITING_NEXT_AUTHORIZED_JOB
       base_ref: main
       branch_prefix: orchestrator/
       setup_commands:
