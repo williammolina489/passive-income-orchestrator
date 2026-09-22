@@ -17,8 +17,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: codex-pr-worker
-  cancel-in-progress: true
+  group: codex-pr-worker-kalshi-rebuild-v2
+  cancel-in-progress: false
 
 jobs:
   codex-pr:
