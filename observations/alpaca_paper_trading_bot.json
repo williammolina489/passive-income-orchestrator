@@ -2,22 +2,21 @@
   "schema_version": "1.0",
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
-  "checked_at": "2026-09-22T10:00:30.380804+00:00",
-  "monitor_kind": "railway_diagnostics",
-  "deployment_id": "35928ed4-a545-4a58-88f1-3e2c087f0276",
-  "deployed_commit": "64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+  "checked_at": "2026-09-22T13:24:46.237777+00:00",
+  "monitor_kind": "http_json",
+  "url": "https://alpaca-paper-trading-bot-production.up.railway.app/health",
   "overall_status": "HEALTHY",
   "findings": [],
   "observed": {
-    "paper": true,
+    "status": "ok",
     "process": "ok",
     "database": "ok",
-    "entries_disabled": false,
-    "reconciliation_status": "ok",
-    "flatten_status": "flat",
-    "runtime_halted": false,
-    "ledger_safety_breach_active": false,
+    "paper": true,
     "service_status": "idle_market_closed",
-    "heartbeat_age_seconds": 3.323185
+    "entries_disabled": false,
+    "last_cycle_at": "2026-09-22T13:24:36.539808+00:00",
+    "heartbeat_age_seconds": 12.154112,
+    "reconciliation_status": "ok",
+    "flatten_status": "flat"
   }
 }

@@ -1,12 +1,12 @@
 # Portfolio Status
 
-Generated: 2026-09-22T07:42:38.492787+00:00
+Generated: 2026-09-22T13:24:51.517802+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
+Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | NEEDS_HUMAN | E001 / Stage 1 final classification / BLOCKED | ready | — | YES |
+| crypto_funding_basis | WAITING | E002 / Draft feasibility preregistration / PLANNED | not configured | — | no |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / Exact prior collector recovery / BLOCKED | not configured | — | YES |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
@@ -17,14 +17,15 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 
 - Repository: williammolina489/crypto-funding-basis-bot
 - Enabled: true
-- Lifecycle: NEEDS_HUMAN
-- Decision hint: NEEDS_HUMAN
+- Lifecycle: WAITING
+- Decision hint: WAIT
 - Dispatch eligible: false
 - Last result: crypto_funding_basis:E001:20260921T140833Z
-- Human action required: **YES** — E001 Stage 1 is durably classified BLOCKED in the worker repository. A human decision is required to either close E001 at this blocker or explicitly authorize a materially new experiment/preregistration. The existing E001 methodology must not be altered or retried.
 - Current blockers:
-  - Final Checkpoint B during ordinary Monday daytime again returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels while PBTCUCZ50 was executable.
-  - The frozen E001 Stage 1 executable BTCUSD requirement did not pass. The finite protocol is complete and no further retries are authorized.
+  - E002 is design-only and has not been explicitly authorized to RUN.
+  - The E002 XBTUSD validator implementation has not been built.
+- Next permitted actions:
+  - Review and finalize the E002 XBTUSD/PBTCUC engineering-feasibility preregistration without collecting live E002 evidence or calculating profitability.
 
 ## kalshi_market_maker
 
@@ -45,7 +46,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-22T07:42:33.684678+00:00)
+- Operational monitor: WARNING (checked 2026-09-22T13:24:46.237777+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -56,7 +57,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-22T07:42:33.684678+00:00)
+- Operational monitor: HEALTHY (checked 2026-09-22T13:24:46.237777+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:

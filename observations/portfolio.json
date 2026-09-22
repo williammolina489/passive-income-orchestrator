@@ -1,34 +1,36 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-22T07:42:38.492787+00:00",
+  "generated_at": "2026-09-22T13:24:51.517802+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
-  "human_action_required_count": 2,
+  "human_action_required_count": 1,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "NEEDS_HUMAN",
+      "lifecycle_status": "WAITING",
       "experiment": {
-        "id": "E001",
-        "stage": "Stage 1 final classification",
-        "status": "BLOCKED"
+        "id": "E002",
+        "stage": "Draft feasibility preregistration",
+        "status": "PLANNED"
       },
-      "human_action_required": true,
-      "human_action_reason": "E001 Stage 1 is durably classified BLOCKED in the worker repository. A human decision is required to either close E001 at this blocker or explicitly authorize a materially new experiment/preregistration. The existing E001 methodology must not be altered or retried.",
-      "worker_ready": true,
+      "human_action_required": false,
+      "human_action_reason": null,
+      "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "NEEDS_HUMAN",
+      "decision_hint": "WAIT",
       "current_blockers": [
-        "Final Checkpoint B during ordinary Monday daytime again returned BTCUSD with a nonzero acknowledgement ID but zero bid and ask levels while PBTCUCZ50 was executable.",
-        "The frozen E001 Stage 1 executable BTCUSD requirement did not pass. The finite protocol is complete and no further retries are authorized."
+        "E002 is design-only and has not been explicitly authorized to RUN.",
+        "The E002 XBTUSD validator implementation has not been built."
       ],
-      "next_permitted_actions": [],
+      "next_permitted_actions": [
+        "Review and finalize the E002 XBTUSD/PBTCUC engineering-feasibility preregistration without collecting live E002 evidence or calculating profitability."
+      ],
       "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
-      "state_updated_at": "2026-09-21T17:31:00-04:00",
+      "state_updated_at": "2026-09-22T10:17:00Z",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -81,7 +83,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
       "operational_monitor_status": "WARNING",
-      "operational_checked_at": "2026-09-22T07:42:33.684678+00:00"
+      "operational_checked_at": "2026-09-22T13:24:46.237777+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -107,9 +109,9 @@
         "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-21T19:30:00-04:00",
+      "state_updated_at": "2026-09-22T06:00:31-04:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-22T07:42:33.684678+00:00"
+      "operational_checked_at": "2026-09-22T13:24:46.237777+00:00"
     },
     {
       "project_id": "systematic_futures",
