@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "job_id": "kalshi-e001-clean-rebuild-001",
+  "job_id": "rebuild",
   "project_id": "kalshi_market_maker",
   "expected_head_sha": "7a189c27ca8cd5c9debeb079f4661ebd7b30c29c",
   "authorization_basis": "Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001.",
