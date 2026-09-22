@@ -1,36 +1,34 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-22T18:05:09.763849+00:00",
+  "generated_at": "2026-09-22T21:18:29.935160+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
-  "human_action_required_count": 1,
+  "human_action_required_count": 2,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "WAITING",
+      "lifecycle_status": "NEEDS_HUMAN",
       "experiment": {
         "id": "E002",
-        "stage": "Draft feasibility preregistration",
-        "status": "PLANNED"
+        "stage": "Preregistered feasibility / dormant implementation",
+        "status": "PREREGISTERED"
       },
-      "human_action_required": false,
-      "human_action_reason": null,
+      "human_action_required": true,
+      "human_action_reason": "E002 preregistration and dormant implementation are complete. A separate explicit human decision is required to authorize RUNNING, create research/E002_RUN_AUTHORIZATION.json referencing preregistration commit fe04660c9c64ab96872fa56a55854aaa749e08c0, and precommit concrete A/B/C windows before any live evidence request.",
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "WAIT",
+      "decision_hint": "NEEDS_HUMAN",
       "current_blockers": [
-        "E002 is design-only and has not been explicitly authorized to RUN.",
-        "The E002 XBTUSD validator implementation has not been built."
+        "E002 is preregistered and implementation-ready, but research/E002_RUN_AUTHORIZATION.json does not exist.",
+        "No live XBTUSD/PBTCUC E002 checkpoint may run until a human explicitly authorizes RUNNING and precommits all A/B/C checkpoint windows."
       ],
-      "next_permitted_actions": [
-        "Review and finalize the E002 XBTUSD/PBTCUC engineering-feasibility preregistration without collecting live E002 evidence or calculating profitability."
-      ],
-      "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
-      "state_updated_at": "2026-09-22T10:17:00Z",
+      "next_permitted_actions": [],
+      "last_result_task_id": null,
+      "state_updated_at": "2026-09-22T20:45:00Z",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -82,8 +80,8 @@
       ],
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
-      "operational_monitor_status": "WARNING",
-      "operational_checked_at": "2026-09-22T18:05:05.192479+00:00"
+      "operational_monitor_status": "HEALTHY",
+      "operational_checked_at": "2026-09-22T21:18:24.609312+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -111,7 +109,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-22T06:00:31-04:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-22T18:05:05.192479+00:00"
+      "operational_checked_at": "2026-09-22T21:18:24.609312+00:00"
     },
     {
       "project_id": "systematic_futures",
