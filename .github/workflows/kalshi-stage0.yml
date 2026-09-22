@@ -1,0 +1,33 @@
+name: Kalshi Stage 0 Contract Revalidation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "jobs/kalshi-stage0.trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  revalidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unauthenticated read-only Kalshi contract probe
+        run: |
+          set -o pipefail
+          python controller/kalshi_stage0.py | tee kalshi-stage0.jsonl
+      - name: Upload Stage 0 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kalshi-stage0-contract
+          path: kalshi-stage0.jsonl
+          if-no-files-found: ignore
