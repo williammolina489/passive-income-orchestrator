@@ -92,12 +92,17 @@ def dispatch_workflow(
     workflow: str,
     ref: str,
     token: str,
+    *,
+    inputs: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     owner, name = repository.split("/", 1)
     workflow_q = urllib.parse.quote(workflow, safe="")
     url = f"{API_ROOT}/repos/{owner}/{name}/actions/workflows/{workflow_q}/dispatches"
     dispatched_at = datetime.now(UTC)
-    status, payload = _request_json("POST", url, token, {"ref": ref})
+    dispatch_payload: dict[str, Any] = {"ref": ref}
+    if inputs:
+        dispatch_payload["inputs"] = {str(key): str(value) for key, value in inputs.items()}
+    status, payload = _request_json("POST", url, token, dispatch_payload)
 
     if status not in (200, 201, 204):
         raise GitHubActionsError(f"unexpected dispatch status {status}")
