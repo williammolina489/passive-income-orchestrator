@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0",
-  "state_revision": 14,
+  "state_revision": 15,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e002-xbtusd-feasibility",
-  "head_sha": "5bc714f718733613ef02af6cfb67e997167bf86e",
-  "lifecycle_status": "NEEDS_HUMAN",
+  "head_sha": "84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7",
+  "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E002",
-    "stage": "Preregistered feasibility / dormant implementation",
-    "status": "PREREGISTERED"
+    "stage": "Checkpoint A pending",
+    "status": "RUNNING"
   },
   "governance": {
     "methodology_frozen": true,
@@ -18,11 +18,10 @@
     "oos_state": "NOT_APPLICABLE",
     "data_integrity_status": "UNKNOWN"
   },
-  "current_blockers": [
-    "E002 is preregistered and implementation-ready, but research/E002_RUN_AUTHORIZATION.json does not exist.",
-    "No live XBTUSD/PBTCUC E002 checkpoint may run until a human explicitly authorizes RUNNING and precommits all A/B/C checkpoint windows."
+  "current_blockers": [],
+  "next_permitted_actions": [
+    "Execute only authorized E002 checkpoint A during 2026-09-23 10:00–12:00 America/New_York using the frozen XBTUSD/PBTCUC public read-only feasibility validator."
   ],
-  "next_permitted_actions": [],
   "forbidden_actions": [
     "Do not rerun or modify E001.",
     "Do not collect E002 live production evidence before explicit RUNNING authorization.",
@@ -33,9 +32,9 @@
     "Do not use authenticated exchange access or place orders.",
     "Do not use real money."
   ],
-  "human_action_required": true,
-  "human_action_reason": "E002 preregistration and dormant implementation are complete. A separate explicit human decision is required to authorize RUNNING, create research/E002_RUN_AUTHORIZATION.json referencing preregistration commit fe04660c9c64ab96872fa56a55854aaa749e08c0, and precommit concrete A/B/C windows before any live evidence request.",
-  "updated_at": "2026-09-22T20:45:00Z",
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-09-22T23:35:00Z",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -62,8 +61,12 @@
     "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:EXPERIMENTS.md",
     "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:ROADMAP.md",
-    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35782225218"
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35782225218",
+    "williammolina489/crypto-funding-basis-bot@216a8ad988b9221a5c2243046d2cdef7ee9d4be6:research/E002_RUN_AUTHORIZATION.json",
+    "williammolina489/crypto-funding-basis-bot@84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7:PROJECT_STATE.md",
+    "williammolina489/crypto-funding-basis-bot@84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7:EXPERIMENTS.md",
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35798071838"
   ],
   "last_result_task_id": null,
-  "notes": "E002 feasibility methodology is frozen and implementation is dormant. XBTUSD identity/book rules, PBTCUC resolution, funding-schema redaction, precommitted checkpoint windows, and a hard RUNNING authorization gate are implemented and CI-clean. No E002 live evidence or profitability evidence has been collected."
+  "notes": "User explicitly authorized E002 RUNNING. The frozen authorization precommits 2026-09-23 A/B/C windows: A 10:00–12:00 ET, B 14:00–16:00 ET, C 20:00–22:00 ET. No E002 live checkpoint evidence has been collected yet. The central scheduler must stop the sequence immediately after any valid BLOCKED result; technical failures require human review before any retry."
 }
