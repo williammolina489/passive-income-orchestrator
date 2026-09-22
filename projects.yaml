@@ -20,10 +20,12 @@ projects:
     state_file: state/kalshi_market_maker.json
     worker:
       enabled: false
-      reason: EXACT_RECOVERY_WORKER_NOT_IMPLEMENTED
+      reason: STAGE0_API_REVALIDATION_IN_PROGRESS
     notes: >
-      Current work is exact-recovery only. Preserve the preregistered E001
-      methodology and do not reconstruct missing prior source from memory.
+      Exact recovery was exhausted and the user explicitly authorized a clean
+      E001 collector rebuild from the canonical frozen GitHub specification.
+      Preserve all recovery history. Do not claim the replacement is recovered
+      source. E001 remains preregistered, performance unviewed, and not running.
 
   crypto_trading_bot:
     repo: williammolina489/crypto-trading-bot
