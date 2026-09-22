@@ -7,15 +7,8 @@ projects:
     role: research
     state_file: state/crypto_funding_basis.json
     worker:
-      enabled: true
-      kind: github_workflow
-      workflow: live-validation.yml
-      ref: research/e001-prospective-collector
-      evaluator: crypto_stage1_live_validation
-      timeout_seconds: 420
-      dispatch_not_before: "2026-09-21T10:00:00-04:00"
-      dispatch_not_after: "2026-09-21T15:00:00-04:00"
-      final_attempt: true
+      enabled: false
+      reason: E002_DRAFT_NOT_AUTHORIZED_TO_RUN
     notes: >
       Manage only according to the repository's current experiment state,
       preregistration, gates, and documented constraints.
