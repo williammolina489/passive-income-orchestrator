@@ -1,42 +1,41 @@
 {
   "schema_version": "1.0",
-  "state_revision": 13,
+  "state_revision": 14,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e002-xbtusd-feasibility",
-  "head_sha": "837a0f94bedba8c3e702d620283391063afa6a12",
-  "lifecycle_status": "WAITING",
+  "head_sha": "5bc714f718733613ef02af6cfb67e997167bf86e",
+  "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E002",
-    "stage": "Draft feasibility preregistration",
-    "status": "PLANNED"
+    "stage": "Preregistered feasibility / dormant implementation",
+    "status": "PREREGISTERED"
   },
   "governance": {
-    "methodology_frozen": false,
+    "methodology_frozen": true,
     "performance_viewed": false,
     "validation_state": "NOT_APPLICABLE",
     "oos_state": "NOT_APPLICABLE",
-    "data_integrity_status": "NOT_APPLICABLE"
+    "data_integrity_status": "UNKNOWN"
   },
   "current_blockers": [
-    "E002 is design-only and has not been explicitly authorized to RUN.",
-    "The E002 XBTUSD validator implementation has not been built."
+    "E002 is preregistered and implementation-ready, but research/E002_RUN_AUTHORIZATION.json does not exist.",
+    "No live XBTUSD/PBTCUC E002 checkpoint may run until a human explicitly authorizes RUNNING and precommits all A/B/C checkpoint windows."
   ],
-  "next_permitted_actions": [
-    "Review and finalize the E002 XBTUSD/PBTCUC engineering-feasibility preregistration without collecting live E002 evidence or calculating profitability."
-  ],
+  "next_permitted_actions": [],
   "forbidden_actions": [
     "Do not rerun or modify E001.",
-    "Do not run E002 live checkpoints before a separate explicit RUNNING authorization.",
-    "Do not build or activate a prospective performance collector under E002.",
+    "Do not collect E002 live production evidence before explicit RUNNING authorization.",
+    "Do not change E002 frozen instruments, checkpoint windows, PASS/BLOCKED rules, evidence-isolation rules, or retry rules after preregistration without a new explicit amendment/experiment decision.",
     "Do not calculate basis attractiveness, funding carry, opportunity frequency, break-even economics, or P&L during E002.",
     "Do not substitute BTCUSD, another Bitnomial spot product, Coinbase, another venue, an index, midpoint/reference price, synthetic spot, another perpetual, or another asset inside E002.",
-    "Do not use authenticated exchange access or place live orders.",
+    "Do not build or activate a prospective performance collector under E002.",
+    "Do not use authenticated exchange access or place orders.",
     "Do not use real money."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-09-22T10:17:00Z",
+  "human_action_required": true,
+  "human_action_reason": "E002 preregistration and dormant implementation are complete. A separate explicit human decision is required to authorize RUNNING, create research/E002_RUN_AUTHORIZATION.json referencing preregistration commit fe04660c9c64ab96872fa56a55854aaa749e08c0, and precommit concrete A/B/C windows before any live evidence request.",
+  "updated_at": "2026-09-22T20:45:00Z",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -58,8 +57,13 @@
     "williammolina489/crypto-funding-basis-bot@research/e002-xbtusd-feasibility:EXPERIMENTS.md",
     "williammolina489/crypto-funding-basis-bot@research/e002-xbtusd-feasibility:ROADMAP.md",
     "williammolina489/crypto-funding-basis-bot@research/e002-xbtusd-feasibility:DATA_SOURCES.md",
-    "williammolina489/crypto-funding-basis-bot#3"
+    "williammolina489/crypto-funding-basis-bot#3",
+    "williammolina489/crypto-funding-basis-bot@fe04660c9c64ab96872fa56a55854aaa749e08c0:research/E002_XBTUSD_FEASIBILITY_PREREGISTRATION.md",
+    "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:PROJECT_STATE.md",
+    "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:EXPERIMENTS.md",
+    "williammolina489/crypto-funding-basis-bot@5bc714f718733613ef02af6cfb67e997167bf86e:ROADMAP.md",
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35782225218"
   ],
-  "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
-  "notes": "User authorized design of a materially new follow-up after E001 closed at its Stage-1 blocker. E002 is now PLANNED/DESIGN-ONLY on research/e002-xbtusd-feasibility for Bitnomial XBTUSD + logical PBTCUC. No E002 live evidence has been collected, no performance has been viewed, and no RUNNING authorization exists."
+  "last_result_task_id": null,
+  "notes": "E002 feasibility methodology is frozen and implementation is dormant. XBTUSD identity/book rules, PBTCUC resolution, funding-schema redaction, precommitted checkpoint windows, and a hard RUNNING authorization gate are implemented and CI-clean. No E002 live evidence or profitability evidence has been collected."
 }
