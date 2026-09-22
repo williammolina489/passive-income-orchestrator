@@ -1,11 +1,6 @@
 name: Kalshi Stage 0 Contract Revalidation
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "jobs/kalshi-stage0.trigger"
   workflow_dispatch:
 
 permissions:
