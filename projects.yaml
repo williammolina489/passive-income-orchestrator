@@ -8,7 +8,7 @@ projects:
     state_file: state/crypto_funding_basis.json
     worker:
       enabled: false
-      reason: E002_PREREGISTERED_AWAITING_RUN_AUTHORIZATION
+      reason: E002_FINITE_SEQUENCE_OWNED_BY_DEDICATED_SCHEDULER
     notes: >
       Manage only according to the repository's current experiment state,
       preregistration, gates, and documented constraints.
