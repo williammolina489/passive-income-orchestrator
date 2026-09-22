@@ -1,1 +1,1 @@
-run exact Kalshi E001 rebuild in isolated v2 worker group
+retry clean Kalshi E001 rebuild with corrected canonical test expectations and >=40 test gate
