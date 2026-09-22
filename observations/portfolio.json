@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-21T23:16:51.645477+00:00",
+  "generated_at": "2026-09-22T01:38:14.771303+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
@@ -80,8 +80,8 @@
       ],
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
-      "operational_monitor_status": "WARNING",
-      "operational_checked_at": "2026-09-21T23:16:46.464378+00:00"
+      "operational_monitor_status": "HEALTHY",
+      "operational_checked_at": "2026-09-22T01:38:10.227579+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -107,9 +107,9 @@
         "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-20T15:58:43.341165+00:00",
+      "state_updated_at": "2026-09-21T19:30:00-04:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-21T23:16:46.464378+00:00"
+      "operational_checked_at": "2026-09-22T01:38:10.227579+00:00"
     },
     {
       "project_id": "systematic_futures",
