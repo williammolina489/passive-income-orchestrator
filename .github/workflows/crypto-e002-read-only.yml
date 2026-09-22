@@ -1,0 +1,88 @@
+name: Crypto E002 Read-Only Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: "Exact authorized crypto-funding-basis-bot commit SHA"
+        required: true
+        type: string
+      checkpoint:
+        description: "Frozen E002 checkpoint"
+        required: true
+        type: choice
+        options:
+          - A
+          - B
+          - C
+
+permissions:
+  contents: read
+
+concurrency:
+  group: crypto-e002-read-only
+  cancel-in-progress: false
+
+jobs:
+  checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Validate bounded inputs
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT: ${{ inputs.checkpoint }}
+        run: |
+          if ! [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Invalid expected SHA"
+            exit 1
+          fi
+          case "$CHECKPOINT" in
+            A|B|C) ;;
+            *) echo "Invalid checkpoint"; exit 1 ;;
+          esac
+
+      - name: Check out exact research commit
+        uses: actions/checkout@v4
+        with:
+          repository: williammolina489/crypto-funding-basis-bot
+          ref: ${{ inputs.expected_sha }}
+          path: target
+          fetch-depth: 1
+          token: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+          persist-credentials: false
+
+      - name: Verify exact target and no persisted credential
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        run: |
+          ACTUAL_SHA="$(git -C target rev-parse HEAD)"
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          if git -C target config --get-regexp 'http\..*extraheader' >/dev/null 2>&1; then
+            echo "Checkout credential unexpectedly persisted"
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install exact read-only runtime without secrets
+        run: |
+          env -i PATH="$PATH" HOME="$HOME" LANG=C.UTF-8             python -m pip install -e './target[live]'
+
+      - name: Run authorized read-only checkpoint without secrets
+        env:
+          CHECKPOINT: ${{ inputs.checkpoint }}
+        run: |
+          cd target
+          env -i PATH="$PATH" HOME="$HOME" LANG=C.UTF-8 PYTHONUNBUFFERED=1             python scripts/e002_validate.py --checkpoint "$CHECKPOINT"             | tee ../e002-checkpoint-result.txt
+
+      - name: Upload bounded engineering result
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e002-checkpoint-${{ inputs.checkpoint }}
+          path: e002-checkpoint-result.txt
+          if-no-files-found: error
