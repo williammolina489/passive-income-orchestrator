@@ -1,1 +1,1 @@
-retry authorized clean Kalshi E001 rebuild after deterministic formatting fix
+run authorized clean Kalshi E001 rebuild on exact research/e001-collector-rebuild branch
