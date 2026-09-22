@@ -25,7 +25,7 @@ projects:
       enabled: true
       reason: HUMAN_AUTHORIZED_CLEAN_E001_REBUILD
       base_ref: main
-      branch_prefix: research/e001-collector-rebuild-
+      branch_prefix: research/e001-collector-
       setup_commands:
         - python -m pip install -e ".[dev]"
       validation_commands:
