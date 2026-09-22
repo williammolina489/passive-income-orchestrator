@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-09-22T01:38:14.771303+00:00
+Generated: 2026-09-22T07:42:38.492787+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
@@ -8,7 +8,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E001 / Stage 1 final classification / BLOCKED | ready | — | YES |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / Exact prior collector recovery / BLOCKED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | HEALTHY | no |
+| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
@@ -45,7 +45,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-22T01:38:10.227579+00:00)
+- Operational monitor: WARNING (checked 2026-09-22T07:42:33.684678+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -56,7 +56,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-22T01:38:10.227579+00:00)
+- Operational monitor: HEALTHY (checked 2026-09-22T07:42:33.684678+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
