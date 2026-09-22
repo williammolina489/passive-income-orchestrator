@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 12,
+  "state_revision": 13,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e002-xbtusd-feasibility",
@@ -9,7 +9,7 @@
   "experiment": {
     "id": "E002",
     "stage": "Draft feasibility preregistration",
-    "status": "DRAFT"
+    "status": "PLANNED"
   },
   "governance": {
     "methodology_frozen": false,
@@ -36,7 +36,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-22T10:16:00Z",
+  "updated_at": "2026-09-22T10:17:00Z",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -61,5 +61,5 @@
     "williammolina489/crypto-funding-basis-bot#3"
   ],
   "last_result_task_id": "crypto_funding_basis:E001:20260921T140833Z",
-  "notes": "User authorized design of a materially new follow-up after E001 closed at its Stage-1 blocker. E002 is now a draft engineering/data-feasibility experiment for Bitnomial XBTUSD + logical PBTCUC. No E002 live evidence has been collected, no performance has been viewed, and no RUNNING authorization exists."
+  "notes": "User authorized design of a materially new follow-up after E001 closed at its Stage-1 blocker. E002 is now PLANNED/DESIGN-ONLY on research/e002-xbtusd-feasibility for Bitnomial XBTUSD + logical PBTCUC. No E002 live evidence has been collected, no performance has been viewed, and no RUNNING authorization exists."
 }
