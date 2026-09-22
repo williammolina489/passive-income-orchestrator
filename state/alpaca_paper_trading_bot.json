@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 4,
+  "state_revision": 5,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
-  "head_sha": "dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52",
+  "head_sha": "64ed712db8f15e902e34cf8fe0f5223d6c748c42",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
@@ -34,7 +34,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-21T19:30:00-04:00",
+  "updated_at": "2026-09-22T06:00:30-04:00",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
@@ -44,8 +44,10 @@
     "Railway diagnostics snapshot 2026-09-20T15:05:34.310234Z",
     "Unattended public /health monitor verified from GitHub Actions CI run 35521229054 at 2026-09-20T15:58:41.739869+00:00",
     "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/23",
-    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35667704925"
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35667704925",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35713467842",
+    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42"
   ],
   "last_result_task_id": null,
-  "notes": "Paper runtime remains independently monitored. First supervised PR-only code-worker pilot succeeded: PR #23 adds test-only cumulative partial-fill reconciliation coverage, changed exactly tests/test_execution.py, passed orchestrator path guards and the full configured pytest suite, and Alpaca repository CI run #116 passed. Production code, strategy methodology, research state, and live-money gates were not changed. The Alpaca code worker is disabled again while PR #23 awaits human review; main remains at dfdc3aa84c94cd7b921fed73a12b4bc1214aaa52."
+  "notes": "PR #23 was merged into main at 64ed712db8f15e902e34cf8fe0f5223d6c748c42. Post-merge GitHub CI run #117 passed. Railway automatically started deployment 35928ed4-a545-4a58-88f1-3e2c087f0276; post-deploy health verification is pending. The code worker remains disabled until deployment health is confirmed."
 }
