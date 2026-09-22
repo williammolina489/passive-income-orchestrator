@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 3,
+  "state_revision": 4,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
@@ -16,11 +16,11 @@
     "performance_viewed": false,
     "validation_state": "NOT_APPLICABLE",
     "oos_state": "NOT_APPLICABLE",
-    "data_integrity_status": "UNKNOWN"
+    "data_integrity_status": "PASS"
   },
   "current_blockers": [],
   "next_permitted_actions": [
-    "Revalidate the current first-party Kalshi API contract and live public read-only behavior for the frozen KXHIGHNY E001 inputs. If an essential stream requires authentication, stop BLOCKED. Otherwise build a clean replacement collector from the canonical frozen E001 specification."
+    "Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
@@ -34,7 +34,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-22T22:10:00Z",
+  "updated_at": "2026-09-22T22:12:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -44,8 +44,11 @@
     "Gmail search 2026-09-20: only GitHub failure notification for run 35479196728; no collector backup/archive attachment found",
     "Prior handoff: collector implementation was local and not yet committed/pushed",
     "User authorization 2026-09-22: clean rebuild from canonical E001 specification authorized after exact recovery exhausted",
-    "williammolina489/kalshi-market-maker-research@main:research/E001_PREREGISTRATION.md"
+    "williammolina489/kalshi-market-maker-research@main:research/E001_PREREGISTRATION.md",
+    "Kalshi Stage 0 live unauthenticated contract revalidation: orchestrator Actions run 35790814838",
+    "https://docs.kalshi.com/getting_started/quick_start_market_data",
+    "https://docs.kalshi.com/getting_started/orderbook_responses"
   ],
   "last_result_task_id": null,
-  "notes": "Explicit human authorization supersedes only the prior prohibition on creating replacement source. The exact prior uncommitted implementation was not recovered. A new collector may be built only from the canonical frozen GitHub E001 specification and must be labeled REBUILT FROM CANONICAL E001 SPECIFICATION. E001 remains PREREGISTERED, performance unviewed, and NOT RUNNING."
+  "notes": "Stage 0 PASS. An unauthenticated GitHub-runner probe returned HTTP 200 for KXHIGHNY series, active markets, event, market metadata, full orderbook, trades, exchange status, incentives, and series fee changes. Sample public trade exposed fixed-point count/prices, trade_id, is_block_trade, taker_book_side, and taker_outcome_side. Orderbook exposed yes_dollars/no_dollars depth. No essential E001 stream required authentication. Proceed with clean replacement collector from canonical E001 specification only."
 }
