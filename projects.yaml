@@ -20,12 +20,31 @@ projects:
     state_file: state/kalshi_market_maker.json
     worker:
       enabled: false
-      reason: STAGE0_API_REVALIDATION_IN_PROGRESS
+      reason: CLEAN_REBUILD_USES_PR_ONLY_CODE_WORKER
+    code_worker:
+      enabled: true
+      reason: HUMAN_AUTHORIZED_CLEAN_E001_REBUILD
+      base_ref: main
+      branch_prefix: research/e001-collector-rebuild-
+      setup_commands:
+        - python -m pip install -e ".[dev]"
+      validation_commands:
+        - ruff check .
+        - pytest
+      protected_paths:
+        - research/E001_PREREGISTRATION.md
+        - recovery/
+        - .github/workflows/recover-e001-bundle.yml
+        - .github/workflows/recover-known-objects.yml
+        - SECURITY.md
+        - .env
+        - .env.example
     notes: >
       Exact recovery was exhausted and the user explicitly authorized a clean
       E001 collector rebuild from the canonical frozen GitHub specification.
-      Preserve all recovery history. Do not claim the replacement is recovered
-      source. E001 remains preregistered, performance unviewed, and not running.
+      Preserve all recovery history. Label replacement source as rebuilt from
+      canonical E001 specification. E001 remains preregistered, performance
+      unviewed, and not running.
 
   crypto_trading_bot:
     repo: williammolina489/crypto-trading-bot
