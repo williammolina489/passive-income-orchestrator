@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 5,
+  "state_revision": 6,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
@@ -34,7 +34,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-22T06:00:30-04:00",
+  "updated_at": "2026-09-22T06:00:31-04:00",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
@@ -46,8 +46,10 @@
     "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/23",
     "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35667704925",
     "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35713467842",
-    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42"
+    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 SUCCESS for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+    "Railway diagnostics snapshot 2026-09-22T10:00:30.380804Z"
   ],
   "last_result_task_id": null,
-  "notes": "PR #23 was merged into main at 64ed712db8f15e902e34cf8fe0f5223d6c748c42. Post-merge GitHub CI run #117 passed. Railway automatically started deployment 35928ed4-a545-4a58-88f1-3e2c087f0276; post-deploy health verification is pending. The code worker remains disabled until deployment health is confirmed."
+  "notes": "PR #23 is merged into main at 64ed712db8f15e902e34cf8fe0f5223d6c748c42. Post-merge GitHub CI run #117 passed. Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 succeeded. Fresh startup/periodic reconciliation were safe; diagnostics show paper=true, process=ok, database=ok, entries_disabled=false, reconciliation_status=ok, flatten_status=flat, runtime_halted=false, ledger_safety_breach_active=false, service_status=idle_market_closed, and heartbeat_age_seconds about 3.3. The first PR-only Codex pilot is therefore complete and healthy. No production behavior or methodology changed."
 }
