@@ -35,7 +35,12 @@
     "research/E001_REBUILD.md must clearly state exact prior implementation was lost, exact recovery was exhausted, user authorized a clean rebuild, current GitHub spec is source of truth, methodology unchanged, partial recovered files are not misrepresented as full source, and performance was not viewed.",
     "At minimum add deterministic coverage for all 40 listed requirements in the authorization: discovery; child markets; complete YES/NO depth; fixed-point/fractional quantities; price_ranges/multiple ranges/off-tick; quote-window/DST; close requirement; two-sided/top-size/spread; microprice; join-not-improve; 30/300 rest; reprice reset; safety cancel; queue initialization; zero cancellation credit; qualifying/wrong-price/wrong-side/block trade behavior; partial fills; per-market/aggregate inventory; risk-reducing side; trade dedup; cursor gaps; restart recovery; immutable raw writes; manifest/hash; replay; malformed/stale responses; missed-slot gaps; smoke no-P&L; no order path.",
     "Do not weaken or delete existing tests to make CI pass.",
-    "The first stopping point is PR-ready only: tests and CI green, docs updated, branch pushed, PR opened. Do not merge. Do not start smoke. Do not start E001."
+    "The first stopping point is PR-ready only: tests and CI green, docs updated, branch pushed, PR opened. Do not merge. Do not start smoke. Do not start E001.",
+    "Regression correction from failed worker validation: quote-window tests must use timestamps that are actually inside 09:00:00–15:30:00 America/New_York. On 2026-09-22, 12:00 UTC is 08:00 ET and is correctly outside the window. Use timezone-aware ET or an equivalent valid UTC instant; do not change quote-window code to accommodate a bad test timestamp.",
+    "Regression correction from failed worker validation: queue accounting is cumulative across separate qualifying trades. With initial queue_ahead=5, a first qualifying trade of 5 consumes queue only; a second separate qualifying trade of 7 can fill 7 contracts (subject to remaining quote size), not 2. Do not change correct queue code to match an incorrect cumulative-volume test expectation.",
+    "Regression correction from failed worker validation: aggregate inventory is sum of absolute current positions. Positions T=10 and U=20 imply aggregate absolute inventory 30, so a new +1 position is allowed under the frozen 40 limit. Test the hard boundary by reaching exactly 40 and then asserting an additional risk-increasing unit is blocked; risk-reducing fills remain allowed.",
+    "The authoritative pytest collection must contain at least 40 deterministic tests and explicitly cover every one of the 40 behaviors enumerated in the human authorization. If current regenerated coverage collects fewer than 40 tests, add focused non-duplicative tests rather than weakening assertions.",
+    "When a generated test conflicts with the canonical frozen preregistration, correct the test. Change implementation behavior only when the implementation itself conflicts with the frozen specification."
   ],
   "allowed_paths": [
     "src/kalshi_mm/",
@@ -66,7 +71,7 @@
   "completion_criteria": [
     "Current API contract findings are documented consistently with Stage 0 evidence and first-party docs.",
     "Clean replacement collector, immutable persistence, replay, queue/inventory simulation, integrity/smoke reporting, restart state, and deterministic scheduling components are implemented from the frozen E001 spec.",
-    "At least the 40 required deterministic regression behaviors are covered without weakening existing tests.",
+    "At least 40 deterministic pytest tests are collected, and the 40 required behaviors in the authorization are explicitly covered without weakening existing tests.",
     "ruff check . passes.",
     "pytest passes.",
     "A manual-only smoke workflow/tooling exists but has not been run.",
