@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-09-23T18:26:22.760660+00:00
+Generated: 2026-09-23T20:21:54.558806+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
 
@@ -41,7 +41,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-23T16:57:40.168648+00:00)
+- Operational monitor: WARNING (checked 2026-09-23T20:21:48.721044+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -52,7 +52,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-09-23T16:57:40.168648+00:00)
+- Operational monitor: ERROR (checked 2026-09-23T20:21:48.721044+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
