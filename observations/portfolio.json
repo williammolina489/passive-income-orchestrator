@@ -1,34 +1,33 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-22T21:18:29.935160+00:00",
+  "generated_at": "2026-09-23T00:32:59.192200+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
-  "human_action_required_count": 2,
+  "human_action_required_count": 0,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "NEEDS_HUMAN",
+      "lifecycle_status": "ACTIVE",
       "experiment": {
         "id": "E002",
-        "stage": "Preregistered feasibility / dormant implementation",
-        "status": "PREREGISTERED"
+        "stage": "Checkpoint A pending",
+        "status": "RUNNING"
       },
-      "human_action_required": true,
-      "human_action_reason": "E002 preregistration and dormant implementation are complete. A separate explicit human decision is required to authorize RUNNING, create research/E002_RUN_AUTHORIZATION.json referencing preregistration commit fe04660c9c64ab96872fa56a55854aaa749e08c0, and precommit concrete A/B/C windows before any live evidence request.",
+      "human_action_required": false,
+      "human_action_reason": null,
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "NEEDS_HUMAN",
-      "current_blockers": [
-        "E002 is preregistered and implementation-ready, but research/E002_RUN_AUTHORIZATION.json does not exist.",
-        "No live XBTUSD/PBTCUC E002 checkpoint may run until a human explicitly authorizes RUNNING and precommits all A/B/C checkpoint windows."
+      "decision_hint": "WAIT",
+      "current_blockers": [],
+      "next_permitted_actions": [
+        "Execute only authorized E002 checkpoint A during 2026-09-23 10:00\u201312:00 America/New_York using the frozen XBTUSD/PBTCUC public read-only feasibility validator."
       ],
-      "next_permitted_actions": [],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-22T20:45:00Z",
+      "state_updated_at": "2026-09-22T23:35:00Z",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -37,24 +36,23 @@
       "repository": "williammolina489/kalshi-market-maker-research",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "NEEDS_HUMAN",
+      "lifecycle_status": "ACTIVE",
       "experiment": {
         "id": "E001",
-        "stage": "Exact prior collector recovery",
-        "status": "BLOCKED"
+        "stage": "Clean collector rebuild",
+        "status": "PREREGISTERED"
       },
-      "human_action_required": true,
-      "human_action_reason": "Access to the original machine/local worktree or another exact preserved source is required. Remote GitHub/email evidence is insufficient to recover the exact collector implementation without reconstruction.",
+      "human_action_required": false,
+      "human_action_reason": null,
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "NEEDS_HUMAN",
-      "current_blockers": [
-        "All currently known GitHub recovery sources have been exhausted: the preserved 10,000-byte bundle is truncated, the known dangling objects do not contain the complete later collector source/test tree, and recovery workflow/email history exposes no additional exact object identifiers.",
-        "The prior project handoff states that the substantial collector/smoke implementation existed locally and had not yet been committed/pushed to GitHub. Exact recovery therefore now requires the original local worktree, an exact local archive/chunk, or new exact Git object IDs from another preserved source."
+      "decision_hint": "WAIT",
+      "current_blockers": [],
+      "next_permitted_actions": [
+        "Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001."
       ],
-      "next_permitted_actions": [],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-20T15:13:00Z",
+      "state_updated_at": "2026-09-22T22:12:00Z",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
@@ -81,7 +79,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-22T21:18:24.609312+00:00"
+      "operational_checked_at": "2026-09-23T00:32:54.500792+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -109,7 +107,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-22T06:00:31-04:00",
       "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-22T21:18:24.609312+00:00"
+      "operational_checked_at": "2026-09-23T00:32:54.500792+00:00"
     },
     {
       "project_id": "systematic_futures",
