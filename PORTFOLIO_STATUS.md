@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-09-23T05:58:35.896100+00:00
+Generated: 2026-09-23T11:35:49.877352+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **0**
 
@@ -9,7 +9,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 | crypto_funding_basis | ACTIVE | E002 / Checkpoint A pending / RUNNING | not configured | — | no |
 | kalshi_market_maker | ACTIVE | E001 / Clean collector rebuild / PREREGISTERED | not configured | — | no |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
-| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
+| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
 
@@ -40,7 +40,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-23T05:58:31.719701+00:00)
+- Operational monitor: WARNING (checked 2026-09-23T11:35:44.915460+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -51,7 +51,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-09-23T05:58:31.719701+00:00)
+- Operational monitor: ERROR (checked 2026-09-23T11:35:44.915460+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
