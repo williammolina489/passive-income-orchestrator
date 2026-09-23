@@ -1,12 +1,12 @@
 # Portfolio Status
 
-Generated: 2026-09-23T16:57:45.398335+00:00
+Generated: 2026-09-23T18:26:22.760660+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **0**
+Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | ACTIVE | E002 / Checkpoint A pending / RUNNING | not configured | — | no |
+| crypto_funding_basis | NEEDS_HUMAN | E002 / Checkpoint A technical failure / WAITING | not configured | — | YES |
 | kalshi_market_maker | ACTIVE | E001 / Clean collector rebuild / PREREGISTERED | not configured | — | no |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
@@ -17,11 +17,12 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 
 - Repository: williammolina489/crypto-funding-basis-bot
 - Enabled: true
-- Lifecycle: ACTIVE
-- Decision hint: WAIT
+- Lifecycle: NEEDS_HUMAN
+- Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
-- Next permitted actions:
-  - Execute only authorized E002 checkpoint A during 2026-09-23 10:00–12:00 America/New_York using the frozen XBTUSD/PBTCUC public read-only feasibility validator.
+- Human action required: **YES** — Checkpoint A ended before valid E002 evidence was recorded. Review the technical failure. If and only if it qualifies under the preregistered technical-retry exception and the same authorized window remains open, one retry may be explicitly approved.
+- Current blockers:
+  - E002 checkpoint A did not produce a valid bounded production result. The preregistration allows at most one technical retry inside the same frozen window, but technical-failure classification must be reviewed before any retry.
 
 ## kalshi_market_maker
 

@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "project_id": "crypto_funding_basis",
+  "experiment_id": "E002",
+  "checkpoint": "A",
+  "status": "TECHNICAL_FAILURE",
+  "recorded_at": "2026-09-23T18:26:22.616536+00:00",
+  "workflow_run_url": "https://github.com/williammolina489/passive-income-orchestrator/actions/runs/35902433867",
+  "exit_code": 1,
+  "valid_e002_result": false,
+  "log_excerpt": "Traceback (most recent call last):\n  File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 140, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 134, in main\n    result = _build_result(args.checkpoint)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 74, in _build_result\n    authorization = require_run_authorization(REPO_ROOT, checkpoint=checkpoint)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/src/crypto_funding_basis_bot/e002_feasibility.py\", line 396, in require_run_authorization\n    raise RuntimeError(\nRuntimeError: checkpoint A is outside its precommitted authorization window\n"
+}

@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0",
-  "state_revision": 15,
+  "state_revision": 16,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e002-xbtusd-feasibility",
   "head_sha": "84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7",
-  "lifecycle_status": "ACTIVE",
+  "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E002",
-    "stage": "Checkpoint A pending",
-    "status": "RUNNING"
+    "stage": "Checkpoint A technical failure",
+    "status": "WAITING"
   },
   "governance": {
     "methodology_frozen": true,
@@ -18,10 +18,10 @@
     "oos_state": "NOT_APPLICABLE",
     "data_integrity_status": "UNKNOWN"
   },
-  "current_blockers": [],
-  "next_permitted_actions": [
-    "Execute only authorized E002 checkpoint A during 2026-09-23 10:00–12:00 America/New_York using the frozen XBTUSD/PBTCUC public read-only feasibility validator."
+  "current_blockers": [
+    "E002 checkpoint A did not produce a valid bounded production result. The preregistration allows at most one technical retry inside the same frozen window, but technical-failure classification must be reviewed before any retry."
   ],
+  "next_permitted_actions": [],
   "forbidden_actions": [
     "Do not rerun or modify E001.",
     "Do not collect E002 live production evidence before explicit RUNNING authorization.",
@@ -32,9 +32,9 @@
     "Do not use authenticated exchange access or place orders.",
     "Do not use real money."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-09-22T23:35:00Z",
+  "human_action_required": true,
+  "human_action_reason": "Checkpoint A ended before valid E002 evidence was recorded. Review the technical failure. If and only if it qualifies under the preregistered technical-retry exception and the same authorized window remains open, one retry may be explicitly approved.",
+  "updated_at": "2026-09-23T18:26:22.616596+00:00",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -65,8 +65,9 @@
     "williammolina489/crypto-funding-basis-bot@216a8ad988b9221a5c2243046d2cdef7ee9d4be6:research/E002_RUN_AUTHORIZATION.json",
     "williammolina489/crypto-funding-basis-bot@84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@84bbe0e1bb02b84f2066c9de93dd2e3847fd80a7:EXPERIMENTS.md",
-    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35798071838"
+    "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/35798071838",
+    "https://github.com/williammolina489/passive-income-orchestrator/actions/runs/35902433867"
   ],
   "last_result_task_id": null,
-  "notes": "User explicitly authorized E002 RUNNING. The frozen authorization precommits 2026-09-23 A/B/C windows: A 10:00–12:00 ET, B 14:00–16:00 ET, C 20:00–22:00 ET. No E002 live checkpoint evidence has been collected yet. The central scheduler must stop the sequence immediately after any valid BLOCKED result; technical failures require human review before any retry."
+  "notes": "Technical failure excerpt: Traceback (most recent call last):   File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 140, in <module>     raise SystemExit(main())                      ^^^^^^   File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 134, in main     result = _build_result(args.checkpoint)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/scripts/e002_validate.py\", line 74, in _build_result     authorization = require_run_authorization(REPO_ROOT, checkpoint=checkpoint)                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File \"/home/runner/work/passive-income-orchestrator/passive-income-orchestrator/target/src/crypto_funding_basis_bot/e002_feasibility.py\", line 396, in require_run_authorization     raise RuntimeError( RuntimeError: checkpoint A is outside its precommitted authorization window "
 }

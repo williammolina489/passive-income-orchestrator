@@ -1,33 +1,33 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-23T16:57:45.398335+00:00",
+  "generated_at": "2026-09-23T18:26:22.760660+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
-  "human_action_required_count": 0,
+  "human_action_required_count": 1,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
       "role": "research",
       "enabled": true,
-      "lifecycle_status": "ACTIVE",
+      "lifecycle_status": "NEEDS_HUMAN",
       "experiment": {
         "id": "E002",
-        "stage": "Checkpoint A pending",
-        "status": "RUNNING"
+        "stage": "Checkpoint A technical failure",
+        "status": "WAITING"
       },
-      "human_action_required": false,
-      "human_action_reason": null,
+      "human_action_required": true,
+      "human_action_reason": "Checkpoint A ended before valid E002 evidence was recorded. Review the technical failure. If and only if it qualifies under the preregistered technical-retry exception and the same authorized window remains open, one retry may be explicitly approved.",
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "WAIT",
-      "current_blockers": [],
-      "next_permitted_actions": [
-        "Execute only authorized E002 checkpoint A during 2026-09-23 10:00\u201312:00 America/New_York using the frozen XBTUSD/PBTCUC public read-only feasibility validator."
+      "decision_hint": "NEEDS_HUMAN",
+      "current_blockers": [
+        "E002 checkpoint A did not produce a valid bounded production result. The preregistration allows at most one technical retry inside the same frozen window, but technical-failure classification must be reviewed before any retry."
       ],
+      "next_permitted_actions": [],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-22T23:35:00Z",
+      "state_updated_at": "2026-09-23T18:26:22.616596+00:00",
       "operational_monitor_status": null,
       "operational_checked_at": null
     },
