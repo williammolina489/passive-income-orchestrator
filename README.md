@@ -105,6 +105,8 @@ Cost behavior:
 
 A separate manual `Refresh Portfolio Status` workflow updates observations and the dashboard without dispatching a worker or using OpenAI.
 
+The current GitHub Actions usage audit and monthly private-minute budget are documented in `docs/ACTIONS_BUDGET.md`.
+
 ## Current portfolio
 
 ### Crypto Funding Basis
@@ -136,14 +138,12 @@ See `docs/KALSHI_LOCAL_RECOVERY.md`.
 
 Active prospective paper research.
 
-The repository's own incumbent/challenger workflows remain authoritative for paper execution; the orchestrator does not duplicate them. The central monitor checks:
+The repository's own incumbent/challenger workflows remain authoritative for paper execution; the orchestrator does not duplicate them. The central monitor checks the two authoritative evidence schedulers:
 
 - Forward paper BTC cycle;
-- Forward challenger BTC basket;
-- Forward paper health watch;
-- Forward challenger health watch.
+- Forward challenger BTC basket.
 
-The latest central observation currently flags an incumbent-side freshness warning while the challenger side is healthy. The orchestrator observes this but does not override the repo's guarded recovery logic.
+Scheduler liveness is evaluated during the already-running public orchestrator cycle. A dispatch is permitted only after a successful-but-stale gap with no active matching run. Deep incumbent/challenger health workflows remain available manually/on relevant code changes, but no longer require private hourly polling. Quota-era failures that never obtain a runner are surfaced as infrastructure blockers rather than bot failures.
 
 ### Alpaca Paper Trading Bot
 

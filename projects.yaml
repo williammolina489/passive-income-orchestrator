@@ -1,5 +1,17 @@
 version: 1
 
+infrastructure:
+  github_actions:
+    known_quota_block:
+      active: true
+      reason_code: GITHUB_ACTIONS_QUOTA
+      through_date: "2026-09-30"
+      note: >-
+        Account included Actions allowance is exhausted for the September 2026
+        billing cycle. Treat private-repository jobs that fail before any runner
+        step starts as infrastructure-blocked, not bot failures. This marker
+        expires automatically after September 30 and does not authorize spend.
+
 projects:
   crypto_funding_basis:
     repo: williammolina489/crypto-funding-basis-bot
@@ -63,8 +75,13 @@ projects:
       workflows:
         - Forward paper BTC cycle
         - Forward challenger BTC basket
-        - Forward paper health watch
-        - Forward challenger health watch
+      scheduler_recovery:
+        enabled: true
+        max_age_minutes: 120
+        ref: main
+        workflows:
+          Forward paper BTC cycle: forward-paper-cycle.yml
+          Forward challenger BTC basket: forward-challengers.yml
     notes: >
       Observe the existing incumbent v3 and EXP-009 prospective paper evidence
       chains. Do not duplicate scheduled paper execution or alter frozen gates.

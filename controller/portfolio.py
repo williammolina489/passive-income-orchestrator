@@ -49,6 +49,7 @@ def build_portfolio(root: Path = ROOT) -> dict[str, Any]:
                 "last_result_task_id": state.get("last_result_task_id") if state else None,
                 "state_updated_at": state.get("updated_at") if state else None,
                 "operational_monitor_status": observation.get("overall_status") if observation else None,
+                "operational_monitor_reason_code": observation.get("reason_code") if observation else None,
                 "operational_checked_at": observation.get("checked_at") if observation else None,
             }
         )
@@ -124,6 +125,12 @@ def render_markdown(portfolio: dict[str, Any]) -> str:
             lines.append(
                 f"- Operational monitor: {row['operational_monitor_status']} "
                 f"(checked {row['operational_checked_at']})"
+            )
+        if row.get("operational_monitor_reason_code"):
+            lines.append(
+                "- Infrastructure blocker: "
+                f"{row['operational_monitor_status']} — "
+                f"{row['operational_monitor_reason_code']}"
             )
         if row["last_result_task_id"]:
             lines.append(f"- Last result: {row['last_result_task_id']}")
