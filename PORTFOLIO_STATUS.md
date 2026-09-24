@@ -1,12 +1,12 @@
 # Portfolio Status
 
-Generated: 2026-09-24T04:49:57.902599+00:00
+Generated: 2026-09-24T10:00:52.450887+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | NEEDS_HUMAN | E002 / Checkpoint A technical failure / WAITING | not configured | — | YES |
+| crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
 | kalshi_market_maker | ACTIVE | E001 / Clean collector rebuild / PREREGISTERED | not configured | — | no |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
@@ -20,9 +20,11 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: NEEDS_HUMAN
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
-- Human action required: **YES** — Checkpoint A ended before valid E002 evidence was recorded. Review the technical failure. If and only if it qualifies under the preregistered technical-retry exception and the same authorized window remains open, one retry may be explicitly approved.
+- Human action required: **YES** — E002 ended INCONCLUSIVE / STOPPED because the scheduled runner missed the frozen Checkpoint A window before any live evidence request. The same-window retry exception has expired. Any new feasibility attempt requires a new explicit human experiment/preregistration decision; E002 itself must not be rescheduled or amended retroactively.
 - Current blockers:
-  - E002 checkpoint A did not produce a valid bounded production result. The preregistration allows at most one technical retry inside the same frozen window, but technical-failure classification must be reviewed before any retry.
+  - Checkpoint A was launched by GitHub Actions after the frozen 2026-09-23 10:00–12:00 America/New_York authorization window had already closed, so the validator failed before any production network request.
+  - The preregistered technical retry was allowed only inside the same frozen checkpoint window. That window has expired, so no E002 retry remains authorized.
+  - Because Checkpoint A never produced valid E002 evidence, Checkpoints B and C correctly did not advance the experiment.
 
 ## kalshi_market_maker
 
@@ -41,7 +43,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-09-24T04:49:53.361977+00:00)
+- Operational monitor: WARNING (checked 2026-09-24T10:00:46.029887+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -52,7 +54,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-09-24T04:49:53.361977+00:00)
+- Operational monitor: ERROR (checked 2026-09-24T10:00:46.029887+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
