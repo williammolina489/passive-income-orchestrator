@@ -43,7 +43,7 @@ jobs:
           ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          orchestrator-monitor | tee operational-monitor.json
+          orchestrator-monitor --allow-scheduler-recovery | tee operational-monitor.json
 
       - name: Decide and execute at most one bounded task
         env:
