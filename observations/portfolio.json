@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-09-24T19:10:07.038411+00:00",
+  "generated_at": "2026-09-24T22:24:03.650631+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
@@ -31,6 +31,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-24T09:28:00Z",
       "operational_monitor_status": null,
+      "operational_monitor_reason_code": null,
       "operational_checked_at": null
     },
     {
@@ -56,6 +57,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-22T22:12:00Z",
       "operational_monitor_status": null,
+      "operational_monitor_reason_code": null,
       "operational_checked_at": null
     },
     {
@@ -80,8 +82,9 @@
       ],
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T15:11:00Z",
-      "operational_monitor_status": "HEALTHY",
-      "operational_checked_at": "2026-09-24T19:10:02.141559+00:00"
+      "operational_monitor_status": "INFRASTRUCTURE_BLOCKED",
+      "operational_monitor_reason_code": "GITHUB_ACTIONS_QUOTA",
+      "operational_checked_at": "2026-09-24T22:23:57.650298+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -109,7 +112,8 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-22T06:00:31-04:00",
       "operational_monitor_status": "ERROR",
-      "operational_checked_at": "2026-09-24T19:10:02.141559+00:00"
+      "operational_monitor_reason_code": null,
+      "operational_checked_at": "2026-09-24T22:23:57.650298+00:00"
     },
     {
       "project_id": "systematic_futures",
@@ -132,6 +136,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T12:26:00Z",
       "operational_monitor_status": null,
+      "operational_monitor_reason_code": null,
       "operational_checked_at": null
     },
     {
@@ -155,6 +160,7 @@
       "last_result_task_id": null,
       "state_updated_at": "2026-09-20T12:26:00Z",
       "operational_monitor_status": null,
+      "operational_monitor_reason_code": null,
       "operational_checked_at": null
     }
   ]
