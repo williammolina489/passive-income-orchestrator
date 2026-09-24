@@ -126,7 +126,7 @@ def render_markdown(portfolio: dict[str, Any]) -> str:
                 f"- Operational monitor: {row['operational_monitor_status']} "
                 f"(checked {row['operational_checked_at']})"
             )
-        if row["operational_monitor_reason_code"]:
+        if row.get("operational_monitor_reason_code"):
             lines.append(
                 "- Infrastructure blocker: "
                 f"{row['operational_monitor_status']} — "
