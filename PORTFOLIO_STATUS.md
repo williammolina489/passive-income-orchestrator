@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-09-24T22:24:03.650631+00:00
+Generated: 2026-09-25T01:30:09.065639+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
 
@@ -43,7 +43,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: INFRASTRUCTURE_BLOCKED (checked 2026-09-24T22:23:57.650298+00:00)
+- Operational monitor: INFRASTRUCTURE_BLOCKED (checked 2026-09-25T01:30:02.418398+00:00)
 - Infrastructure blocker: INFRASTRUCTURE_BLOCKED — GITHUB_ACTIONS_QUOTA
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
@@ -55,7 +55,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-09-24T22:23:57.650298+00:00)
+- Operational monitor: ERROR (checked 2026-09-25T01:30:02.418398+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
