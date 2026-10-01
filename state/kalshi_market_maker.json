@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state_revision": 4,
+  "state_revision": 5,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
@@ -18,9 +18,14 @@
     "oos_state": "NOT_APPLICABLE",
     "data_integrity_status": "PASS"
   },
-  "current_blockers": [],
+  "current_blockers": [
+    "Latest PR-only clean-rebuild worker run 36913448293 produced a candidate implementation but authoritative validation failed 5/49 tests before any commit, push, or PR. The failures were implementation defects: Inventory limit attributes were missing under the generated class layout, and IntegrityError rejected the message argument used by fail-closed replay.",
+    "No rebuilt Kalshi source was published by that failed worker run. E001 remains preregistered, performance unviewed, and not running.",
+    "A new Codex/API retry is intentionally not triggered during this recovery because the user prohibited spending money; the trusted job specification has been hardened with the exact regression corrections for any future authorized retry."
+  ],
   "next_permitted_actions": [
-    "Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001."
+    "Repair or regenerate the clean replacement E001 collector under the existing PR-only safeguards and corrected regression requirements, then require ruff, full pytest, and at least 40 deterministic collected tests before any branch push/PR.",
+    "Keep the 24-hour smoke and official 30-day E001 evidence window stopped until a separate reviewed rebuild PR is green and a later explicit start decision is made."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
@@ -34,7 +39,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-22T22:12:00Z",
+  "updated_at": "2026-10-01T21:10:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -47,8 +52,11 @@
     "williammolina489/kalshi-market-maker-research@main:research/E001_PREREGISTRATION.md",
     "Kalshi Stage 0 live unauthenticated contract revalidation: orchestrator Actions run 35790814838",
     "https://docs.kalshi.com/getting_started/quick_start_market_data",
-    "https://docs.kalshi.com/getting_started/orderbook_responses"
+    "https://docs.kalshi.com/getting_started/orderbook_responses",
+    "https://github.com/williammolina489/passive-income-orchestrator/actions/runs/36913448293",
+    "https://github.com/williammolina489/passive-income-orchestrator/pull/8",
+    "williammolina489/passive-income-orchestrator@d01b36e4f5b47a832740b052e49ca7d759d7971b:jobs/kalshi-e001-clean-rebuild.json"
   ],
   "last_result_task_id": null,
-  "notes": "Stage 0 PASS. An unauthenticated GitHub-runner probe returned HTTP 200 for KXHIGHNY series, active markets, event, market metadata, full orderbook, trades, exchange status, incentives, and series fee changes. Sample public trade exposed fixed-point count/prices, trade_id, is_block_trade, taker_book_side, and taker_outcome_side. Orderbook exposed yes_dollars/no_dollars depth. No essential E001 stream required authentication. Proceed with clean replacement collector from canonical E001 specification only."
+  "notes": "Stage 0 remains PASS and the clean rebuild remains methodology-frozen. On 2026-10-01 the PR-only worker generated a candidate but outer authoritative validation failed 5 of 49 tests, so no target commit/branch/PR was published and no smoke/E001 evidence was started. Orchestrator PR #8 added implementation-only regression guidance for the two current defects without touching the worker trigger. No paid/API retry was launched under the user's no-spend instruction."
 }
