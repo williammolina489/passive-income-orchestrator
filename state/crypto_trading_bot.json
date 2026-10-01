@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 2,
+  "state_revision": 3,
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
   "branch": "main",
-  "head_sha": "7f32d9e2a12a8eb3c5620193c43b6d0bb61e1146",
+  "head_sha": "229fb32b3cb0f01bb2ab2c4d43c65afc5c9bb8d1",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "EXP-009",
@@ -32,7 +32,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-20T15:11:00Z",
+  "updated_at": "2026-10-01T19:18:30Z",
   "source_documents": [
     "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
@@ -41,8 +41,12 @@
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516599163",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516572334",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789",
-    "Railway project crypto-trading-dashboard / service crypto-dashboard / production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b"
+    "Railway project crypto-trading-dashboard / service crypto-dashboard / production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36912970076",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36912975922",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36913152589",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36913158602"
   ],
   "last_result_task_id": null,
-  "notes": "Recent incumbent/challenger health and paper workflows on 2026-09-20 completed successfully on main. The read-only Railway dashboard is also healthy: production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b succeeded from dashboard-runtime commit e74d82de34e9c408ce01483420752ec555e398cf, with low CPU/memory use and /health configured. The orchestrator remains monitor-only because this repository already owns its paper execution cadence."
+  "notes": "October 1 recovery after the September GitHub Actions quota reset is complete. Incumbent and challenger recovered from the latest verified preserved artifacts, temporary recovery markers were removed, and normal predecessor-continuity cycles succeeded again. No methodology was changed and no real-money trading was enabled."
 }
