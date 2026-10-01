@@ -1,0 +1,46 @@
+name: October 1 Recovery Dispatch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "jobs/oct1-recovery.trigger"
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch audited incumbent recovery
+        env:
+          GH_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: |
+          gh workflow run forward-paper-cycle.yml \
+            --repo williammolina489/crypto-trading-bot \
+            --ref main \
+            -f bootstrap_v3=false \
+            -f recover_run_id=36067326977 \
+            -f recovery_source_success_run_id=36046384755
+
+      - name: Dispatch audited challenger recovery
+        env:
+          GH_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: |
+          gh workflow run forward-challengers.yml \
+            --repo williammolina489/crypto-trading-bot \
+            --ref main \
+            -f bootstrap_challengers=false \
+            -f recover_run_id=36047276800 \
+            -f recovery_source_success_run_id=36039334078
+
+      - name: Restart Kalshi clean rebuild worker
+        env:
+          GH_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
+        run: |
+          gh workflow run codex-pr-worker.yml \
+            --repo williammolina489/passive-income-orchestrator \
+            --ref main \
+            -f job_file=jobs/kalshi-e001-clean-rebuild.json
