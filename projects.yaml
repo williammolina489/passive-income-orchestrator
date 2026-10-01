@@ -33,8 +33,8 @@ projects:
       enabled: false
       reason: CLEAN_REBUILD_USES_PR_ONLY_CODE_WORKER
     code_worker:
-      enabled: true
-      reason: HUMAN_AUTHORIZED_CLEAN_E001_REBUILD
+      enabled: false
+      reason: REBUILD_PR_READY_AWAITING_HUMAN_REVIEW
       base_ref: main
       branch_prefix: research/e001-collector-
       setup_commands:
@@ -53,11 +53,11 @@ projects:
         - .env
         - .env.example
     notes: >
-      Exact recovery was exhausted and the user explicitly authorized a clean
-      E001 collector rebuild from the canonical frozen GitHub specification.
-      Preserve all recovery history. Label replacement source as rebuilt from
-      canonical E001 specification. E001 remains preregistered, performance
-      unviewed, and not running.
+      Exact recovery was exhausted and the clean E001 collector rebuild is now
+      published in Kalshi PR #1 with green branch-head validation. Preserve all
+      recovery history and the frozen canonical E001 specification. E001 remains
+      preregistered, performance unviewed, and not running. Human review is
+      required before merge; smoke requires a separate explicit start decision.
 
   crypto_trading_bot:
     repo: williammolina489/crypto-trading-bot
