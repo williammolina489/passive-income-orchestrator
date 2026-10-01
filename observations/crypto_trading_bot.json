@@ -2,38 +2,36 @@
   "schema_version": "1.0",
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
-  "checked_at": "2026-09-30T23:48:57.566118+00:00",
+  "checked_at": "2026-10-01T05:52:37.506153+00:00",
   "monitor_kind": "github_actions_workflows",
   "max_age_minutes": 180.0,
-  "overall_status": "INFRASTRUCTURE_BLOCKED",
-  "reason_code": "GITHUB_ACTIONS_QUOTA",
-  "known_quota_block_active": true,
+  "overall_status": "ERROR",
+  "reason_code": null,
+  "known_quota_block_active": false,
   "workflows": [
     {
       "name": "Forward paper BTC cycle",
-      "status": "INFRASTRUCTURE_BLOCKED",
-      "reason": "Latest workflow run failed before any runner step started while the account Actions allowance is known exhausted. Treat this as infrastructure-blocked, not a bot or strategy failure.",
-      "latest_completed_run_id": 36765085061,
+      "status": "FAILED",
+      "reason": "Latest completed run concluded 'failure'.",
+      "latest_completed_run_id": 36793212409,
       "latest_completed_conclusion": "failure",
-      "latest_completed_created_at": "2026-09-30T19:21:22Z",
-      "latest_completed_updated_at": "2026-09-30T19:21:25Z",
-      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36765085061",
-      "age_minutes": 267.593,
-      "active_run_ids": [],
-      "reason_code": "GITHUB_ACTIONS_QUOTA"
+      "latest_completed_created_at": "2026-09-30T23:51:16Z",
+      "latest_completed_updated_at": "2026-09-30T23:51:19Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36793212409",
+      "age_minutes": 361.358,
+      "active_run_ids": []
     },
     {
       "name": "Forward challenger BTC basket",
-      "status": "INFRASTRUCTURE_BLOCKED",
-      "reason": "Latest workflow run failed before any runner step started while the account Actions allowance is known exhausted. Treat this as infrastructure-blocked, not a bot or strategy failure.",
-      "latest_completed_run_id": 36766054077,
+      "status": "FAILED",
+      "reason": "Latest completed run concluded 'failure'.",
+      "latest_completed_run_id": 36793801660,
       "latest_completed_conclusion": "failure",
-      "latest_completed_created_at": "2026-09-30T19:29:40Z",
-      "latest_completed_updated_at": "2026-09-30T19:29:44Z",
-      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36766054077",
-      "age_minutes": 259.293,
-      "active_run_ids": [],
-      "reason_code": "GITHUB_ACTIONS_QUOTA"
+      "latest_completed_created_at": "2026-09-30T23:58:31Z",
+      "latest_completed_updated_at": "2026-09-30T23:58:35Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36793801660",
+      "age_minutes": 354.108,
+      "active_run_ids": []
     }
   ]
 }
