@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 6,
+  "state_revision": 7,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
-  "head_sha": "64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+  "head_sha": "9dd5c32ba94503512374405cbd8bfe6b48a21483",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
@@ -34,7 +34,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-09-22T06:00:31-04:00",
+  "updated_at": "2026-10-01T21:03:35Z",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
@@ -48,8 +48,13 @@
     "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35713467842",
     "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
     "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 SUCCESS for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
-    "Railway diagnostics snapshot 2026-09-22T10:00:30.380804Z"
+    "Railway diagnostics snapshot 2026-09-22T10:00:30.380804Z",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/24",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/36925914025",
+    "Railway deployment 920625f4-97cb-436a-8424-610517404834 SUCCESS for main@9dd5c32ba94503512374405cbd8bfe6b48a21483",
+    "Railway startup reconciliation 2026-10-01T21:03:23Z: prior remediated reconciliation halt resumed after fresh verified-flat checks",
+    "Railway diagnostics snapshot 2026-10-01T21:03:30Z: paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty"
   ],
   "last_result_task_id": null,
-  "notes": "PR #23 is merged into main at 64ed712db8f15e902e34cf8fe0f5223d6c748c42. Post-merge GitHub CI run #117 passed. Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 succeeded. Fresh startup/periodic reconciliation were safe; diagnostics show paper=true, process=ok, database=ok, entries_disabled=false, reconciliation_status=ok, flatten_status=flat, runtime_halted=false, ledger_safety_breach_active=false, service_status=idle_market_closed, and heartbeat_age_seconds about 3.3. The first PR-only Codex pilot is therefore complete and healthy. No production behavior or methodology changed."
+  "notes": "PR #24 merged into main at 9dd5c32ba94503512374405cbd8bfe6b48a21483 after green PR CI. Post-merge CI run 36925914025 passed and Railway deployment 920625f4-97cb-436a-8424-610517404834 succeeded. Startup reconciliation safely resumed only the allowlisted remediated paper-mode halt after fresh broker/local flat verification. Fresh diagnostics show paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty, and the service remains end_of_day. No strategy, risk, cadence, or live-money settings changed."
 }
