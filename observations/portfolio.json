@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-01T13:13:52.231903+00:00",
+  "generated_at": "2026-10-01T23:12:34.635775+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
-  "human_action_required_count": 1,
+  "human_action_required_count": 2,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
@@ -29,7 +29,7 @@
       ],
       "next_permitted_actions": [],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-24T09:28:00Z",
+      "state_updated_at": "2026-10-01T21:07:30Z",
       "operational_monitor_status": null,
       "operational_monitor_reason_code": null,
       "operational_checked_at": null
@@ -42,20 +42,25 @@
       "lifecycle_status": "ACTIVE",
       "experiment": {
         "id": "E001",
-        "stage": "Clean collector rebuild",
+        "stage": "Clean collector rebuild PR ready / human review",
         "status": "PREREGISTERED"
       },
-      "human_action_required": false,
-      "human_action_reason": null,
+      "human_action_required": true,
+      "human_action_reason": "Kalshi rebuild PR #1 is green and ready for human review. Automatic merge and smoke start are prohibited.",
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "WAIT",
-      "current_blockers": [],
-      "next_permitted_actions": [
-        "Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001."
+      "decision_hint": "NEEDS_HUMAN",
+      "current_blockers": [
+        "Rebuild PR #1 is open at head 3a5cc4404d8eb199772ad156f38cf82fe7469f62 and awaits human review. Branch-head CI run 36935054968 passed ruff and 58/58 pytest tests.",
+        "The frozen E001 preregistration remains byte-identical to main. The 24-hour non-performance smoke and official 30-day E001 evidence window have not started."
       ],
-      "last_result_task_id": null,
-      "state_updated_at": "2026-09-22T22:12:00Z",
+      "next_permitted_actions": [
+        "Human-review Kalshi rebuild PR #1 against the frozen E001 specification. Do not merge it automatically.",
+        "If the rebuild is explicitly approved and merged, make a separate explicit decision before starting the non-performance 24-hour integrity smoke.",
+        "Keep the official 30-day E001 evidence window stopped until the smoke passes its integrity review and a later explicit start decision is made."
+      ],
+      "last_result_task_id": "kalshi-e001-clean-rebuild",
+      "state_updated_at": "2026-10-01T22:28:00Z",
       "operational_monitor_status": null,
       "operational_monitor_reason_code": null,
       "operational_checked_at": null
@@ -81,10 +86,10 @@
         "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-20T15:11:00Z",
-      "operational_monitor_status": "ERROR",
+      "state_updated_at": "2026-10-01T21:16:30Z",
+      "operational_monitor_status": "WARNING",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-10-01T13:13:46.938490+00:00"
+      "operational_checked_at": "2026-10-01T23:12:20.501999+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -110,10 +115,10 @@
         "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-09-22T06:00:31-04:00",
-      "operational_monitor_status": "ERROR",
+      "state_updated_at": "2026-10-01T21:03:35Z",
+      "operational_monitor_status": "HEALTHY",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-10-01T13:13:46.938490+00:00"
+      "operational_checked_at": "2026-10-01T23:12:20.501999+00:00"
     },
     {
       "project_id": "systematic_futures",

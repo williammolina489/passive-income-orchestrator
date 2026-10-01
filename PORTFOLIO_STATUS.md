@@ -1,15 +1,15 @@
 # Portfolio Status
 
-Generated: 2026-10-01T13:13:52.231903+00:00
+Generated: 2026-10-01T23:12:34.635775+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
+Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
-| kalshi_market_maker | ACTIVE | E001 / Clean collector rebuild / PREREGISTERED | not configured | — | no |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | ERROR | no |
-| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
+| kalshi_market_maker | ACTIVE | E001 / Clean collector rebuild PR ready / human review / PREREGISTERED | not configured | — | YES |
+| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
+| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
 
@@ -31,10 +31,17 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Repository: williammolina489/kalshi-market-maker-research
 - Enabled: true
 - Lifecycle: ACTIVE
-- Decision hint: WAIT
+- Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
+- Last result: kalshi-e001-clean-rebuild
+- Human action required: **YES** — Kalshi rebuild PR #1 is green and ready for human review. Automatic merge and smoke start are prohibited.
+- Current blockers:
+  - Rebuild PR #1 is open at head 3a5cc4404d8eb199772ad156f38cf82fe7469f62 and awaits human review. Branch-head CI run 36935054968 passed ruff and 58/58 pytest tests.
+  - The frozen E001 preregistration remains byte-identical to main. The 24-hour non-performance smoke and official 30-day E001 evidence window have not started.
 - Next permitted actions:
-  - Build the clean replacement E001 collector from current main using only the canonical frozen GitHub specification; add deterministic tests, documentation, and CI/smoke tooling; open a PR for human review without merging or starting smoke/E001.
+  - Human-review Kalshi rebuild PR #1 against the frozen E001 specification. Do not merge it automatically.
+  - If the rebuild is explicitly approved and merged, make a separate explicit decision before starting the non-performance 24-hour integrity smoke.
+  - Keep the official 30-day E001 evidence window stopped until the smoke passes its integrity review and a later explicit start decision is made.
 
 ## crypto_trading_bot
 
@@ -43,7 +50,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-10-01T13:13:46.938490+00:00)
+- Operational monitor: WARNING (checked 2026-10-01T23:12:20.501999+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -54,7 +61,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-10-01T13:13:46.938490+00:00)
+- Operational monitor: HEALTHY (checked 2026-10-01T23:12:20.501999+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
