@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 6,
+  "state_revision": 7,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
-  "head_sha": "7a189c27ca8cd5c9debeb079f4661ebd7b30c29c",
+  "head_sha": "0daa353d40bf4a3cd69eb498f89300059f4f68ea",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
-    "stage": "Clean collector rebuild PR ready / human review",
+    "stage": "Collector rebuild merged / smoke authorization gate",
     "status": "PREREGISTERED"
   },
   "governance": {
@@ -19,13 +19,13 @@
     "data_integrity_status": "PASS"
   },
   "current_blockers": [
-    "Rebuild PR #1 is open at head 3a5cc4404d8eb199772ad156f38cf82fe7469f62 and awaits human review. Branch-head CI run 36935054968 passed ruff and 58/58 pytest tests.",
-    "The frozen E001 preregistration remains byte-identical to main. The 24-hour non-performance smoke and official 30-day E001 evidence window have not started."
+    "No active collector-rebuild technical blocker remains. Rebuild PR #1 was explicitly approved and merged; post-merge CI run 36942048042 passed. Status follow-up PR #2 records the separate smoke gate.",
+    "The non-performance 24-hour integrity smoke has not been authorized or started. The official 30-day E001 evidence window has not started, and performance remains unviewed."
   ],
   "next_permitted_actions": [
-    "Human-review Kalshi rebuild PR #1 against the frozen E001 specification. Do not merge it automatically.",
-    "If the rebuild is explicitly approved and merged, make a separate explicit decision before starting the non-performance 24-hour integrity smoke.",
-    "Keep the official 30-day E001 evidence window stopped until the smoke passes its integrity review and a later explicit start decision is made."
+    "Await an explicit project-owner decision before starting the non-performance 24-hour integrity smoke.",
+    "After explicit smoke authorization, run only the infrastructure/integrity smoke under the frozen E001 boundaries; do not calculate or expose E001 economic performance.",
+    "Keep the official 30-day E001 evidence window stopped until the smoke passes integrity review and a later explicit start decision is made."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
@@ -34,12 +34,11 @@
     "Do not start the 24-hour smoke test or the official 30-day E001 evidence window.",
     "Do not calculate or expose E001 P/L or economic performance.",
     "Do not add order-placement, funded execution, or trading credentials.",
-    "Do not merge the rebuild PR to main automatically.",
     "Do not spend money or use paid infrastructure."
   ],
   "human_action_required": true,
-  "human_action_reason": "Kalshi rebuild PR #1 is green and ready for human review. Automatic merge and smoke start are prohibited.",
-  "updated_at": "2026-10-01T22:28:00Z",
+  "human_action_reason": "Collector rebuild is merged and green. Separate explicit authorization is required before starting the 24-hour non-performance integrity smoke.",
+  "updated_at": "2026-10-01T23:43:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -58,8 +57,12 @@
     "williammolina489/passive-income-orchestrator@d01b36e4f5b47a832740b052e49ca7d759d7971b:jobs/kalshi-e001-clean-rebuild.json",
     "https://github.com/williammolina489/kalshi-market-maker-research/pull/1",
     "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36935054968",
-    "williammolina489/kalshi-market-maker-research@3a5cc4404d8eb199772ad156f38cf82fe7469f62"
+    "williammolina489/kalshi-market-maker-research@3a5cc4404d8eb199772ad156f38cf82fe7469f62",
+    "williammolina489/kalshi-market-maker-research@04ef07ffb2106e6b96807de86727665185e72e15",
+    "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36942048042",
+    "williammolina489/kalshi-market-maker-research@0daa353d40bf4a3cd69eb498f89300059f4f68ea",
+    "https://github.com/williammolina489/kalshi-market-maker-research/pull/2"
   ],
   "last_result_task_id": "kalshi-e001-clean-rebuild",
-  "notes": "Clean replacement collector is now published only on research/e001-collector-rebuild and PR #1 is open for review. Frozen preregistration is unchanged. Branch-head CI run 36935054968 passed ruff and 58 tests. No smoke, E001 evidence window, performance evaluation, live orders, credentials, paid worker retry, or automatic merge occurred."
+  "notes": "Clean replacement collector PR #1 was explicitly approved by the project owner and merged as 04ef07ffb2106e6b96807de86727665185e72e15; post-merge CI passed. Status-only PR #2 was then merged as 0daa353d40bf4a3cd69eb498f89300059f4f68ea to record the separate smoke-authorization gate. E001 remains preregistered, not running, performance unviewed, with no smoke or 30-day evidence collection started."
 }
