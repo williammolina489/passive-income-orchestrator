@@ -34,7 +34,7 @@ projects:
       reason: CLEAN_REBUILD_USES_PR_ONLY_CODE_WORKER
     code_worker:
       enabled: false
-      reason: REBUILD_MERGED_AWAITING_SMOKE_AUTHORIZATION
+      reason: E001_24H_SMOKE_RUNNING_NO_CODE_WORK
       base_ref: main
       branch_prefix: research/e001-collector-
       setup_commands:
@@ -54,10 +54,11 @@ projects:
         - .env.example
     notes: >
       Exact recovery was exhausted and the clean E001 collector rebuild was
-      explicitly approved and merged with green post-merge validation. Preserve
+      explicitly approved and merged. The separately authorized non-performance
+      24-hour smoke is now running as GitHub Actions run 36944108882. Preserve
       all recovery history and the frozen canonical E001 specification. E001
-      remains preregistered, performance unviewed, and not running. The 24-hour
-      non-performance smoke requires a separate explicit start decision.
+      remains preregistered, performance unviewed, and the official 30-day
+      evidence window remains stopped pending later explicit authorization.
 
   crypto_trading_bot:
     repo: williammolina489/crypto-trading-bot

@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 7,
+  "state_revision": 8,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
-  "head_sha": "0daa353d40bf4a3cd69eb498f89300059f4f68ea",
+  "head_sha": "5c469b0b1cce36f905b59eee0b705f4e5b34937f",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "E001",
-    "stage": "Collector rebuild merged / smoke authorization gate",
+    "stage": "24h non-performance infrastructure smoke running",
     "status": "PREREGISTERED"
   },
   "governance": {
@@ -19,26 +19,27 @@
     "data_integrity_status": "PASS"
   },
   "current_blockers": [
-    "No active collector-rebuild technical blocker remains. Rebuild PR #1 was explicitly approved and merged; post-merge CI run 36942048042 passed. Status follow-up PR #2 records the separate smoke gate.",
-    "The non-performance 24-hour integrity smoke has not been authorized or started. The official 30-day E001 evidence window has not started, and performance remains unviewed."
+    "Authorized 24-hour non-performance integrity smoke is currently running in GitHub Actions run 36944108882 from launch commit 6daccf95955c18a2efbb9b78f3d144c3779dedff. Chunk 1 entered execution successfully.",
+    "The smoke must complete its full wall-clock interval and integrity-only replay/review before any decision about the official 30-day E001 evidence window. E001 performance remains unviewed."
   ],
   "next_permitted_actions": [
-    "Await an explicit project-owner decision before starting the non-performance 24-hour integrity smoke.",
-    "After explicit smoke authorization, run only the infrastructure/integrity smoke under the frozen E001 boundaries; do not calculate or expose E001 economic performance.",
-    "Keep the official 30-day E001 evidence window stopped until the smoke passes integrity review and a later explicit start decision is made."
+    "Allow only the already-started smoke run 36944108882 to continue through its bounded chunks and final integrity-only review.",
+    "When the smoke completes, inspect only integrity artifacts, cadence gaps, cursor/watermark continuity, metadata availability, raw-source coverage, hashes, and replay status; do not calculate or expose E001 economic performance.",
+    "Keep the official 30-day E001 evidence window stopped until smoke integrity is reviewed and a later explicit project-owner start decision is made."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
     "Do not delete or rewrite the recovery branch, recovery manifests, dangling-object documentation, or failed recovery history.",
     "Do not modify the frozen E001 methodology or create E002.",
-    "Do not start the 24-hour smoke test or the official 30-day E001 evidence window.",
     "Do not calculate or expose E001 P/L or economic performance.",
     "Do not add order-placement, funded execution, or trading credentials.",
-    "Do not spend money or use paid infrastructure."
+    "Do not spend money or use paid infrastructure.",
+    "Do not start a second or replacement 24-hour smoke while run 36944108882 is active unless the active run has failed and a documented infrastructure-only remediation decision is made.",
+    "Do not start the official 30-day E001 evidence window."
   ],
-  "human_action_required": true,
-  "human_action_reason": "Collector rebuild is merged and green. Separate explicit authorization is required before starting the 24-hour non-performance integrity smoke.",
-  "updated_at": "2026-10-01T23:43:00Z",
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-10-02T00:06:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -61,8 +62,11 @@
     "williammolina489/kalshi-market-maker-research@04ef07ffb2106e6b96807de86727665185e72e15",
     "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36942048042",
     "williammolina489/kalshi-market-maker-research@0daa353d40bf4a3cd69eb498f89300059f4f68ea",
-    "https://github.com/williammolina489/kalshi-market-maker-research/pull/2"
+    "https://github.com/williammolina489/kalshi-market-maker-research/pull/2",
+    "williammolina489/kalshi-market-maker-research@6daccf95955c18a2efbb9b78f3d144c3779dedff",
+    "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36944108882",
+    "williammolina489/kalshi-market-maker-research@5c469b0b1cce36f905b59eee0b705f4e5b34937f"
   ],
-  "last_result_task_id": "kalshi-e001-clean-rebuild",
-  "notes": "Clean replacement collector PR #1 was explicitly approved by the project owner and merged as 04ef07ffb2106e6b96807de86727665185e72e15; post-merge CI passed. Status-only PR #2 was then merged as 0daa353d40bf4a3cd69eb498f89300059f4f68ea to record the separate smoke-authorization gate. E001 remains preregistered, not running, performance unviewed, with no smoke or 30-day evidence collection started."
+  "last_result_task_id": "kalshi-e001-24h-integrity-smoke",
+  "notes": "Project owner explicitly authorized the 24-hour non-performance integrity smoke. Launch PR #3 merged as 6daccf95955c18a2efbb9b78f3d144c3779dedff after green CI and a live read-only unauthenticated preflight covering 12 active KXHIGHNY markets; smoke run 36944108882 is active. Status PR #4 merged as 5c469b0b1cce36f905b59eee0b705f4e5b34937f. E001 remains preregistered/not running, performance unviewed, and the 30-day evidence window remains stopped."
 }
