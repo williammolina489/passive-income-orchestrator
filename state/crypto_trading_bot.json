@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 4,
+  "state_revision": 5,
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
   "branch": "main",
-  "head_sha": "6c55b5534d085e9f66fa9f0e9bc0f7fc2cb3f6d5",
+  "head_sha": "8b54819dfbc5b12537ced2631fc8723d86c78654",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "EXP-009",
@@ -32,7 +32,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-10-01T21:16:30Z",
+  "updated_at": "2026-10-02T12:22:00Z",
   "source_documents": [
     "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
@@ -50,8 +50,14 @@
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36059140133",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454218",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454220",
-    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454257"
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454257",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/11",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006000384",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006109102",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108556",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108673",
+    "williammolina489/crypto-trading-bot@8b54819dfbc5b12537ced2631fc8723d86c78654"
   ],
   "last_result_task_id": null,
-  "notes": "October 1 recovery after the September GitHub Actions quota reset is complete. Incumbent and challenger recovered from the latest verified preserved artifacts, temporary recovery markers were removed, and normal predecessor-continuity cycles succeeded again. PR #10 then reduced private Actions overhead without changing either hourly evidence scheduler: redundant hourly deep-health crons were removed in favor of public-orchestrator liveness monitoring, dashboard publication became daily/manual, and CI was deduplicated. The previously quota-blocked PR CI was rerun successfully on Python 3.11/3.12; post-merge CI and both one-time health checks passed. No methodology was changed, no missed evidence was reconstructed, and no real-money trading was enabled."
+  "notes": "October 2 operational audit found the incumbent and challenger recovery dispatches were each spawning an immediate read-only dashboard refresh, causing one duplicate dashboard run to be cancelled by concurrency and wasting Actions minutes. PR #11 removed only that redundant fan-out and reduced the evidence workflows' Actions permission from write to read; native evidence cron schedules, strategy logic, transition-only execution, and methodology were unchanged. CI passed on Python 3.11/3.12. Post-merge incumbent run 37006108556 and challenger run 37006108673 both succeeded through the 12:00 UTC completed bar with no halts, and no dashboard workflow was spawned. The historical prospective coverage warning remains preserved rather than backfilled."
 }
