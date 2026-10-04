@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-04T02:39:29.806757+00:00",
+  "generated_at": "2026-10-04T09:47:12.701877+00:00",
   "project_count": 6,
   "enabled_count": 4,
   "dispatch_eligible_count": 0,
@@ -89,7 +89,7 @@
       "state_updated_at": "2026-10-02T12:22:00Z",
       "operational_monitor_status": "HEALTHY",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-10-04T02:39:20.227029+00:00"
+      "operational_checked_at": "2026-10-04T09:47:02.607740+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
@@ -118,7 +118,7 @@
       "state_updated_at": "2026-10-01T21:03:35Z",
       "operational_monitor_status": "ERROR",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-10-04T02:39:20.227029+00:00"
+      "operational_checked_at": "2026-10-04T09:47:02.607740+00:00"
     },
     {
       "project_id": "systematic_futures",
