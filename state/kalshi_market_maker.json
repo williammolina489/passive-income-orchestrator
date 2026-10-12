@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 9,
+  "state_revision": 10,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
-  "head_sha": "53037cdfd0cfe3b85590304d031929c7304972d2",
+  "head_sha": "efa501bd77d508cf894675824e695e93b07ac613",
   "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
@@ -41,7 +41,7 @@
   ],
   "human_action_required": true,
   "human_action_reason": "First 24-hour smoke finished with REVIEW_REQUIRED and 10,698 cadence-gap records. After the code hardening, a new separate non-performance infrastructure verification requires project-owner authorization; E001's 30-day evidence window remains stopped.",
-  "updated_at": "2026-10-12T08:56:00Z",
+  "updated_at": "2026-10-12T09:16:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -69,8 +69,9 @@
     "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36944108882",
     "williammolina489/kalshi-market-maker-research@5c469b0b1cce36f905b59eee0b705f4e5b34937f",
     "https://github.com/williammolina489/kalshi-market-maker-research/pull/5",
-    "williammolina489/kalshi-market-maker-research@53037cdfd0cfe3b85590304d031929c7304972d2:PROJECT_STATE.md"
+    "williammolina489/kalshi-market-maker-research@53037cdfd0cfe3b85590304d031929c7304972d2:PROJECT_STATE.md",
+    "https://github.com/williammolina489/kalshi-market-maker-research/pull/6"
   ],
   "last_result_task_id": "kalshi-e001-24h-integrity-smoke",
-  "notes": "The October 1 E001 non-performance smoke finished on October 3, not still running; performance-blinded review found 10,698 cadence-gap records. The read-only capture hot path was improved by Kalshi PR #5 on October 12 and CI passed. This is not a retroactive integrity PASS. The original smoke and E001 economic evidence remain untouched; new smoke and official E001 start both require explicit separate human decisions."
+  "notes": "The October 1 E001 non-performance smoke finished on October 3, not still running; performance-blinded review found 10,698 cadence-gap records. The read-only capture hot path was improved by Kalshi PR #5 on October 12 and CI passed. This is not a retroactive integrity PASS. The original smoke and E001 economic evidence remain untouched; new smoke and official E001 start both require explicit separate human decisions. A second read-only improvement (Kalshi PR #6, commit efa501bd77d508cf894675824e695e93b07ac613) now distinguishes missed scheduled *slots* by source, not just aggregated cadence-gap record counts. The original smoke data remains unchanged and review is still required."
 }
