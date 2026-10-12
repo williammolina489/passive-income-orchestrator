@@ -1,15 +1,15 @@
 # Portfolio Status
 
-Generated: 2026-10-11T23:43:22.925778+00:00
+Generated: 2026-10-12T15:24:04.476148+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **1**
+Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
-| kalshi_market_maker | ACTIVE | E001 / 24h non-performance infrastructure smoke running / PREREGISTERED | not configured | — | no |
+| kalshi_market_maker | NEEDS_HUMAN | E001 / First 24h non-performance smoke completed; integrity review required / PREREGISTERED | not configured | — | YES |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
-| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
+| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
 
@@ -30,17 +30,19 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 
 - Repository: williammolina489/kalshi-market-maker-research
 - Enabled: true
-- Lifecycle: ACTIVE
-- Decision hint: WAIT
+- Lifecycle: NEEDS_HUMAN
+- Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
 - Last result: kalshi-e001-24h-integrity-smoke
+- Human action required: **YES** — First 24-hour smoke finished with REVIEW_REQUIRED and 10,698 cadence-gap records. After the code hardening, a new separate non-performance infrastructure verification requires project-owner authorization; E001's 30-day evidence window remains stopped.
 - Current blockers:
-  - Authorized 24-hour non-performance integrity smoke is currently running in GitHub Actions run 36944108882 from launch commit 6daccf95955c18a2efbb9b78f3d144c3779dedff. Chunk 1 entered execution successfully.
-  - The smoke must complete its full wall-clock interval and integrity-only replay/review before any decision about the official 30-day E001 evidence window. E001 performance remains unviewed.
+  - Authorized run 36944108882 completed on 2026-10-03 and its immutable-replay job succeeded, but the final integrity-only artifact reports REVIEW_REQUIRED with 10,698 cadence-gap records. Smoke completion is not integrity PASS.
+  - Read-only engineering PRs #5–#7 addressed slow serial public polling, per-stream missing-slot reporting, and 3,873,924 global trade IDs in a 178 MB restart file. These CI-passing changes have not yet passed a separately authorized sustained data-integrity verification run; the original missing observations remain missing.
+  - The October 1 authorization was for one smoke only. A fresh integrity-only verification run needs a separate explicit owner decision; the official E001 30-day evidence window remains unstarted and not authorized.
 - Next permitted actions:
-  - Allow only the already-started smoke run 36944108882 to continue through its bounded chunks and final integrity-only review.
-  - When the smoke completes, inspect only integrity artifacts, cadence gaps, cursor/watermark continuity, metadata availability, raw-source coverage, hashes, and replay status; do not calculate or expose E001 economic performance.
-  - Keep the official 30-day E001 evidence window stopped until smoke integrity is reviewed and a later explicit project-owner start decision is made.
+  - Review the existing first-smoke gaps by stream and timing without inspecting strategy economics or rewriting raw data.
+  - After explicit owner authorization of a new separately scoped non-performance verification smoke, preregister its dates, evidence isolation, fail-closed protocol, retention and acceptance checks before launching it.
+  - Keep the official E001 evidence window and economic analysis stopped until a verified infrastructure gate and separate explicit owner start decision.
 
 ## crypto_trading_bot
 
@@ -49,7 +51,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-10-11T23:43:06.648053+00:00)
+- Operational monitor: WARNING (checked 2026-10-12T15:23:47.597810+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -60,7 +62,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-10-11T23:43:06.648053+00:00)
+- Operational monitor: HEALTHY (checked 2026-10-12T15:23:47.597810+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
