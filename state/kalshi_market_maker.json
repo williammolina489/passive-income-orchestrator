@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 8,
+  "state_revision": 9,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
-  "head_sha": "5c469b0b1cce36f905b59eee0b705f4e5b34937f",
-  "lifecycle_status": "ACTIVE",
+  "head_sha": "53037cdfd0cfe3b85590304d031929c7304972d2",
+  "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
-    "stage": "24h non-performance infrastructure smoke running",
+    "stage": "First 24h non-performance smoke completed; integrity review required",
     "status": "PREREGISTERED"
   },
   "governance": {
@@ -16,16 +16,17 @@
     "performance_viewed": false,
     "validation_state": "NOT_APPLICABLE",
     "oos_state": "NOT_APPLICABLE",
-    "data_integrity_status": "PASS"
+    "data_integrity_status": "BLOCKED"
   },
   "current_blockers": [
-    "Authorized 24-hour non-performance integrity smoke is currently running in GitHub Actions run 36944108882 from launch commit 6daccf95955c18a2efbb9b78f3d144c3779dedff. Chunk 1 entered execution successfully.",
-    "The smoke must complete its full wall-clock interval and integrity-only replay/review before any decision about the official 30-day E001 evidence window. E001 performance remains unviewed."
+    "Authorized run 36944108882 completed on 2026-10-03 and its immutable-replay job succeeded, but the final integrity-only artifact reports REVIEW_REQUIRED with 10,698 cadence-gap records. Smoke completion is not integrity PASS.",
+    "PR #5 improved concurrent public GET polling and compressed-store safety on 2026-10-12, but that unvalidated future-capture improvement cannot change historical gaps or establish the frozen 99.5% coverage gate.",
+    "The October 1 authorization was for one smoke only. A fresh integrity-only verification run needs a separate explicit owner decision; the official E001 30-day evidence window remains unstarted and not authorized."
   ],
   "next_permitted_actions": [
-    "Allow only the already-started smoke run 36944108882 to continue through its bounded chunks and final integrity-only review.",
-    "When the smoke completes, inspect only integrity artifacts, cadence gaps, cursor/watermark continuity, metadata availability, raw-source coverage, hashes, and replay status; do not calculate or expose E001 economic performance.",
-    "Keep the official 30-day E001 evidence window stopped until smoke integrity is reviewed and a later explicit project-owner start decision is made."
+    "Review the existing first-smoke gaps by stream and timing without inspecting strategy economics or rewriting raw data.",
+    "After explicit owner authorization of a new separately scoped non-performance verification smoke, preregister its dates, evidence isolation, fail-closed protocol, retention and acceptance checks before launching it.",
+    "Keep the official E001 evidence window and economic analysis stopped until a verified infrastructure gate and separate explicit owner start decision."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
@@ -34,12 +35,13 @@
     "Do not calculate or expose E001 P/L or economic performance.",
     "Do not add order-placement, funded execution, or trading credentials.",
     "Do not spend money or use paid infrastructure.",
-    "Do not start a second or replacement 24-hour smoke while run 36944108882 is active unless the active run has failed and a documented infrastructure-only remediation decision is made.",
-    "Do not start the official 30-day E001 evidence window."
+    "Do not start the official 30-day E001 evidence window.",
+    "Do not reuse the original October 1 smoke authorization or treat a successful CI/workflow as a data-integrity PASS.",
+    "Do not launch a second smoke without a new explicit owner authorization."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-10-02T00:06:00Z",
+  "human_action_required": true,
+  "human_action_reason": "First 24-hour smoke finished with REVIEW_REQUIRED and 10,698 cadence-gap records. After the code hardening, a new separate non-performance infrastructure verification requires project-owner authorization; E001's 30-day evidence window remains stopped.",
+  "updated_at": "2026-10-12T08:56:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -65,8 +67,10 @@
     "https://github.com/williammolina489/kalshi-market-maker-research/pull/2",
     "williammolina489/kalshi-market-maker-research@6daccf95955c18a2efbb9b78f3d144c3779dedff",
     "https://github.com/williammolina489/kalshi-market-maker-research/actions/runs/36944108882",
-    "williammolina489/kalshi-market-maker-research@5c469b0b1cce36f905b59eee0b705f4e5b34937f"
+    "williammolina489/kalshi-market-maker-research@5c469b0b1cce36f905b59eee0b705f4e5b34937f",
+    "https://github.com/williammolina489/kalshi-market-maker-research/pull/5",
+    "williammolina489/kalshi-market-maker-research@53037cdfd0cfe3b85590304d031929c7304972d2:PROJECT_STATE.md"
   ],
   "last_result_task_id": "kalshi-e001-24h-integrity-smoke",
-  "notes": "Project owner explicitly authorized the 24-hour non-performance integrity smoke. Launch PR #3 merged as 6daccf95955c18a2efbb9b78f3d144c3779dedff after green CI and a live read-only unauthenticated preflight covering 12 active KXHIGHNY markets; smoke run 36944108882 is active. Status PR #4 merged as 5c469b0b1cce36f905b59eee0b705f4e5b34937f. E001 remains preregistered/not running, performance unviewed, and the 30-day evidence window remains stopped."
+  "notes": "The October 1 E001 non-performance smoke finished on October 3, not still running; performance-blinded review found 10,698 cadence-gap records. The read-only capture hot path was improved by Kalshi PR #5 on October 12 and CI passed. This is not a retroactive integrity PASS. The original smoke and E001 economic evidence remain untouched; new smoke and official E001 start both require explicit separate human decisions."
 }
