@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 11,
+  "state_revision": 12,
   "project_id": "kalshi_market_maker",
   "repository": "williammolina489/kalshi-market-maker-research",
   "branch": "main",
-  "head_sha": "4af8a83fc4741f358779bbdab5c1468df2bdcdcf",
+  "head_sha": "f6582167455119ee87b12c0bb793f0bfb6167f21",
   "lifecycle_status": "NEEDS_HUMAN",
   "experiment": {
     "id": "E001",
-    "stage": "First 24h non-performance smoke completed; integrity review required",
+    "stage": "V2 read-only 24h infrastructure verification approved conditionally; storage check pending",
     "status": "PREREGISTERED"
   },
   "governance": {
@@ -19,14 +19,14 @@
     "data_integrity_status": "BLOCKED"
   },
   "current_blockers": [
-    "Authorized run 36944108882 completed on 2026-10-03 and its immutable-replay job succeeded, but the final integrity-only artifact reports REVIEW_REQUIRED with 10,698 cadence-gap records. Smoke completion is not integrity PASS.",
-    "Read-only engineering PRs #5–#7 addressed slow serial public polling, per-stream missing-slot reporting, and 3,873,924 global trade IDs in a 178 MB restart file. These CI-passing changes have not yet passed a separately authorized sustained data-integrity verification run; the original missing observations remain missing.",
-    "The October 1 authorization was for one smoke only. A fresh integrity-only verification run needs a separate explicit owner decision; the official E001 30-day evidence window remains unstarted and not authorized."
+    "First smoke completed but retained 10,698 cadence-gap records and did not meet its data-integrity gate; original data remain immutable.",
+    "Original test artifacts occupy approximately 576.10 MB as of 2026-10-13, and owner account's remaining shared Actions artifact storage/spend guard cannot be read via the available GitHub connector; V2 launch requires at least 1.5 GiB confirmed free capacity.",
+    "V2 workflow is safely staged on main (PR #8 merged), but new marker research/E001_VERIFICATION_V2_AUTHORIZATION.json is absent. No second smoke or 30-day E001 collection is running."
   ],
   "next_permitted_actions": [
-    "Review the existing first-smoke gaps by stream and timing without inspecting strategy economics or rewriting raw data.",
-    "After explicit owner authorization of a new separately scoped non-performance verification smoke, preregister its dates, evidence isolation, fail-closed protocol, retention and acceptance checks before launching it.",
-    "Keep the official E001 evidence window and economic analysis stopped until a verified infrastructure gate and separate explicit owner start decision."
+    "Owner checks GitHub Billing & Licensing for free artifact storage, spending guard, and whether at least 1.5 GiB additional capacity is available; do not enable paid usage.",
+    "If adequately free verified capacity is reported, precommit a fresh limited post-quote-close ET window, pin collector source SHA, and create the separate V2 authorization marker; fail closed if time, capacity, or safety gates cannot be met.",
+    "Run exactly one prospective 24h public-data-only infrastructure verification with immutable artifacts and performance-blinded integrity review, only after all launch guards pass. Leave 30-day E001 evidence and real money stopped."
   ],
   "forbidden_actions": [
     "Do not claim the rebuilt collector is the recovered prior implementation.",
@@ -40,8 +40,8 @@
     "Do not launch a second smoke without a new explicit owner authorization."
   ],
   "human_action_required": true,
-  "human_action_reason": "First 24-hour smoke finished with REVIEW_REQUIRED and 10,698 cadence-gap records. After the code hardening, a new separate non-performance infrastructure verification requires project-owner authorization; E001's 30-day evidence window remains stopped.",
-  "updated_at": "2026-10-12T14:23:00Z",
+  "human_action_reason": "Owner approved exactly one new public-data-only, 24-hour Kalshi integrity verification on 2026-10-13, conditional on verifying storage. New gated workflow merged by PR #8, but no V2 authorization marker exists and no run has launched. Old smoke artifacts still use approximately 576.10 MB, and current GitHub account-wide free artifact capacity is not accessible. Confirm at least 1.5 GiB free storage and zero paid-spend authorization before creating a new prospective narrow launch marker.",
+  "updated_at": "2026-10-13T16:26:00Z",
   "source_documents": [
     "williammolina489/kalshi-market-maker-research@recovery/e001-partial-stream-inspect:recovery/RECOVERY_MANIFEST.md",
     "williammolina489/kalshi-market-maker-research@main:PROJECT_STATE.md",
@@ -72,8 +72,10 @@
     "williammolina489/kalshi-market-maker-research@53037cdfd0cfe3b85590304d031929c7304972d2:PROJECT_STATE.md",
     "https://github.com/williammolina489/kalshi-market-maker-research/pull/6",
     "https://github.com/williammolina489/kalshi-market-maker-research/pull/7",
-    "williammolina489/kalshi-market-maker-research@4af8a83fc4741f358779bbdab5c1468df2bdcdcf:PROJECT_STATE.md"
+    "williammolina489/kalshi-market-maker-research@4af8a83fc4741f358779bbdab5c1468df2bdcdcf:PROJECT_STATE.md",
+    "https://github.com/williammolina489/kalshi-market-maker-research/pull/8",
+    "williammolina489/kalshi-market-maker-research@f6582167455119ee87b12c0bb793f0bfb6167f21:PROJECT_STATE.md"
   ],
   "last_result_task_id": "kalshi-e001-24h-integrity-smoke",
-  "notes": "The October 1 E001 non-performance smoke finished on October 3, not still running; performance-blinded review found 10,698 cadence-gap records. The read-only capture hot path was improved by Kalshi PR #5 on October 12 and CI passed. This is not a retroactive integrity PASS. The original smoke and E001 economic evidence remain untouched; new smoke and official E001 start both require explicit separate human decisions. A second read-only improvement (Kalshi PR #6, commit efa501bd77d508cf894675824e695e93b07ac613) now distinguishes missed scheduled *slots* by source, not just aggregated cadence-gap record counts. The original smoke data remains unchanged and review is still required. PR #7 (8484cb164e338e75e0cfadf4ae4f43af7f1e0a79) reduces global trade-ID checkpoint state to frozen KXHIGHNY series while retaining full raw public pages and global watermark; PR #7 CI/preflight passed. Incident analysis: 3,873,924 IDs in a 178,201,225-byte restart state-5 artifact; avoid attributing all gaps to this defect without fresh validation. State synced to source commit 4af8a83fc4741f358779bbdab5c1468df2bdcdcf. Smoke not authorized for repeat."
+  "notes": "The October 1 E001 non-performance smoke finished on October 3, not still running; performance-blinded review found 10,698 cadence-gap records. The read-only capture hot path was improved by Kalshi PR #5 on October 12 and CI passed. This is not a retroactive integrity PASS. The original smoke and E001 economic evidence remain untouched; new smoke and official E001 start both require explicit separate human decisions. A second read-only improvement (Kalshi PR #6, commit efa501bd77d508cf894675824e695e93b07ac613) now distinguishes missed scheduled *slots* by source, not just aggregated cadence-gap record counts. The original smoke data remains unchanged and review is still required. PR #7 (8484cb164e338e75e0cfadf4ae4f43af7f1e0a79) reduces global trade-ID checkpoint state to frozen KXHIGHNY series while retaining full raw public pages and global watermark; PR #7 CI/preflight passed. Incident analysis: 3,873,924 IDs in a 178,201,225-byte restart state-5 artifact; avoid attributing all gaps to this defect without fresh validation. State synced to source commit 4af8a83fc4741f358779bbdab5c1468df2bdcdcf. Smoke not authorized for repeat. On 2026-10-13 owner conditionally approved one new 24h read-only infrastructure verification. Kalshi PR #8 prepared and merged a separate gated workflow; tests and public GET preflight passed. State head f6582167455119ee87b12c0bb793f0bfb6167f21. The new marker is ABSENT: user storage capacity cannot be verified through connected GitHub, so no test has started or been scheduled. Older 576.10MB storage remains, gate needs confirmed >=1.5 GiB additional free artifact capacity. Paid capacity, economic evaluation, E001 30-day start, and live trading unauthorized."
 }
