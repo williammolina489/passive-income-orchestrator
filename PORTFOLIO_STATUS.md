@@ -1,13 +1,13 @@
 # Portfolio Status
 
-Generated: 2026-10-13T11:47:44.620624+00:00
+Generated: 2026-10-13T19:17:25.637677+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
-| kalshi_market_maker | NEEDS_HUMAN | E001 / First 24h non-performance smoke completed; integrity review required / PREREGISTERED | not configured | — | YES |
+| kalshi_market_maker | NEEDS_HUMAN | E001 / V2 read-only 24h infrastructure verification approved conditionally; storage check pending / PREREGISTERED | not configured | — | YES |
 | crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
@@ -34,15 +34,15 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
 - Last result: kalshi-e001-24h-integrity-smoke
-- Human action required: **YES** — First 24-hour smoke finished with REVIEW_REQUIRED and 10,698 cadence-gap records. After the code hardening, a new separate non-performance infrastructure verification requires project-owner authorization; E001's 30-day evidence window remains stopped.
+- Human action required: **YES** — Owner approved exactly one new public-data-only, 24-hour Kalshi integrity verification on 2026-10-13, conditional on verifying storage. New gated workflow merged by PR #8, but no V2 authorization marker exists and no run has launched. Old smoke artifacts still use approximately 576.10 MB, and current GitHub account-wide free artifact capacity is not accessible. Confirm at least 1.5 GiB free storage and zero paid-spend authorization before creating a new prospective narrow launch marker.
 - Current blockers:
-  - Authorized run 36944108882 completed on 2026-10-03 and its immutable-replay job succeeded, but the final integrity-only artifact reports REVIEW_REQUIRED with 10,698 cadence-gap records. Smoke completion is not integrity PASS.
-  - Read-only engineering PRs #5–#7 addressed slow serial public polling, per-stream missing-slot reporting, and 3,873,924 global trade IDs in a 178 MB restart file. These CI-passing changes have not yet passed a separately authorized sustained data-integrity verification run; the original missing observations remain missing.
-  - The October 1 authorization was for one smoke only. A fresh integrity-only verification run needs a separate explicit owner decision; the official E001 30-day evidence window remains unstarted and not authorized.
+  - First smoke completed but retained 10,698 cadence-gap records and did not meet its data-integrity gate; original data remain immutable.
+  - Original test artifacts occupy approximately 576.10 MB as of 2026-10-13, and owner account's remaining shared Actions artifact storage/spend guard cannot be read via the available GitHub connector; V2 launch requires at least 1.5 GiB confirmed free capacity.
+  - V2 workflow is safely staged on main (PR #8 merged), but new marker research/E001_VERIFICATION_V2_AUTHORIZATION.json is absent. No second smoke or 30-day E001 collection is running.
 - Next permitted actions:
-  - Review the existing first-smoke gaps by stream and timing without inspecting strategy economics or rewriting raw data.
-  - After explicit owner authorization of a new separately scoped non-performance verification smoke, preregister its dates, evidence isolation, fail-closed protocol, retention and acceptance checks before launching it.
-  - Keep the official E001 evidence window and economic analysis stopped until a verified infrastructure gate and separate explicit owner start decision.
+  - Owner checks GitHub Billing & Licensing for free artifact storage, spending guard, and whether at least 1.5 GiB additional capacity is available; do not enable paid usage.
+  - If adequately free verified capacity is reported, precommit a fresh limited post-quote-close ET window, pin collector source SHA, and create the separate V2 authorization marker; fail closed if time, capacity, or safety gates cannot be met.
+  - Run exactly one prospective 24h public-data-only infrastructure verification with immutable artifacts and performance-blinded integrity review, only after all launch guards pass. Leave 30-day E001 evidence and real money stopped.
 
 ## crypto_trading_bot
 
@@ -51,7 +51,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-10-13T11:47:24.320309+00:00)
+- Operational monitor: WARNING (checked 2026-10-13T19:17:07.890816+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -62,7 +62,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-10-13T11:47:24.320309+00:00)
+- Operational monitor: HEALTHY (checked 2026-10-13T19:17:07.890816+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
