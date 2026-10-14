@@ -1,14 +1,14 @@
 # Portfolio Status
 
-Generated: 2026-10-14T15:09:05.159673+00:00
+Generated: 2026-10-14T23:14:03.634768+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
-| kalshi_market_maker | NEEDS_HUMAN | E001 / V2 read-only 24h infrastructure verification approved conditionally; storage check pending / PREREGISTERED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
+| kalshi_market_maker | NEEDS_HUMAN | E001 / V2 one-time read-only 24h infrastructure verification ARMED; scheduled Oct 14 17:37 EDT but NOT YET RUNNING / PREREGISTERED | not configured | — | YES |
+| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | HEALTHY | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | HEALTHY | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
@@ -34,15 +34,15 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
 - Last result: kalshi-e001-24h-integrity-smoke
-- Human action required: **YES** — Owner approved exactly one new public-data-only, 24-hour Kalshi integrity verification on 2026-10-13, conditional on verifying storage. New gated workflow merged by PR #8, but no V2 authorization marker exists and no run has launched. Old smoke artifacts still use approximately 576.10 MB, and current GitHub account-wide free artifact capacity is not accessible. Confirm at least 1.5 GiB free storage and zero paid-spend authorization before creating a new prospective narrow launch marker.
+- Human action required: **YES** — One new public GET-only 24-hour Kalshi V2 verification was owner-approved on 2026-10-13 and armed on 2026-10-14 for a prospective 17:25–18:25 EDT launch gate (cron 17:37). GitHub Release assets replace all Actions artifacts, so no 1.5 GiB account artifact-storage check is required. Initial marker-push run 38598167462 correctly skipped collection before the authorized start; main CI passed. No further launch approval is pending. A later human decision remains mandatory for any official 30-day E001 evidence start.
 - Current blockers:
-  - First smoke completed but retained 10,698 cadence-gap records and did not meet its data-integrity gate; original data remain immutable.
-  - Original test artifacts occupy approximately 576.10 MB as of 2026-10-13, and owner account's remaining shared Actions artifact storage/spend guard cannot be read via the available GitHub connector; V2 launch requires at least 1.5 GiB confirmed free capacity.
-  - V2 workflow is safely staged on main (PR #8 merged), but new marker research/E001_VERIFICATION_V2_AUTHORIZATION.json is absent. No second smoke or 30-day E001 collection is running.
+  - Original 24h infrastructure smoke retained 10,698 genuine cadence-gap records and is REVIEW_REQUIRED; do not change original evidence or infer 99.5% coverage.
+  - New 24h infrastructure verification is authorized and ARMED but not yet started: one dated GitHub schedule on 2026-10-14 at 21:37 UTC must pass 21:25–22:25 UTC fail-closed gate. If the scheduled runner is too late, no data are collected; check the actual future run before claiming start.
+  - Any official E001 30-day economic evidence, promotion decision or live trading still needs separate explicit authorization. V2 integrity review must inspect real raw slots, complete replay, not economics.
 - Next permitted actions:
-  - Owner checks GitHub Billing & Licensing for free artifact storage, spending guard, and whether at least 1.5 GiB additional capacity is available; do not enable paid usage.
-  - If adequately free verified capacity is reported, precommit a fresh limited post-quote-close ET window, pin collector source SHA, and create the separate V2 authorization marker; fail closed if time, capacity, or safety gates cannot be met.
-  - Run exactly one prospective 24h public-data-only infrastructure verification with immutable artifacts and performance-blinded integrity review, only after all launch guards pass. Leave 30-day E001 evidence and real money stopped.
+  - At/after the scheduled October 14 21:37 UTC run, inspect GitHub Actions for a new SCHEDULE event, successful V2 gate and a draft evidence Release; do not mistake the earlier successful push/skip as active sampling.
+  - Allow the single read-only V2 observer to finish its fixed 24h window, preserving Release-backed raw parts, SHA-256 manifests, checkpoint replay and genuine failures; do not reset or rewrite missing samples.
+  - After the complete V2 run, evaluate frozen 99.5% orderbook coverage and all immutable integrity checks; keep E001 30-day official period and any trading stopped without further human approval.
 
 ## crypto_trading_bot
 
@@ -51,7 +51,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-10-14T15:08:53.209748+00:00)
+- Operational monitor: HEALTHY (checked 2026-10-14T23:13:52.435496+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -62,7 +62,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: HEALTHY (checked 2026-10-14T15:08:53.209748+00:00)
+- Operational monitor: HEALTHY (checked 2026-10-14T23:13:52.435496+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
