@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
-  "checked_at": "2026-10-19T23:41:00.510016+00:00",
+  "checked_at": "2026-10-20T04:50:08.189109+00:00",
   "monitor_kind": "http_json",
   "url": "https://alpaca-paper-trading-bot-production.up.railway.app/health",
   "overall_status": "HEALTHY",
@@ -12,10 +12,10 @@
     "process": "ok",
     "database": "ok",
     "paper": true,
-    "service_status": "end_of_day",
+    "service_status": "idle_market_closed",
     "entries_disabled": false,
-    "last_cycle_at": "2026-10-19T23:40:58.385750+00:00",
-    "heartbeat_age_seconds": 15.425473,
+    "last_cycle_at": "2026-10-20T04:49:20.011505+00:00",
+    "heartbeat_age_seconds": 61.051629,
     "reconciliation_status": "ok",
     "flatten_status": "flat"
   }
