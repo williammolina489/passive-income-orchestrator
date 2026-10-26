@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-10-26T19:19:04.128376+00:00
+Generated: 2026-10-26T23:53:04.245046+00:00
 
 Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
 
@@ -8,7 +8,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / V2 one-time read-only 24h infrastructure verification ARMED; scheduled Oct 14 17:37 EDT but NOT YET RUNNING / PREREGISTERED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
+| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | ERROR | no |
 | alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
@@ -51,7 +51,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-10-26T19:18:48.098136+00:00)
+- Operational monitor: ERROR (checked 2026-10-26T23:52:54.621935+00:00)
 - Next permitted actions:
   - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
 
@@ -62,7 +62,7 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-10-26T19:18:48.098136+00:00)
+- Operational monitor: ERROR (checked 2026-10-26T23:52:54.621935+00:00)
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
 - Next permitted actions:
