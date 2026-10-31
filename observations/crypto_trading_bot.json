@@ -2,42 +2,48 @@
   "schema_version": "1.0",
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
-  "checked_at": "2026-10-31T02:22:17.252889+00:00",
+  "checked_at": "2026-10-31T09:38:08.006220+00:00",
   "monitor_kind": "github_actions_workflows",
   "max_age_minutes": 180.0,
-  "overall_status": "HEALTHY",
+  "overall_status": "WARNING",
   "reason_code": null,
   "known_quota_block_active": false,
   "workflows": [
     {
       "name": "Forward paper BTC cycle",
-      "status": "HEALTHY",
-      "reason": "Latest completed run succeeded and is within the freshness threshold.",
-      "latest_completed_run_id": 41146582565,
+      "status": "STALE",
+      "reason": "Latest successful completed run is 234.9 minutes old, above the 180.0-minute monitor threshold.",
+      "latest_completed_run_id": 41173712881,
       "latest_completed_conclusion": "success",
-      "latest_completed_created_at": "2026-10-30T23:48:00Z",
-      "latest_completed_updated_at": "2026-10-30T23:48:32Z",
-      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41146582565",
-      "age_minutes": 154.288,
+      "latest_completed_created_at": "2026-10-31T05:43:15Z",
+      "latest_completed_updated_at": "2026-10-31T05:43:50Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41173712881",
+      "age_minutes": 234.883,
       "active_run_ids": [],
       "scheduler_recovery": {
         "action": "DISPATCHED",
         "workflow": "forward-paper-cycle.yml",
-        "run_id": 41159701177,
-        "run_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41159701177"
+        "run_id": 41189498185,
+        "run_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41189498185"
       }
     },
     {
       "name": "Forward challenger BTC basket",
       "status": "HEALTHY",
       "reason": "Latest completed run succeeded and is within the freshness threshold.",
-      "latest_completed_run_id": 41152535897,
+      "latest_completed_run_id": 41179207975,
       "latest_completed_conclusion": "success",
-      "latest_completed_created_at": "2026-10-31T00:52:48Z",
-      "latest_completed_updated_at": "2026-10-31T00:53:23Z",
-      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41152535897",
-      "age_minutes": 89.488,
-      "active_run_ids": []
+      "latest_completed_created_at": "2026-10-31T07:05:30Z",
+      "latest_completed_updated_at": "2026-10-31T07:06:09Z",
+      "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41179207975",
+      "age_minutes": 152.633,
+      "active_run_ids": [],
+      "scheduler_recovery": {
+        "action": "DISPATCHED",
+        "workflow": "forward-challengers.yml",
+        "run_id": 41189503804,
+        "run_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/41189503804"
+      }
     }
   ]
 }
