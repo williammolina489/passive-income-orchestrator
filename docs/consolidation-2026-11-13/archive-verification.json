@@ -1,0 +1,16 @@
+{
+  "crypto": {
+    "artifact_count": 1182,
+    "bytes": 118563476,
+    "expired": 0,
+    "manifest_sha256": "e4c330aae301adb3b17c63643b0161cea120643283ad5941dde01c42ab95a97d",
+    "full_manifest_location": "Permanent evidence release (see REPORT.md)"
+  },
+  "orchestrator": {
+    "artifact_count": 258,
+    "bytes": 194377,
+    "expired": 0,
+    "manifest_sha256": "5b1cbd3068603b6535d5a474d055aabb0b2ac34df7022f49ce4c6d9c65980c4a",
+    "full_manifest_location": "Permanent evidence release (see REPORT.md)"
+  }
+}

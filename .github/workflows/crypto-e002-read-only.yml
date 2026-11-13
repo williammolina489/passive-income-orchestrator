@@ -25,6 +25,8 @@ concurrency:
 
 jobs:
   checkpoint:
+    # Closed research path: retained for history, no runner or dispatch.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
 

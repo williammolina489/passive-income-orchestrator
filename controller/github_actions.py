@@ -95,6 +95,17 @@ def dispatch_workflow(
     *,
     inputs: dict[str, str] | None = None,
 ) -> dict[str, Any]:
+    retired = {
+        'williammolina489/crypto-trading-bot': {
+            'forward-paper-cycle.yml', 'forward-challengers.yml',
+            'forward-paper-health.yml', 'forward-challenger-health.yml',
+            'critical-runtime-smoke.yml',
+        },
+        'williammolina489/crypto-funding-basis-bot': {'*'},
+    }
+    denied = retired.get(repository, set())
+    if '*' in denied or workflow.rsplit('/', 1)[-1] in denied:
+        raise GitHubActionsError('Closed research workflow: dispatch prohibited by consolidation')
     owner, name = repository.split("/", 1)
     workflow_q = urllib.parse.quote(workflow, safe="")
     url = f"{API_ROOT}/repos/{owner}/{name}/actions/workflows/{workflow_q}/dispatches"

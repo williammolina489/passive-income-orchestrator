@@ -1,0 +1,627 @@
+[
+  {
+    "description": {
+      "service": {
+        "id": "95f81544-9c2c-4538-b1a4-2cf75b1e8f93",
+        "name": "momentum-12-1-research",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "source": {
+          "repo": "williammolina489/alpaca-paper-trading-bot",
+          "branch": "research/momentum-12-1-baseline",
+          "commitSha": "cda62a8213aab25c00dfb76f1017deb937eb354d",
+          "rootDirectory": "/"
+        },
+        "build": {
+          "builder": "DOCKERFILE",
+          "buildEnvironment": "V3",
+          "dockerfilePath": "Dockerfile"
+        },
+        "deploy": {
+          "startCommand": "python audit_point_in_time_momentum_12_1.py --period validation --output /tmp/E011_coverage_validation.json",
+          "restartPolicyType": "NEVER",
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APCA_API_BASE_URL",
+        "APCA_API_KEY_ID",
+        "APCA_API_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": {
+        "id": "9e201875-58bb-4741-ab4a-9c5f818ea319",
+        "status": "SUCCESS",
+        "createdAt": "2026-09-05T14:32:58.492Z",
+        "url": null
+      },
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "95f81544-9c2c-4538-b1a4-2cf75b1e8f93",
+        "name": "momentum-12-1-research"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "scope": "service",
+      "deploymentId": "9e201875-58bb-4741-ab4a-9c5f818ea319",
+      "serviceId": "95f81544-9c2c-4538-b1a4-2cf75b1e8f93",
+      "environmentId": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+      "status": "SUCCESS",
+      "deploy": []
+    }
+  },
+  {
+    "description": {
+      "service": {
+        "id": "a1fe717f-7eab-456a-8345-51dc28992834",
+        "name": "momentum-12-1-validation",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "source": {
+          "repo": "williammolina489/alpaca-paper-trading-bot",
+          "branch": "research/momentum-12-1-railway-run",
+          "checkSuites": false
+        },
+        "build": {
+          "builder": "DOCKERFILE",
+          "buildEnvironment": "V3",
+          "dockerfilePath": "Dockerfile"
+        },
+        "deploy": {
+          "startCommand": "python backtest_momentum_12_1.py --period validation --output /tmp/momentum_12_1_validation.json",
+          "restartPolicyType": "NEVER",
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": {
+        "id": "5cda1d24-921d-44f1-8208-442be947928d",
+        "status": "SUCCESS",
+        "createdAt": "2026-09-05T11:10:27.701Z",
+        "url": null
+      },
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "a1fe717f-7eab-456a-8345-51dc28992834",
+        "name": "momentum-12-1-validation"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "scope": "service",
+      "deploymentId": "5cda1d24-921d-44f1-8208-442be947928d",
+      "serviceId": "a1fe717f-7eab-456a-8345-51dc28992834",
+      "environmentId": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+      "status": "SUCCESS",
+      "deploy": []
+    }
+  },
+  {
+    "description": {
+      "service": {
+        "id": "80afac54-e336-4ef2-a24f-a4595e2ffb68",
+        "name": "momentum-12-1-e011-validation-audit-oH0z",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "source": {
+          "repo": "williammolina489/alpaca-paper-trading-bot",
+          "branch": "research/momentum-12-1-baseline",
+          "commitSha": "cda62a8213aab25c00dfb76f1017deb937eb354d",
+          "rootDirectory": "/"
+        },
+        "networking": {
+          "privateNetworkEndpoint": "momentum-12-1-e011-validation-audit-oh0z"
+        },
+        "build": {
+          "builder": "RAILPACK",
+          "buildEnvironment": "V3"
+        },
+        "deploy": {
+          "startCommand": "python audit_point_in_time_momentum_12_1.py --period validation --output /tmp/E011_coverage_validation.json",
+          "restartPolicyType": "NEVER",
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": {
+        "id": "dfc8203a-c83a-44d7-816a-1563d275ee17",
+        "status": "SUCCESS",
+        "createdAt": "2026-09-05T14:33:34.774Z",
+        "url": null
+      },
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "80afac54-e336-4ef2-a24f-a4595e2ffb68",
+        "name": "momentum-12-1-e011-validation-audit-oH0z"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "scope": "service",
+      "deploymentId": "dfc8203a-c83a-44d7-816a-1563d275ee17",
+      "serviceId": "80afac54-e336-4ef2-a24f-a4595e2ffb68",
+      "environmentId": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+      "status": "SUCCESS",
+      "deploy": []
+    }
+  },
+  {
+    "description": {
+      "service": {
+        "id": "747e81d1-0161-474b-a81f-0a6c8c0e222d",
+        "name": "e011-momentum-train-verified",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "source": {
+          "repo": "williammolina489/alpaca-paper-trading-bot",
+          "branch": "research/momentum-12-1-baseline",
+          "commitSha": "947bc1b5092fac3f01a3177533062dc7017a0ef0",
+          "rootDirectory": "/"
+        },
+        "build": {
+          "builder": "RAILPACK",
+          "buildEnvironment": "V3"
+        },
+        "deploy": {
+          "startCommand": "python -u backtest_point_in_time_momentum_12_1.py --period train --output /tmp/E011_point_in_time_train.json",
+          "restartPolicyType": "NEVER",
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": {
+        "id": "05771972-ec7d-4ce7-9f25-f2c7ef620fc5",
+        "status": "SUCCESS",
+        "createdAt": "2026-09-05T19:38:19.897Z",
+        "url": null
+      },
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "747e81d1-0161-474b-a81f-0a6c8c0e222d",
+        "name": "e011-momentum-train-verified"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "scope": "service",
+      "deploymentId": "05771972-ec7d-4ce7-9f25-f2c7ef620fc5",
+      "serviceId": "747e81d1-0161-474b-a81f-0a6c8c0e222d",
+      "environmentId": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+      "status": "SUCCESS",
+      "deploy": []
+    }
+  },
+  {
+    "description": {
+      "service": {
+        "id": "010c73f2-80bc-4145-aeaa-15538f986c73",
+        "name": "momentum-12-1-e011-validation-audit",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "build": {
+          "builder": "RAILPACK",
+          "buildEnvironment": "V3"
+        },
+        "deploy": {
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": null,
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "010c73f2-80bc-4145-aeaa-15538f986c73",
+        "name": "momentum-12-1-e011-validation-audit"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "error_code": "INVALID_ARGUMENT"
+    }
+  },
+  {
+    "description": {
+      "service": {
+        "id": "4934c0df-a2c7-449c-92ab-835a94f447fa",
+        "name": "e011-momentum-validation",
+        "state": "live"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "staged": null,
+      "config": {
+        "source": {
+          "repo": "williammolina489/alpaca-paper-trading-bot",
+          "branch": "research/momentum-12-1-baseline",
+          "commitSha": "947bc1b5092fac3f01a3177533062dc7017a0ef0",
+          "rootDirectory": "/"
+        },
+        "build": {
+          "builder": "RAILPACK",
+          "buildEnvironment": "V3"
+        },
+        "deploy": {
+          "startCommand": "python -u backtest_point_in_time_momentum_12_1.py --period validation --output /tmp/E011_point_in_time_validation.json",
+          "restartPolicyType": "NEVER",
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        }
+      },
+      "stagedChanges": [],
+      "variableNames": [
+        "ACTIVE_STRATEGY_VERSION",
+        "ALPACA_API_KEY",
+        "ALPACA_DATA_FEED",
+        "ALPACA_PAPER",
+        "ALPACA_SECRET_KEY",
+        "APPROVED_STRATEGY_VERSIONS",
+        "DATABASE_URL",
+        "EMERGENCY_FLATTEN",
+        "ENABLE_LIVE_TRADING",
+        "STARTING_CAPITAL",
+        "TRADING_DISABLED",
+        "TRADING_MODE"
+      ],
+      "volumes": [],
+      "domains": {
+        "serviceDomains": [],
+        "customDomains": []
+      },
+      "tcpProxies": [],
+      "latestDeployment": {
+        "id": "6ddd5f4f-7641-49ec-9a18-dea86fcd1104",
+        "status": "SUCCESS",
+        "createdAt": "2026-09-05T19:43:27.454Z",
+        "url": null
+      },
+      "tracing": {
+        "tracingEnabled": false,
+        "autoInstrumentationEnabled": false,
+        "autoInstrumentationActive": false
+      }
+    },
+    "metrics": {
+      "service": {
+        "id": "4934c0df-a2c7-449c-92ab-835a94f447fa",
+        "name": "e011-momentum-validation"
+      },
+      "environment": {
+        "id": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+        "name": "production"
+      },
+      "metrics": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0,
+          "average": 0,
+          "min": 0,
+          "max": 0,
+          "sampleCount": 10081
+        }
+      ]
+    },
+    "logs": {
+      "scope": "service",
+      "deploymentId": "6ddd5f4f-7641-49ec-9a18-dea86fcd1104",
+      "serviceId": "4934c0df-a2c7-449c-92ab-835a94f447fa",
+      "environmentId": "78c9f8a8-4ee3-47ff-8572-32794b89dc63",
+      "status": "SUCCESS",
+      "deploy": []
+    }
+  }
+]

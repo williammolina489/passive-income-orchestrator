@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 5,
+  "project_id": "crypto_trading_bot",
+  "repository": "williammolina489/crypto-trading-bot",
+  "branch": "main",
+  "head_sha": "8b54819dfbc5b12537ced2631fc8723d86c78654",
+  "lifecycle_status": "ACTIVE",
+  "experiment": {
+    "id": "EXP-009",
+    "stage": "Prospective BTC paper evidence collection",
+    "status": "RUNNING"
+  },
+  "governance": {
+    "methodology_frozen": true,
+    "performance_viewed": true,
+    "validation_state": "NOT_APPLICABLE",
+    "oos_state": "NOT_APPLICABLE",
+    "data_integrity_status": "PASS"
+  },
+  "current_blockers": [],
+  "next_permitted_actions": [
+    "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
+  ],
+  "forbidden_actions": [
+    "Do not enable real-money trading.",
+    "Do not duplicate the repository's existing paper-cycle schedulers.",
+    "Do not rank EXP-009 challengers before the frozen 90-common-cycle gate.",
+    "Do not perform preliminary persistence review before 180 common cycles.",
+    "Do not perform the first independent candidate screen before 360 common cycles.",
+    "Do not retune the incumbent or challengers from early prospective results."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-10-02T12:22:00Z",
+  "source_documents": [
+    "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
+    "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
+    "williammolina489/crypto-trading-bot@main:ROADMAP.md",
+    "williammolina489/crypto-trading-bot@main:FORWARD_PAPER.md",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516599163",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35516572334",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/35511158789",
+    "Railway project crypto-trading-dashboard / service crypto-dashboard / production deployment 78a57b13-32d8-49fb-ba23-ce12ef85d83b",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36912970076",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36912975922",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36913152589",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36913158602",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/10",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36059140133",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454218",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454220",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/36927454257",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/11",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006000384",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006109102",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108556",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108673",
+    "williammolina489/crypto-trading-bot@8b54819dfbc5b12537ced2631fc8723d86c78654"
+  ],
+  "last_result_task_id": null,
+  "notes": "October 2 operational audit found the incumbent and challenger recovery dispatches were each spawning an immediate read-only dashboard refresh, causing one duplicate dashboard run to be cancelled by concurrency and wasting Actions minutes. PR #11 removed only that redundant fan-out and reduced the evidence workflows' Actions permission from write to read; native evidence cron schedules, strategy logic, transition-only execution, and methodology were unchanged. CI passed on Python 3.11/3.12. Post-merge incumbent run 37006108556 and challenger run 37006108673 both succeeded through the 12:00 UTC completed bar with no halts, and no dashboard workflow was spawned. The historical prospective coverage warning remains preserved rather than backfilled."
+}
