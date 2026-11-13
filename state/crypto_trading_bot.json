@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "state_revision": 6,
+  "state_revision": 7,
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
   "branch": "main",
-  "head_sha": "301776f2fc81069bd7ef3da297f5e4beb7ff2958",
+  "head_sha": "07bbc293c3ee556d18e6fedab5d8e6bfafe57aba",
   "lifecycle_status": "ACTIVE",
   "experiment": {
     "id": "EXP-010",
@@ -32,7 +32,7 @@
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-11-13T09:48:48Z",
+  "updated_at": "2026-11-13T09:57:29Z",
   "source_documents": [
     "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
@@ -61,8 +61,11 @@
     "https://github.com/williammolina489/crypto-trading-bot/pull/15",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/43404346069",
     "williammolina489/crypto-trading-bot@exp010-evidence:runtime/exp010/events.jsonl",
-    "williammolina489/crypto-trading-bot@main:experiments/EXP010/PREREGISTRATION.md"
+    "williammolina489/crypto-trading-bot@main:experiments/EXP010/PREREGISTRATION.md",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/16",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/43405316608",
+    "williammolina489/crypto-trading-bot@main:docs/incidents/exp010-publication-2026-11-13/README.md"
   ],
   "last_result_task_id": null,
-  "notes": "Owner consolidation: original BTC incumbent and full EXP-009 ended after permanent preservation. Only mean reversion continues in separate EXP-010 with fresh $10,000 paper capital and a single preregistered 25% allocation. First observation persisted at 2026-11-13T09:48:48Z; no live trading. A supervised restart exposed an evidence-publication failure without new fills; preserve the incident and validate the independent publication repair before claiming regular collection. No old recovery mappings remain."
+  "notes": "Owner consolidation: original BTC incumbent and full EXP-009 ended after permanent preservation. Only mean reversion continues in separate EXP-010 with fresh $10,000 paper capital and a single preregistered 25% allocation. First observation persisted at 2026-11-13T09:48:48Z; no live trading. A supervised restart exposed an evidence-publication failure without new fills; preserve the incident and validate the independent publication repair before claiming regular collection. No old recovery mappings remain. Publication repair PR #16 passed 176 tests on both Python 3.11 and 3.12 and was merged. Supervised resumed run 43405316608 then restored the prior ledger and successfully appended/published a second transaction without bootstrap or duplicate fills; independent reload verifies the complete hash chain and original-byte prefix. Read-only orchestrator monitoring now reports EXP-010 healthy and preserves Alpaca's existing halt as an error requiring review."
 }

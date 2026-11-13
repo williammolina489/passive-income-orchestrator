@@ -1,35 +1,37 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-13T00:22:53.032044+00:00",
+  "generated_at": "2026-11-13T09:58:35.014339+00:00",
   "project_count": 6,
-  "enabled_count": 4,
+  "enabled_count": 3,
   "dispatch_eligible_count": 0,
   "human_action_required_count": 2,
   "projects": [
     {
       "project_id": "crypto_funding_basis",
       "repository": "williammolina489/crypto-funding-basis-bot",
-      "role": "research",
-      "enabled": true,
-      "lifecycle_status": "NEEDS_HUMAN",
+      "role": "archived_research",
+      "enabled": false,
+      "lifecycle_status": "CLOSED",
       "experiment": {
         "id": "E002",
         "stage": "Finite feasibility sequence ended without valid checkpoint evidence",
         "status": "STOPPED"
       },
-      "human_action_required": true,
-      "human_action_reason": "E002 ended INCONCLUSIVE / STOPPED because the scheduled runner missed the frozen Checkpoint A window before any live evidence request. The same-window retry exception has expired. Any new feasibility attempt requires a new explicit human experiment/preregistration decision; E002 itself must not be rescheduled or amended retroactively.",
+      "human_action_required": false,
+      "human_action_reason": null,
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "NEEDS_HUMAN",
+      "decision_hint": "STOP",
       "current_blockers": [
         "Checkpoint A was launched by GitHub Actions after the frozen 2026-09-23 10:00\u201312:00 America/New_York authorization window had already closed, so the validator failed before any production network request.",
         "The preregistered technical retry was allowed only inside the same frozen checkpoint window. That window has expired, so no E002 retry remains authorized.",
         "Because Checkpoint A never produced valid E002 evidence, Checkpoints B and C correctly did not advance the experiment."
       ],
-      "next_permitted_actions": [],
+      "next_permitted_actions": [
+        "Preserve all E001/E002 evidence and frozen research files; do not schedule or authorize any more jobs in this project."
+      ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-10-01T21:07:30Z",
+      "state_updated_at": "2026-11-13T00:00:00Z",
       "operational_monitor_status": null,
       "operational_monitor_reason_code": null,
       "operational_checked_at": null
@@ -73,8 +75,8 @@
       "enabled": true,
       "lifecycle_status": "ACTIVE",
       "experiment": {
-        "id": "EXP-009",
-        "stage": "Prospective BTC paper evidence collection",
+        "id": "EXP-010",
+        "stage": "Independent 25% mean-reversion prospective paper study",
         "status": "RUNNING"
       },
       "human_action_required": false,
@@ -84,42 +86,44 @@
       "decision_hint": "WAIT",
       "current_blockers": [],
       "next_permitted_actions": [
-        "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
+        "Collect EXP-010 paper evidence using its own frozen protocol, fresh capital, dedicated durable ledger and four-hour cadence.",
+        "Observe only EXP-010. Preserve retired incumbent/EXP-009 and all operational incidents; never dispatch old workflows."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-10-02T12:22:00Z",
-      "operational_monitor_status": "WARNING",
+      "state_updated_at": "2026-11-13T09:57:29Z",
+      "operational_monitor_status": "HEALTHY",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-11-13T00:22:38.086864+00:00"
+      "operational_checked_at": "2026-11-13T09:57:56.047224+00:00"
     },
     {
       "project_id": "alpaca_paper_trading_bot",
       "repository": "williammolina489/alpaca-paper-trading-bot",
       "role": "paper_research",
       "enabled": true,
-      "lifecycle_status": "ACTIVE",
+      "lifecycle_status": "BLOCKED",
       "experiment": {
         "id": "E001",
         "stage": "Paper execution validation and historical-fidelity audit",
         "status": "RUNNING"
       },
-      "human_action_required": false,
-      "human_action_reason": null,
+      "human_action_required": true,
+      "human_action_reason": "Existing Alpaca paper bot reports reconciliation halted with entries disabled and not-flat status. Separate review is required before resuming entries; consolidation did not modify or clear the halt.",
       "worker_ready": false,
       "dispatch_eligible": false,
-      "decision_hint": "WAIT",
+      "decision_hint": "NEEDS_HUMAN",
       "current_blockers": [
-        "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
+        "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.",
+        "2026-11-13 read-only /health: paper=true, process/database OK, entries_disabled=true, reconciliation_status=halted, flatten_status=not_flat. Preserve this existing halt; do not force resume or flatten."
       ],
       "next_permitted_actions": [
-        "Continue paper trading without retuning the strategy from the small sample.",
-        "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
+        "Continue read-only health monitoring and preserve paper broker/database state.",
+        "Diagnose the existing reconciliation halt before any separate decision to resume paper entries; keep strategy/risk configuration frozen."
       ],
       "last_result_task_id": null,
-      "state_updated_at": "2026-10-12T09:18:00Z",
+      "state_updated_at": "2026-11-13T09:42:53Z",
       "operational_monitor_status": "ERROR",
       "operational_monitor_reason_code": null,
-      "operational_checked_at": "2026-11-13T00:22:38.086864+00:00"
+      "operational_checked_at": "2026-11-13T09:57:56.047224+00:00"
     },
     {
       "project_id": "systematic_futures",
