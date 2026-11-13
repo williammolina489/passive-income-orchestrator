@@ -14,8 +14,9 @@ infrastructure:
 projects:
   crypto_funding_basis:
     repo: williammolina489/crypto-funding-basis-bot
-    enabled: true
-    role: research
+    enabled: false
+    role: archived_research
+    reason: PROJECT_CLOSED_AFTER_INCONCLUSIVE_E002
     state_file: state/crypto_funding_basis.json
     worker:
       enabled: false
