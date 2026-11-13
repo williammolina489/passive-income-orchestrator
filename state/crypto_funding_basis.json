@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "state_revision": 18,
+  "state_revision": 19,
   "project_id": "crypto_funding_basis",
   "repository": "williammolina489/crypto-funding-basis-bot",
   "branch": "research/e002-xbtusd-feasibility",
   "head_sha": "fbf80c39b6df741b9d8037fd28cbd96a7632b336",
-  "lifecycle_status": "NEEDS_HUMAN",
+  "lifecycle_status": "CLOSED",
   "experiment": {
     "id": "E002",
     "stage": "Finite feasibility sequence ended without valid checkpoint evidence",
@@ -23,7 +23,9 @@
     "The preregistered technical retry was allowed only inside the same frozen checkpoint window. That window has expired, so no E002 retry remains authorized.",
     "Because Checkpoint A never produced valid E002 evidence, Checkpoints B and C correctly did not advance the experiment."
   ],
-  "next_permitted_actions": [],
+  "next_permitted_actions": [
+    "Preserve all E001/E002 evidence and frozen research files; do not schedule or authorize any more jobs in this project."
+  ],
   "forbidden_actions": [
     "Do not rerun or modify E001.",
     "Do not collect E002 live production evidence before explicit RUNNING authorization.",
@@ -34,9 +36,9 @@
     "Do not use authenticated exchange access or place orders.",
     "Do not use real money."
   ],
-  "human_action_required": true,
-  "human_action_reason": "E002 ended INCONCLUSIVE / STOPPED because the scheduled runner missed the frozen Checkpoint A window before any live evidence request. The same-window retry exception has expired. Any new feasibility attempt requires a new explicit human experiment/preregistration decision; E002 itself must not be rescheduled or amended retroactively.",
-  "updated_at": "2026-10-01T21:07:30Z",
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-11-13T00:00:00Z",
   "source_documents": [
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:PROJECT_STATE.md",
     "williammolina489/crypto-funding-basis-bot@research/e001-prospective-collector:EXPERIMENTS.md",
@@ -76,5 +78,5 @@
     "https://github.com/williammolina489/crypto-funding-basis-bot/actions/runs/36926478766"
   ],
   "last_result_task_id": null,
-  "notes": "E002 collected no valid production evidence. Checkpoint A was launched after its frozen authorization window and the local authorization gate stopped execution before network access; the same-window retry expired and B/C did not run. E002 remains STOPPED / INCONCLUSIVE and requires a new explicit human experiment/preregistration decision for any future feasibility attempt. On 2026-10-01 the E002 branch status documents were synchronized to this already-recorded outcome at fbf80c39b6df741b9d8037fd28cbd96a7632b336; frozen preregistration and authorization files were not changed."
+  "notes": "E002 collected no valid production evidence. Checkpoint A was launched after its frozen authorization window and the local authorization gate stopped execution before network access; the same-window retry expired and B/C did not run. E002 remains STOPPED / INCONCLUSIVE and requires a new explicit human experiment/preregistration decision for any future feasibility attempt. On 2026-10-01 the E002 branch status documents were synchronized to this already-recorded outcome at fbf80c39b6df741b9d8037fd28cbd96a7632b336; frozen preregistration and authorization files were not changed. Owner directed portfolio consolidation on 2026-11-12: project closed for further operation, while E002 historical scientific outcome remains INCONCLUSIVE / STOPPED (not a profitability failure)."
 }
