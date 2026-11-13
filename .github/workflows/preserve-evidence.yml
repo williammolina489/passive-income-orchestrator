@@ -1,0 +1,26 @@
+name: Preserve Actions evidence permanently
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: preserve-actions-evidence
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Archive and verify all available evidence without changing research
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/archive_actions_evidence.py
