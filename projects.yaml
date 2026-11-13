@@ -72,20 +72,16 @@ projects:
     monitor:
       enabled: true
       kind: github_actions_workflows
-      max_age_minutes: 180
+      max_age_minutes: 480
       workflows:
-        - Forward paper BTC cycle
-        - Forward challenger BTC basket
+        - EXP-010 mean reversion paper
       scheduler_recovery:
-        enabled: true
-        max_age_minutes: 120
-        ref: main
-        workflows:
-          Forward paper BTC cycle: forward-paper-cycle.yml
-          Forward challenger BTC basket: forward-challengers.yml
+        enabled: false
+        reason: EXP010_FAIL_CLOSED_NO_AUTOMATIC_RECOVERY
     notes: >
-      Observe the existing incumbent v3 and EXP-009 prospective paper evidence
-      chains. Do not duplicate scheduled paper execution or alter frozen gates.
+      Original BTC incumbent and EXP-009 ended after permanent evidence preservation.
+      Only the separately preregistered EXP-010 paper study may collect new evidence.
+      Never dispatch old cycle, bootstrap, recovery or smoke workflows.
 
   alpaca_paper_trading_bot:
     repo: williammolina489/alpaca-paper-trading-bot

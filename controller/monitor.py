@@ -452,6 +452,11 @@ def run_monitors(
 
     observations: list[dict[str, Any]] = []
     for project_id, config in registry.items():
+        if not config.get("enabled", False):
+            continue
+        state = json.loads((root / config["state_file"]).read_text())
+        if state.get("lifecycle_status") in {"CLOSED", "STOPPED", "COMPLETE"}:
+            continue
         monitor = config.get("monitor")
         if not isinstance(monitor, dict) or not monitor.get("enabled"):
             continue

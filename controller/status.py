@@ -276,7 +276,10 @@ def build_report(
             continue
 
         fresh = True
-        if verify_remote:
+        remote_required = (verify_remote and config.get("enabled", False)
+                           and state.get("lifecycle_status") not in {"CLOSED", "STOPPED", "COMPLETE"}
+                           and (worker_ready or (config.get("code_worker") or {}).get("enabled", False)))
+        if remote_required:
             try:
                 remote_sha = github_branch_sha(
                     state["repository"], state["branch"], token
@@ -294,7 +297,8 @@ def build_report(
                 fresh = False
                 overall_ok = False
 
-        entry["fresh"] = fresh if verify_remote else None
+        entry["fresh"] = fresh if remote_required else None
+        entry["remote_verification_required"] = bool(remote_required)
         entry["decision_hint"] = _decision_hint(
             config,
             state,

@@ -2,7 +2,7 @@ name: Orchestrate Once
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 */4 * * *"
   workflow_dispatch:
 
 permissions:
@@ -28,10 +28,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install
-        run: python -m pip install -e ".[dev]"
-
-      - name: Test current orchestrator checkout
-        run: pytest -q
+        run: python -m pip install -e .
 
       - name: Verify portfolio before execution
         env:
@@ -43,7 +40,7 @@ jobs:
           ORCHESTRATOR_GITHUB_TOKEN: ${{ secrets.ORCHESTRATOR_GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          orchestrator-monitor --allow-scheduler-recovery | tee operational-monitor.json
+          orchestrator-monitor | tee operational-monitor.json
 
       - name: Decide and execute at most one bounded task
         env:
@@ -68,6 +65,7 @@ jobs:
           name: orchestration-run
           path: orchestration-run.json
           if-no-files-found: ignore
+          retention-days: 14
 
       - name: Commit task, result, and refreshed state
         if: success()

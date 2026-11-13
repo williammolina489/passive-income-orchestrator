@@ -1,16 +1,15 @@
 name: October 1 Recovery Dispatch
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "jobs/oct1-recovery.trigger"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   dispatch:
+    # Closed research path: retained for history, no runner or dispatch.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
