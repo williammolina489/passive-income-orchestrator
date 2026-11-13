@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "state_revision": 5,
+  "state_revision": 6,
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
   "branch": "main",
-  "head_sha": "8b54819dfbc5b12537ced2631fc8723d86c78654",
+  "head_sha": "301776f2fc81069bd7ef3da297f5e4beb7ff2958",
   "lifecycle_status": "ACTIVE",
   "experiment": {
-    "id": "EXP-009",
-    "stage": "Prospective BTC paper evidence collection",
+    "id": "EXP-010",
+    "stage": "Independent 25% mean-reversion prospective paper study",
     "status": "RUNNING"
   },
   "governance": {
@@ -20,19 +20,19 @@
   },
   "current_blockers": [],
   "next_permitted_actions": [
-    "Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early."
+    "Collect EXP-010 paper evidence using its own frozen protocol, fresh capital, dedicated durable ledger and four-hour cadence.",
+    "Observe only EXP-010. Preserve retired incumbent/EXP-009 and all operational incidents; never dispatch old workflows."
   ],
   "forbidden_actions": [
-    "Do not enable real-money trading.",
-    "Do not duplicate the repository's existing paper-cycle schedulers.",
-    "Do not rank EXP-009 challengers before the frozen 90-common-cycle gate.",
-    "Do not perform preliminary persistence review before 180 common cycles.",
-    "Do not perform the first independent candidate screen before 360 common cycles.",
-    "Do not retune the incumbent or challengers from early prospective results."
+    "Do not enable real-money trading, leverage, shorts or authenticated exchange orders.",
+    "Do not restart original BTC incumbent, EXP-009, fast EMA, Donchian, momentum, ATR breakout or ensemble.",
+    "Do not tune the 42-bar/-2-sigma rules or 25% allocation from existing evaluations.",
+    "Do not reset/bootstrap over missing evidence, replay missed fills, or automatically recover integrity/risk stops.",
+    "Do not alter any frozen EXP-009 code, protocol, gates or historical ledger."
   ],
   "human_action_required": false,
   "human_action_reason": null,
-  "updated_at": "2026-10-02T12:22:00Z",
+  "updated_at": "2026-11-13T09:48:48Z",
   "source_documents": [
     "williammolina489/crypto-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/crypto-trading-bot@main:EXPERIMENTS.md",
@@ -56,8 +56,13 @@
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006109102",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108556",
     "https://github.com/williammolina489/crypto-trading-bot/actions/runs/37006108673",
-    "williammolina489/crypto-trading-bot@8b54819dfbc5b12537ced2631fc8723d86c78654"
+    "williammolina489/crypto-trading-bot@8b54819dfbc5b12537ced2631fc8723d86c78654",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/14",
+    "https://github.com/williammolina489/crypto-trading-bot/pull/15",
+    "https://github.com/williammolina489/crypto-trading-bot/actions/runs/43404346069",
+    "williammolina489/crypto-trading-bot@exp010-evidence:runtime/exp010/events.jsonl",
+    "williammolina489/crypto-trading-bot@main:experiments/EXP010/PREREGISTRATION.md"
   ],
   "last_result_task_id": null,
-  "notes": "October 2 operational audit found the incumbent and challenger recovery dispatches were each spawning an immediate read-only dashboard refresh, causing one duplicate dashboard run to be cancelled by concurrency and wasting Actions minutes. PR #11 removed only that redundant fan-out and reduced the evidence workflows' Actions permission from write to read; native evidence cron schedules, strategy logic, transition-only execution, and methodology were unchanged. CI passed on Python 3.11/3.12. Post-merge incumbent run 37006108556 and challenger run 37006108673 both succeeded through the 12:00 UTC completed bar with no halts, and no dashboard workflow was spawned. The historical prospective coverage warning remains preserved rather than backfilled."
+  "notes": "Owner consolidation: original BTC incumbent and full EXP-009 ended after permanent preservation. Only mean reversion continues in separate EXP-010 with fresh $10,000 paper capital and a single preregistered 25% allocation. First observation persisted at 2026-11-13T09:48:48Z; no live trading. A supervised restart exposed an evidence-publication failure without new fills; preserve the incident and validate the independent publication repair before claiming regular collection. No old recovery mappings remain."
 }

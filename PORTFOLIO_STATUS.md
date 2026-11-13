@@ -1,30 +1,31 @@
 # Portfolio Status
 
-Generated: 2026-11-13T00:22:53.032044+00:00
+Generated: 2026-11-13T09:53:32.775132+00:00
 
-Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human: **2**
+Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human: **2**
 
 | Project | Lifecycle | Experiment | Worker | Monitor | Human |
 | --- | --- | --- | --- | --- | --- |
-| crypto_funding_basis | NEEDS_HUMAN | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | not configured | — | YES |
+| crypto_funding_basis | CLOSED | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | disabled | — | no |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / V2 one-time read-only 24h infrastructure verification ARMED; scheduled Oct 14 17:37 EDT but NOT YET RUNNING / PREREGISTERED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-009 / Prospective BTC paper evidence collection / RUNNING | not configured | WARNING | no |
-| alpaca_paper_trading_bot | ACTIVE | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | no |
+| crypto_trading_bot | ACTIVE | EXP-010 / Independent 25% mean-reversion prospective paper study / RUNNING | not configured | WARNING | no |
+| alpaca_paper_trading_bot | BLOCKED | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | YES |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
 
 ## crypto_funding_basis
 
 - Repository: williammolina489/crypto-funding-basis-bot
-- Enabled: true
-- Lifecycle: NEEDS_HUMAN
-- Decision hint: NEEDS_HUMAN
+- Enabled: false
+- Lifecycle: CLOSED
+- Decision hint: STOP
 - Dispatch eligible: false
-- Human action required: **YES** — E002 ended INCONCLUSIVE / STOPPED because the scheduled runner missed the frozen Checkpoint A window before any live evidence request. The same-window retry exception has expired. Any new feasibility attempt requires a new explicit human experiment/preregistration decision; E002 itself must not be rescheduled or amended retroactively.
 - Current blockers:
   - Checkpoint A was launched by GitHub Actions after the frozen 2026-09-23 10:00–12:00 America/New_York authorization window had already closed, so the validator failed before any production network request.
   - The preregistered technical retry was allowed only inside the same frozen checkpoint window. That window has expired, so no E002 retry remains authorized.
   - Because Checkpoint A never produced valid E002 evidence, Checkpoints B and C correctly did not advance the experiment.
+- Next permitted actions:
+  - Preserve all E001/E002 evidence and frozen research files; do not schedule or authorize any more jobs in this project.
 
 ## kalshi_market_maker
 
@@ -53,21 +54,24 @@ Projects: **6** · Enabled: **4** · Dispatch-eligible now: **0** · Needs human
 - Dispatch eligible: false
 - Operational monitor: WARNING (checked 2026-11-13T00:22:38.086864+00:00)
 - Next permitted actions:
-  - Continue the repository's existing autonomous prospective paper collection and health monitoring without duplicating execution, retuning strategies, or advancing maturity gates early.
+  - Collect EXP-010 paper evidence using its own frozen protocol, fresh capital, dedicated durable ledger and four-hour cadence.
+  - Observe only EXP-010. Preserve retired incumbent/EXP-009 and all operational incidents; never dispatch old workflows.
 
 ## alpaca_paper_trading_bot
 
 - Repository: williammolina489/alpaca-paper-trading-bot
 - Enabled: true
-- Lifecycle: ACTIVE
-- Decision hint: WAIT
+- Lifecycle: BLOCKED
+- Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
 - Operational monitor: ERROR (checked 2026-11-13T00:22:38.086864+00:00)
+- Human action required: **YES** — Existing Alpaca paper bot reports reconciliation halted with entries disabled and not-flat status. Separate review is required before resuming entries; consolidation did not modify or clear the halt.
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
+  - 2026-11-13 read-only /health: paper=true, process/database OK, entries_disabled=true, reconciliation_status=halted, flatten_status=not_flat. Preserve this existing halt; do not force resume or flatten.
 - Next permitted actions:
-  - Continue paper trading without retuning the strategy from the small sample.
-  - Continue the remaining backtest/live fidelity audit under the repository's documented validation rules.
+  - Continue read-only health monitoring and preserve paper broker/database state.
+  - Diagnose the existing reconciliation halt before any separate decision to resume paper entries; keep strategy/risk configuration frozen.
 
 ## systematic_futures
 

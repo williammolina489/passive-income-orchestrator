@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "state_revision": 8,
+  "state_revision": 9,
   "project_id": "alpaca_paper_trading_bot",
   "repository": "williammolina489/alpaca-paper-trading-bot",
   "branch": "main",
   "head_sha": "c729bf74945e98fe5202c47f6532a3c2237a852e",
-  "lifecycle_status": "ACTIVE",
+  "lifecycle_status": "BLOCKED",
   "experiment": {
     "id": "E001",
     "stage": "Paper execution validation and historical-fidelity audit",
@@ -19,22 +19,24 @@
     "data_integrity_status": "UNKNOWN"
   },
   "current_blockers": [
-    "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
+    "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.",
+    "2026-11-13 read-only /health: paper=true, process/database OK, entries_disabled=true, reconciliation_status=halted, flatten_status=not_flat. Preserve this existing halt; do not force resume or flatten."
   ],
   "next_permitted_actions": [
-    "Continue paper trading without retuning the strategy from the small sample.",
-    "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
+    "Continue read-only health monitoring and preserve paper broker/database state.",
+    "Diagnose the existing reconciliation halt before any separate decision to resume paper entries; keep strategy/risk configuration frozen."
   ],
   "forbidden_actions": [
     "Do not enable real-money trading.",
     "Do not weaken the independent live-mode safety gates.",
     "Do not retune momentum_v1 from the small current paper sample.",
     "Do not treat the 2024-2025 or any future untouched OOS period as reusable optimization data after it is opened.",
-    "Do not claim a repeatable edge from the current small and concentrated paper sample."
+    "Do not claim a repeatable edge from the current small and concentrated paper sample.",
+    "Do not automatically clear reconciliation halts or assume the account is flat."
   ],
-  "human_action_required": false,
-  "human_action_reason": null,
-  "updated_at": "2026-10-12T09:18:00Z",
+  "human_action_required": true,
+  "human_action_reason": "Existing Alpaca paper bot reports reconciliation halted with entries disabled and not-flat status. Separate review is required before resuming entries; consolidation did not modify or clear the halt.",
+  "updated_at": "2026-11-13T09:42:53Z",
   "source_documents": [
     "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
     "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
@@ -59,5 +61,5 @@
     "Railway deployment e3709d9e-2f24-4729-9aee-8964969928be SUCCESS and diagnostics 2026-10-12T00:47:58Z"
   ],
   "last_result_task_id": null,
-  "notes": "PR #24 merged into main at 9dd5c32ba94503512374405cbd8bfe6b48a21483 after green PR CI. Post-merge CI run 36925914025 passed and Railway deployment 920625f4-97cb-436a-8424-610517404834 succeeded. Startup reconciliation safely resumed only the allowlisted remediated paper-mode halt after fresh broker/local flat verification. Fresh diagnostics show paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty, and the service remains end_of_day. No strategy, risk, cadence, or live-money settings changed. On 2026-10-12 PR #25 passed CI and was merged as c729bf74945e98fe5202c47f6532a3c2237a852e; Railway deployment e3709d9e-2f24-4729-9aee-8964969928be succeeded, and fresh paper diagnostics showed runtime_halted=false, entries_disabled=false, process/database/reconciliation=ok, broker/local flat with no active orders. No real-money authorization or strategy change."
+  "notes": "PR #24 merged into main at 9dd5c32ba94503512374405cbd8bfe6b48a21483 after green PR CI. Post-merge CI run 36925914025 passed and Railway deployment 920625f4-97cb-436a-8424-610517404834 succeeded. Startup reconciliation safely resumed only the allowlisted remediated paper-mode halt after fresh broker/local flat verification. Fresh diagnostics show paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty, and the service remains end_of_day. No strategy, risk, cadence, or live-money settings changed. On 2026-10-12 PR #25 passed CI and was merged as c729bf74945e98fe5202c47f6532a3c2237a852e; Railway deployment e3709d9e-2f24-4729-9aee-8964969928be succeeded, and fresh paper diagnostics showed runtime_halted=false, entries_disabled=false, process/database/reconciliation=ok, broker/local flat with no active orders. No real-money authorization or strategy change. On 2026-11-13 consolidation read-only health inspection found the process and database OK, paper=true, entries_disabled=true, reconciliation_status=halted and flatten_status=not_flat. No deployment, volume, paper order or safety gate was changed; previous healthy snapshots remain historical."
 }

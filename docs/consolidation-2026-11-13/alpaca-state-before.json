@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "state_revision": 8,
+  "project_id": "alpaca_paper_trading_bot",
+  "repository": "williammolina489/alpaca-paper-trading-bot",
+  "branch": "main",
+  "head_sha": "c729bf74945e98fe5202c47f6532a3c2237a852e",
+  "lifecycle_status": "ACTIVE",
+  "experiment": {
+    "id": "E001",
+    "stage": "Paper execution validation and historical-fidelity audit",
+    "status": "RUNNING"
+  },
+  "governance": {
+    "methodology_frozen": true,
+    "performance_viewed": true,
+    "validation_state": "UNKNOWN",
+    "oos_state": "UNKNOWN",
+    "data_integrity_status": "UNKNOWN"
+  },
+  "current_blockers": [
+    "Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity."
+  ],
+  "next_permitted_actions": [
+    "Continue paper trading without retuning the strategy from the small sample.",
+    "Continue the remaining backtest/live fidelity audit under the repository's documented validation rules."
+  ],
+  "forbidden_actions": [
+    "Do not enable real-money trading.",
+    "Do not weaken the independent live-mode safety gates.",
+    "Do not retune momentum_v1 from the small current paper sample.",
+    "Do not treat the 2024-2025 or any future untouched OOS period as reusable optimization data after it is opened.",
+    "Do not claim a repeatable edge from the current small and concentrated paper sample."
+  ],
+  "human_action_required": false,
+  "human_action_reason": null,
+  "updated_at": "2026-10-12T09:18:00Z",
+  "source_documents": [
+    "williammolina489/alpaca-paper-trading-bot@main:PROJECT_STATE.md",
+    "williammolina489/alpaca-paper-trading-bot@main:EXPERIMENTS.md",
+    "williammolina489/alpaca-paper-trading-bot@main:ROADMAP.md",
+    "williammolina489/alpaca-paper-trading-bot#22",
+    "Railway project cooperative-heart / service alpaca-paper-trading-bot / production deployment 7b1c896f-da16-4731-b4b3-69deb176e2a9",
+    "Railway diagnostics snapshot 2026-09-20T15:05:34.310234Z",
+    "Unattended public /health monitor verified from GitHub Actions CI run 35521229054 at 2026-09-20T15:58:41.739869+00:00",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/23",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35667704925",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/35713467842",
+    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+    "Railway deployment 35928ed4-a545-4a58-88f1-3e2c087f0276 SUCCESS for main@64ed712db8f15e902e34cf8fe0f5223d6c748c42",
+    "Railway diagnostics snapshot 2026-09-22T10:00:30.380804Z",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/24",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/actions/runs/36925914025",
+    "Railway deployment 920625f4-97cb-436a-8424-610517404834 SUCCESS for main@9dd5c32ba94503512374405cbd8bfe6b48a21483",
+    "Railway startup reconciliation 2026-10-01T21:03:23Z: prior remediated reconciliation halt resumed after fresh verified-flat checks",
+    "Railway diagnostics snapshot 2026-10-01T21:03:30Z: paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty",
+    "https://github.com/williammolina489/alpaca-paper-trading-bot/pull/25",
+    "williammolina489/alpaca-paper-trading-bot@c729bf74945e98fe5202c47f6532a3c2237a852e:PROJECT_STATE.md",
+    "Railway deployment e3709d9e-2f24-4729-9aee-8964969928be SUCCESS and diagnostics 2026-10-12T00:47:58Z"
+  ],
+  "last_result_task_id": null,
+  "notes": "PR #24 merged into main at 9dd5c32ba94503512374405cbd8bfe6b48a21483 after green PR CI. Post-merge CI run 36925914025 passed and Railway deployment 920625f4-97cb-436a-8424-610517404834 succeeded. Startup reconciliation safely resumed only the allowlisted remediated paper-mode halt after fresh broker/local flat verification. Fresh diagnostics show paper=true, entries_disabled=false, runtime_halted=false, reconciliation_status=ok, broker/local positions and open orders empty, and the service remains end_of_day. No strategy, risk, cadence, or live-money settings changed. On 2026-10-12 PR #25 passed CI and was merged as c729bf74945e98fe5202c47f6532a3c2237a852e; Railway deployment e3709d9e-2f24-4729-9aee-8964969928be succeeded, and fresh paper diagnostics showed runtime_halted=false, entries_disabled=false, process/database/reconciliation=ok, broker/local flat with no active orders. No real-money authorization or strategy change."
+}

@@ -28,3 +28,7 @@ Required services are preserved. Alpaca's /health reports process/database OK an
 ## Closed stays closed
 
 Original BTC and EXP-009 are operationally closed; mean reversion can run only in separate EXP-010. Funding-basis remains CLOSED with E002 scientifically INCONCLUSIVE/STOPPED. Systematic futures and prediction-market arbitrage remain closed. No Kalshi economic evidence, new smoke, or trading is authorized by this work. Historical registry/state snapshots remain alongside this report.
+
+Additional closed-project audit: futures had 14 current artifacts (535,247 original ZIP bytes), now preserved with all hashes/CRC checks in merged systematic-futures-bot PR #4. Its eight leftover manual research/paid-data workflow registrations were disabled after preservation; CI registration and all run history remain. Prediction-market arbitrage has no current artifacts and only CI registration. Total preserved research artifacts: 1,454. No paid data or closed experiment was run.
+
+EXP-010 first public-data paper observation succeeded as run 43404346069 at 09:48:48 UTC on November 13. Its independent controls and fresh $10,000 accounts were initialized prospectively. A supervised second attempt found a Git branch-publication error after collection; all units, cash and cumulative fees matched the prior checkpoint, so there were no new fills. The failed run's raw log/report and publication repair are preserved separately in the crypto repository. No historical result is backfilled or rewritten.
