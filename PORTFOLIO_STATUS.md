@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-11-13T19:38:55.921247+00:00
+Generated: 2026-11-14T00:52:44.727684+00:00
 
 Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human: **2**
 
@@ -8,7 +8,7 @@ Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human
 | --- | --- | --- | --- | --- | --- |
 | crypto_funding_basis | CLOSED | E002 / Finite feasibility sequence ended without valid checkpoint evidence / STOPPED | disabled | — | no |
 | kalshi_market_maker | NEEDS_HUMAN | E001 / V2 one-time read-only 24h infrastructure verification ARMED; scheduled Oct 14 17:37 EDT but NOT YET RUNNING / PREREGISTERED | not configured | — | YES |
-| crypto_trading_bot | ACTIVE | EXP-010 / Independent 25% mean-reversion prospective paper study / RUNNING | not configured | WARNING | no |
+| crypto_trading_bot | ACTIVE | EXP-010 / Independent 25% mean-reversion prospective paper study / RUNNING | not configured | HEALTHY | no |
 | alpaca_paper_trading_bot | BLOCKED | E001 / Paper execution validation and historical-fidelity audit / RUNNING | not configured | ERROR | YES |
 | systematic_futures | CLOSED | E003 / TRAIN / STOPPED | disabled | — | no |
 | prediction_market_arbitrage | CLOSED | E003 / Payoff-invariant proof gate / STOPPED | disabled | — | no |
@@ -52,7 +52,7 @@ Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-11-13T19:38:52.197155+00:00)
+- Operational monitor: HEALTHY (checked 2026-11-14T00:52:41.164397+00:00)
 - Next permitted actions:
   - Collect EXP-010 paper evidence using its own frozen protocol, fresh capital, dedicated durable ledger and four-hour cadence.
   - Observe only EXP-010. Preserve retired incumbent/EXP-009 and all operational incidents; never dispatch old workflows.
@@ -64,7 +64,7 @@ Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: BLOCKED
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-11-13T19:38:52.197155+00:00)
+- Operational monitor: ERROR (checked 2026-11-14T00:52:41.164397+00:00)
 - Human action required: **YES** — Existing Alpaca paper bot reports reconciliation halted with entries disabled and not-flat status. Separate review is required before resuming entries; consolidation did not modify or clear the halt.
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.
