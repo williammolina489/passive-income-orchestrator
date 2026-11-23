@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-11-23T07:31:44.916364+00:00
+Generated: 2026-11-23T20:11:03.601052+00:00
 
 Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human: **2**
 
@@ -52,7 +52,7 @@ Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: ACTIVE
 - Decision hint: WAIT
 - Dispatch eligible: false
-- Operational monitor: WARNING (checked 2026-11-23T07:31:41.021662+00:00)
+- Operational monitor: WARNING (checked 2026-11-23T20:11:00.034484+00:00)
 - Next permitted actions:
   - Collect EXP-010 paper evidence using its own frozen protocol, fresh capital, dedicated durable ledger and four-hour cadence.
   - Observe only EXP-010. Preserve retired incumbent/EXP-009 and all operational incidents; never dispatch old workflows.
@@ -64,7 +64,7 @@ Projects: **6** · Enabled: **3** · Dispatch-eligible now: **0** · Needs human
 - Lifecycle: BLOCKED
 - Decision hint: NEEDS_HUMAN
 - Dispatch eligible: false
-- Operational monitor: ERROR (checked 2026-11-23T07:31:41.021662+00:00)
+- Operational monitor: ERROR (checked 2026-11-23T20:11:00.034484+00:00)
 - Human action required: **YES** — Existing Alpaca paper bot reports reconciliation halted with entries disabled and not-flat status. Separate review is required before resuming entries; consolidation did not modify or clear the halt.
 - Current blockers:
   - Historical validation remains incomplete for scan opportunity sampling, point-in-time screener seeds, partial-fill realism, and protective-order/fill fidelity.

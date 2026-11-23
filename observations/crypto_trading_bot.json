@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "project_id": "crypto_trading_bot",
   "repository": "williammolina489/crypto-trading-bot",
-  "checked_at": "2026-11-23T07:31:41.021662+00:00",
+  "checked_at": "2026-11-23T20:11:00.034484+00:00",
   "monitor_kind": "github_actions_workflows",
   "max_age_minutes": 480.0,
   "overall_status": "WARNING",
@@ -12,13 +12,13 @@
     {
       "name": "EXP-010 mean reversion paper",
       "status": "STALE",
-      "reason": "Latest successful completed run is 13645.8 minutes old, above the 480.0-minute monitor threshold.",
+      "reason": "Latest successful completed run is 14405.1 minutes old, above the 480.0-minute monitor threshold.",
       "latest_completed_run_id": 43498360820,
       "latest_completed_conclusion": "success",
       "latest_completed_created_at": "2026-11-13T20:05:55Z",
       "latest_completed_updated_at": "2026-11-13T20:06:29Z",
       "latest_completed_url": "https://github.com/williammolina489/crypto-trading-bot/actions/runs/43498360820",
-      "age_minutes": 13645.767,
+      "age_minutes": 14405.084,
       "active_run_ids": []
     }
   ]
